@@ -125,7 +125,7 @@ class ScreenLogin extends StatelessWidget {
                         padding: const EdgeInsets.all(1.0),
                         child: TextButton(
                             onPressed: () {
-                              // Navigator.of(context).pushNamed('/home');
+                              Navigator.of(context).pushNamed('/home');
                               // newFunc();
                               // readFunc2();
                               // dummyFunc();

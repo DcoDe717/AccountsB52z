@@ -34,6 +34,7 @@ dependencies:
   lottie: ^2.3.1
   font_awesome_flutter: ^10.4.0
   multi_select_flutter: ^4.1.3
+  rflutter_alert: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -58,9 +59,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/lottie/login2.json
+    - assets/img/logo1.png
+    - assets/img/choose.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

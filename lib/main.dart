@@ -8,6 +8,7 @@
 // import 'package:accountstwo/screens/totpendingview/totpendingview.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'firebase_options.dart';
+import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:accounts3/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
       home:  ScreenLogin(),
-      // routes: {'/home': (context) => const ScreenHome()},
+      routes: {'/home': (context) => const ScreenHome()},
     );
   }
 }
