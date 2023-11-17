@@ -1,4 +1,4 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -125,10 +125,11 @@ class ScreenLogin extends StatelessWidget {
                         padding: const EdgeInsets.all(1.0),
                         child: TextButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/home');
+                              // Navigator.of(context).pushNamed('/home');
                               // newFunc();
                               // readFunc2();
                               // dummyFunc();
+                              dummyFunc1();
                             },
                             child: const Text(
                               'Login',
@@ -148,141 +149,140 @@ class ScreenLogin extends StatelessWidget {
       ),
     );
   }
+}
 
-  // Future<void> newFunc() async {
-  //   const int idx = 2;
-  //   final dbcall2 = FirebaseFirestore.instance.collection('monthlyInstallment');
-  //   final document1 = <String, dynamic>{
-  //     "comments": {'$idx': 'paid=3000 | added=jasim | comment=phonpe23'},
-  //     "ispaid": {'$idx': false},
-  //     "month": {'$idx': 'nov2023'},
-  //     "date": {'$idx': Timestamp.now()}
-  //   };
+Future<void> newFunc() async {
+  const int idx = 2;
+  final dbcall2 = FirebaseFirestore.instance.collection('monthlyInstallment');
+  final document1 = <String, dynamic>{
+    "comments": {'$idx': 'paid=3000 | added=jasim | comment=phonpe23'},
+    "ispaid": {'$idx': false},
+    "month": {'$idx': 'nov2023'},
+    "date": {'$idx': Timestamp.now()}
+  };
 
-    // final document2 = <String, dynamic>{
-    //   "comments.$idx": 'paid=3000 | added=jasim | comment=phonpe23',
-    //   "ispaid.$idx": false,
-    //   "month.$idx": 'nov2023',
-    //   "date.$idx": Timestamp.now()
-    // };
+  final document2 = <String, dynamic>{
+    "comments.$idx": 'paid=3000 | added=jasim | comment=phonpe23',
+    "ispaid.$idx": false,
+    "month.$idx": 'nov2023',
+    "date.$idx": Timestamp.now()
+  };
 
-    // await dbcall2.doc('name3').set(document2, SetOptions(merge: true));
-    // await dbcall2.doc('name2').update(document2);
+  await dbcall2.doc('name3').set(document2, SetOptions(merge: true));
+  await dbcall2.doc('name2').update(document2);
+}
+
+Future<void> readFunc2() async {
+  final dbcall2 = FirebaseFirestore.instance.collection('monthlyInstallment');
+  final docSnapshot = await dbcall2.doc('name2').get();
+
+  var comments = {};
+  var isPaid = {};
+  var month = {};
+  var date = {};
+
+  if (docSnapshot.exists) {
+    final data = docSnapshot.data();
+    // Access the fields using the keys
+    comments = data?['comments'] ?? {};
+    isPaid = data?['ispaid'] ?? {};
+    month = data?['month'] ?? {};
+    date = data?['date'] ?? {};
+    // Do something with the data
   }
 
-  // Future<void> readFunc2() async {
-  //   final dbcall2 = FirebaseFirestore.instance.collection('monthlyInstallment');
-  //   final docSnapshot = await dbcall2.doc('name2').get();
+  print(comments);
+  print(isPaid);
+  print(month);
+  print(date);
+}
 
-  //   var comments = {};
-  //   var isPaid = {};
-  //   var month = {};
-  //   var date = {};
+Future<void> readFunc() async {
+  Map<String, dynamic>? dataRead;
+  final dbcall3 =
+      FirebaseFirestore.instance.collection("monthlyInstallment").doc("name2");
+  await dbcall3.get().then(
+    (DocumentSnapshot doc) {
+      dataRead = doc.data() as Map<String, dynamic>;
+    },
+    onError: (e) => print("Error getting document: $e"),
+  );
+  print(dataRead);
+}
 
-  //   if (docSnapshot.exists) {
-  //     final data = docSnapshot.data();
-  //     // Access the fields using the keys
-  //     comments = data?['comments'] ?? {};
-  //     isPaid = data?['ispaid'] ?? {};
-  //     month = data?['month'] ?? {};
-  //     date = data?['date'] ?? {};
-  //     // Do something with the data
-  //   }
+Future<void> dummyFunc() async {
+  final dbcall4 = FirebaseFirestore.instance.collection("monthlyInstallment");
 
-  //   print(comments);
-  //   print(isPaid);
-  //   print(month);
-  //   print(date);
-  // }
+  // final data1 = <String, dynamic>{
+  //   "name": "San Francisco",
+  //   "state": "CA",
+  //   "country": "USA",
+  //   "capital": false,
+  //   "population": 860000,
+  //   "regions": ["west_coast", "norcal"]
+  // };
+  // dbcall4.doc("name3").set(data1);
+  await dbcall4.where("capital", isEqualTo: true).get().then(
+    (querySnapshot) {
+      print("Successfully completed");
+      for (var docSnapshot in querySnapshot.docs) {
+        print('${docSnapshot.id} => ${docSnapshot.data()}');
+      }
+    },
+    onError: (e) => print("Error completing: $e"),
+  );
+}
 
-  // Future<void> readFunc() async {
-  //   Map<String, dynamic>? dataRead;
-  //   final dbcall3 = FirebaseFirestore.instance
-  //       .collection("monthlyInstallment")
-  //       .doc("name2");
-  //   await dbcall3.get().then(
-  //     (DocumentSnapshot doc) {
-  //       dataRead = doc.data() as Map<String, dynamic>;
-  //     },
-  //     onError: (e) => print("Error getting document: $e"),
-  //   );
-  //   print(dataRead);
-  // }
+Future<void> dummyFunc1() async {
+  final dbcall5 = FirebaseFirestore.instance.collection("newdoc2");
 
+  final data1 = <String, dynamic>{
+    "name": "San Francisco",
+    "state": "CA",
+    "country": "USA",
+    "capital": false,
+    "population": 860000,
+    "regions": ["west_coast", "norcal"]
+  };
+  await dbcall5.doc("SF").set(data1);
 
-// Future<void> dummyFunc() async {
-//   final dbcall4 = FirebaseFirestore.instance.collection("monthlyInstallment");
+  final data2 = <String, dynamic>{
+    "name": "Los Angeles",
+    "state": "CA",
+    "country": "USA",
+    "capital": false,
+    "population": 3900000,
+    "regions": ["west_coast", "socal"],
+  };
+  await dbcall5.doc("LA").set(data2);
 
-//   // final data1 = <String, dynamic>{
-//   //   "name": "San Francisco",
-//   //   "state": "CA",
-//   //   "country": "USA",
-//   //   "capital": false,
-//   //   "population": 860000,
-//   //   "regions": ["west_coast", "norcal"]
-//   // };
-//   // dbcall4.doc("name3").set(data1);
-//   await dbcall4.where("capital", isEqualTo: true).get().then((querySnapshot) {
-//         print("Successfully completed");
-//         for (var docSnapshot in querySnapshot.docs) {
-//           print('${docSnapshot.id} => ${docSnapshot.data()}');
-//         }
-//       },
-//       onError: (e) => print("Error completing: $e"),);
-// }
+  final data3 = <String, dynamic>{
+    "name": "Washington D.C.",
+    "state": null,
+    "country": "USA",
+    "capital": true,
+    "population": 680000,
+    "regions": ["east_coast"]
+  };
+  await dbcall5.doc("DC").set(data3);
 
-// Future<void> dummyFunc1() async {
-//    final dbcall5 = FirebaseFirestore.instance.collection("newdoc2");
+  final data4 = <String, dynamic>{
+    "name": "Tokyo",
+    "state": null,
+    "country": "Japan",
+    "capital": true,
+    "population": 9000000,
+    "regions": ["kanto", "honshu"]
+  };
+  await dbcall5.doc("TOK").set(data4);
 
-//   final data1 = <String, dynamic>{
-//   "name": "San Francisco",
-//   "state": "CA",
-//   "country": "USA",
-//   "capital": false,
-//   "population": 860000,
-//   "regions": ["west_coast", "norcal"]
-// };
-// await dbcall5.doc("SF").set(data1);
-
-// final data2 = <String, dynamic>{
-//   "name": "Los Angeles",
-//   "state": "CA",
-//   "country": "USA",
-//   "capital": false,
-//   "population": 3900000,
-//   "regions": ["west_coast", "socal"],
-// };
-// await dbcall5.doc("LA").set(data2);
-
-// final data3 = <String, dynamic>{
-//   "name": "Washington D.C.",
-//   "state": null,
-//   "country": "USA",
-//   "capital": true,
-//   "population": 680000,
-//   "regions": ["east_coast"]
-// };
-// await dbcall5.doc("DC").set(data3);
-
-// final data4 = <String, dynamic>{
-//   "name": "Tokyo",
-//   "state": null,
-//   "country": "Japan",
-//   "capital": true,
-//   "population": 9000000,
-//   "regions": ["kanto", "honshu"]
-// };
-// await dbcall5.doc("TOK").set(data4);
-
-// final data5 = <String, dynamic>{
-//   "name": "Beijing",
-//   "state": null,
-//   "country": "China",
-//   "capital": true,
-//   "population": 21500000,
-//   "regions": ["jingjinji", "hebei"],
-// };
-// await dbcall5.doc("BJ").set(data5);
-
-  
-// }
+  final data5 = <String, dynamic>{
+    "name": "Beijing",
+    "state": null,
+    "country": "China",
+    "capital": true,
+    "population": 21500000,
+    "regions": ["jingjinji", "hebei"],
+  };
+  await dbcall5.doc("BJ").set(data5);
+}

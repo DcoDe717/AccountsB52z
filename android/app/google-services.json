@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970197042536",
+    "project_id": "demothreewon",
+    "storage_bucket": "demothreewon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970197042536:android:684d3c8a7795c3c24ac2dd",
+        "android_client_info": {
+          "package_name": "com.example.accounts3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQo2BnQ3MGAerSEp5-eGqCQ8uaqANTxxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
