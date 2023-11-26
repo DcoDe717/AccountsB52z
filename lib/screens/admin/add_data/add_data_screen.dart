@@ -1,4 +1,4 @@
-import 'package:accounts3/screens/admin/add_data/test012.dart';
+import 'package:accounts3/screens/admin/add_data/multi_select_screen.dart';
 import 'package:accounts3/screens/functions/firestore_main_functions.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -125,21 +125,18 @@ class _ScreenAddDataState extends State<ScreenAddData> {
   Widget addEntry() {
     return ElevatedButton.icon(
         onPressed: () async {
+          await updateFirestoreFields("monthly_installments", gSelectedMember,
+              "ispaid", numericValuesListString);
+          print('Firestore fields updated successfully!');
 
-          await updateFirestoreFields("monthly_installments", gSelectedMember, "ispaid", numericValuesListString);
-           print('Firestore fields updated successfully!');
+          updatePendingMonthsAndCount23();
 
+          setState(() {
+            selectedDropdownValue = null;
+            amountModifier = 0;
+            gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+          });
 
-             updatePendingMonthsAndCount23();
-
-             setState(() {
-                selectedDropdownValue = null;
-                amountModifier = 0;
-                gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
-              });
-
-
-        
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
@@ -165,8 +162,10 @@ class _ScreenAddDataState extends State<ScreenAddData> {
               onPressed: () {
                 gSelectedMember = choosedMember;
 
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Test012()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MultiSelectScreen()));
               },
               icon: const Icon(Icons.arrow_right),
               label: const Text('Select Entry Fields')),
@@ -179,22 +178,22 @@ class _ScreenAddDataState extends State<ScreenAddData> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Selected Fields",
+                const Text("Selected Fields",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         // backgroundColor: Color(0xff232323)
                         color: Colors.white)),
-                SizedBox(height: 10),
-                Text("Monthly Installments",
+                const SizedBox(height: 10),
+                const Text("Monthly Installments",
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         // backgroundColor: Color(0xff232323)
                         color: Colors.white)),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(gSelectedMonthsMonthlyInstallmentsMultiSelect.join(", "),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 15,
                         // backgroundColor: Color(0xff232323)
                         color: Colors.white))
@@ -239,10 +238,10 @@ class _ScreenAddDataState extends State<ScreenAddData> {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: "₹ $amountModifier",
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
               color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
           border: InputBorder.none,
-          contentPadding: EdgeInsets.only(left: 15, right: 15, top: 5),
+          contentPadding: const EdgeInsets.only(left: 15, right: 15, top: 5),
         ),
       ),
     );

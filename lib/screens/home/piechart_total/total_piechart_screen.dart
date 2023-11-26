@@ -51,11 +51,11 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
                         ),
                         elevation: 5,
                         margin: const EdgeInsets.all(15),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 20),
+                        child: const Padding(
+                          padding: EdgeInsets.only(top: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
+                            children: [
                               Text(
                                 'Balance Fund',
                                 style: TextStyle(
@@ -89,11 +89,11 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
                         ),
                         elevation: 5,
                         margin: const EdgeInsets.all(15),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 20),
+                        child: const Padding(
+                          padding: EdgeInsets.only(top: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
+                            children: [
                               Text(
                                 'Total Fund\nReceived',
                                 style: TextStyle(
@@ -123,11 +123,11 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
                         ),
                         elevation: 5,
                         margin: const EdgeInsets.all(15),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 20),
+                        child: const Padding(
+                          padding: EdgeInsets.only(top: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
+                            children: [
                               Text(
                                 'Total Fund\nExpected',
                                 style: TextStyle(
@@ -147,17 +147,10 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
                   ),
                 ],
               ),
-        
-              
             ],
           ),
         ),
       ),
     ));
-
-
-    
   }
-
-  
 }

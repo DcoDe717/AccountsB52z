@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:accountstwo/screens/home/home_screen.dart';
 
 class ScreenTotPendingView extends StatefulWidget {
   const ScreenTotPendingView({super.key});
@@ -9,7 +8,7 @@ class ScreenTotPendingView extends StatefulWidget {
 }
 
 class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
-  String? _selectedDropdownValue='Total';
+  String? _selectedDropdownValue = 'Total';
   final List<String> dropdownList = <String>[
     'Total',
     'Vahab',
@@ -32,11 +31,11 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-                    colors: [Color.fromARGB(202, 237, 123, 132), Color.fromARGB(195, 144, 85, 255)]),
-        
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(202, 237, 123, 132),
+            Color.fromARGB(195, 144, 85, 255)
+          ]),
         ),
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -74,9 +73,7 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                         onChanged: (selectedvalue) {
                           setState(() {
                             _selectedDropdownValue = selectedvalue as String;
-                            
                           });
-                          
                         },
                       ),
                     ),
@@ -95,25 +92,27 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                               ),
                               elevation: 5,
                               margin: const EdgeInsets.all(10),
-                              child: Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              Text(
-                                'Monthly Pending',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
+                              child: const Padding(
+                                padding: EdgeInsets.only(top: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Monthly Pending',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                    ),
+                                    SizedBox(height: 25),
+                                    Text(
+                                      "₹ 145000",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 20),
+                                    )
+                                  ],
+                                ),
                               ),
-                              SizedBox(height: 25),
-                              Text(
-                                "₹ 145000",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 20),
-                              )
-                            ],
-                          ),
-                        ),
                             ),
                           ),
                         ),
@@ -121,7 +120,7 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                           child: SizedBox(
                             height: 200,
                             child: Card(
-                              color: Color.fromARGB(255, 32, 111, 202),
+                              color: const Color.fromARGB(255, 32, 111, 202),
                               semanticContainer: true,
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               shape: RoundedRectangleBorder(
@@ -129,25 +128,27 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                               ),
                               elevation: 5,
                               margin: const EdgeInsets.all(10),
-                              child: Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              Text(
-                                'Loan Pending',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              child: const Padding(
+                                padding: EdgeInsets.only(top: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Loan Pending',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
+                                    SizedBox(height: 25),
+                                    Text(
+                                      "₹ 11000",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 20),
+                                    )
+                                  ],
+                                ),
                               ),
-                              SizedBox(height: 25),
-                              Text(
-                                "₹ 11000",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 20),
-                              )
-                            ],
-                          ),
-                        ),
                             ),
                           ),
                         ),
@@ -155,9 +156,7 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                     ),
                   ],
                 ),
-          
-          
-                recentBox() 
+                recentBox()
               ],
             ),
           ),
@@ -166,157 +165,139 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
     );
   }
 
-
-
-
   Widget recentBox() {
-    final isMonthlyInst=true;
-    final isLoanInst=false;
+    final isMonthlyInst = true;
+    final isLoanInst = false;
     return Container(
-
       // padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.all(15),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           color: const Color.fromARGB(106, 59, 66, 94),
           borderRadius: BorderRadius.circular(15)),
-          child: Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 5, left: 8),
-                child: labelTitle("Recent Transactions"),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 5, left: 8),
+            child: labelTitle("Recent Transactions"),
+          ),
+          SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
                 children: [
-
-
                   SizedBox(
-                    width: MediaQuery.of(context).size.width/1.21,
+                    width: MediaQuery.of(context).size.width / 1.21,
                     child: Card(
-                      
-                        color: const Color.fromARGB(255, 185, 207, 59),
-                        semanticContainer: true,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        elevation: 5,
-                        margin: const EdgeInsets.all(10),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children:  [
-                              const Text(
-                                '₹ 3500 Paid: Jasim | Added: Sulfi',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
-                              ),
-                              Visibility(
-                               visible: isMonthlyInst, child: const SizedBox(height: 15)),
-                              
-                              Visibility(
+                      color: const Color.fromARGB(255, 185, 207, 59),
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      elevation: 5,
+                      margin: const EdgeInsets.all(10),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              '₹ 3500 Paid: Jasim | Added: Sulfi',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 15),
+                            ),
+                            Visibility(
                                 visible: isMonthlyInst,
-                                child: const Text(
-                                  'Monthly Installments : Jan2023, Feb2023, March2023',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500, fontSize: 15),
-                                ),
-                              ),
-                              Visibility(
-                                visible: isLoanInst,
                                 child: const SizedBox(height: 15)),
-                               Visibility(
-                                visible: isLoanInst,
-                                child: const Text(
-                                  'Loan Installments : Jan2023, Feb2023',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500, fontSize: 15),
-                                ),
-                              ),
-                              const SizedBox(height: 15),
-                              const Text(
-                                "Comments : Gpay received",
+                            Visibility(
+                              visible: isMonthlyInst,
+                              child: const Text(
+                                'Monthly Installments : Jan2023, Feb2023, March2023',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 15),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                  ),
-
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width/1.21,
-                    child: Card(
-                      
-                        color: const Color.fromARGB(255, 185, 207, 59),
-                        semanticContainer: true,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        elevation: 5,
-                        margin: const EdgeInsets.all(10),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children:  [
-                              const Text(
-                                '₹ 1000 Paid: Vahab | Added: Rishin',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
                               ),
-
-                              Visibility(
-                               visible: isMonthlyInst, child: const SizedBox(height: 15)),
-                              
-                              Visibility(
-                                visible: isMonthlyInst,
-                                child: const Text(
-                                  'Monthly Installments : Jan2023, Feb2023',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500, fontSize: 15),
-                                ),
-                              ),
-                              Visibility(
+                            ),
+                            Visibility(
                                 visible: isLoanInst,
                                 child: const SizedBox(height: 15)),
-                              Visibility(
-                                visible: isLoanInst,
-                                child: const Text(
-                                  'Loan Installments : Jan2023, Feb2023',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500, fontSize: 15),
-                                ),
-                              ),
-                              
-                              const SizedBox(height: 15),
-                              const Text(
-                                "Comments : Gpay received",
+                            Visibility(
+                              visible: isLoanInst,
+                              child: const Text(
+                                'Loan Installments : Jan2023, Feb2023',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 15),
-                              )
-                            ],
-                          ),
+                              ),
+                            ),
+                            const SizedBox(height: 15),
+                            const Text(
+                              "Comments : Gpay received",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 15),
+                            )
+                          ],
                         ),
                       ),
+                    ),
                   ),
-                  
-                  
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.21,
+                    child: Card(
+                      color: const Color.fromARGB(255, 185, 207, 59),
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      elevation: 5,
+                      margin: const EdgeInsets.all(10),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              '₹ 1000 Paid: Vahab | Added: Rishin',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 15),
+                            ),
+                            Visibility(
+                                visible: isMonthlyInst,
+                                child: const SizedBox(height: 15)),
+                            Visibility(
+                              visible: isMonthlyInst,
+                              child: const Text(
+                                'Monthly Installments : Jan2023, Feb2023',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 15),
+                              ),
+                            ),
+                            Visibility(
+                                visible: isLoanInst,
+                                child: const SizedBox(height: 15)),
+                            Visibility(
+                              visible: isLoanInst,
+                              child: const Text(
+                                'Loan Installments : Jan2023, Feb2023',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 15),
+                              ),
+                            ),
+                            const SizedBox(height: 15),
+                            const Text(
+                              "Comments : Gpay received",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 15),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ))
-
-            ],
-          ),
-      
-      
+        ],
+      ),
     );
   }
 

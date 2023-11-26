@@ -1,4 +1,3 @@
-// import 'package:accounts3/screens/functions/firestore_main_functions.dart';
 import 'package:accounts3/screens/global/global_files.dart';
 import 'package:accounts3/screens/admin/add_data/add_data_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,11 +8,7 @@ import 'package:multiselect_dropdown_flutter/multiselect_dropdown_flutter.dart';
 int pendingMonthsCountFromDb = 0;
 String pendindMonthsFromDbRaw = '';
 List<String> pendingMonthsListSplittedArray = [];
-List<String> pendingMonthsNamesListConverted = [
-  "Jan 2023",
-  "Feb 2023",
-  "March 2023"
-];
+List<String> pendingMonthsNamesListConverted = [];
 
 // Test variables
 List<dynamic> monthsNameDemo = [
@@ -57,8 +52,8 @@ String getMonthName(int monthValue) {
   return '${monthNamesConverted[monthIndex]} $year';
 }
 
-class Test012 extends StatelessWidget {
-  const Test012({super.key});
+class MultiSelectScreen extends StatelessWidget {
+  const MultiSelectScreen({super.key});
 
   // Your other widget code...
 
@@ -81,11 +76,11 @@ class Test012 extends StatelessWidget {
       future: getMonthlyInstallments(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || !snapshot.data!.exists) {
-          return Center(child: Text('Document does not exist'));
+          return const Center(child: Text('Document does not exist'));
         } else {
           // Retrieve the data from the snapshot
           pendindMonthsFromDbRaw = snapshot.data!['pending_months'];
@@ -133,7 +128,7 @@ class Test012 extends StatelessWidget {
                 ),
                 // You can add more widgets here if needed
 
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 FilledButton.icon(
                     onPressed: () {
                       // Calling amount modifier update function
@@ -154,7 +149,8 @@ class Test012 extends StatelessWidget {
 
                       numericListStringConverter(numericValuesList);
 
-                      print("numericValuesListString : $numericValuesListString");
+                      print(
+                          "numericValuesListString : $numericValuesListString");
 
                       // Navigate using push to get the refreshed screen of Screen Add Data
                       Navigator.pushAndRemoveUntil(
@@ -164,8 +160,8 @@ class Test012 extends StatelessWidget {
                           ),
                           (route) => false);
                     },
-                    icon: Icon(Icons.done),
-                    label: Text('Submit'))
+                    icon: const Icon(Icons.done),
+                    label: const Text('Submit'))
               ],
             ),
           );

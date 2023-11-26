@@ -1,17 +1,39 @@
-import 'package:accounts3/screens/global/global_files.dart';
-import 'package:accounts3/screens/admin/add_data/add_data_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
-
-
-
-
 // Global Variables ----------------
 int pendingMonthsCountFromDb = 0;
 String pendindMonthsFromDbRaw = '';
 List<String> pendingMonthsListSplittedArray = [];
-List<String> pendingMonthsNamesListConverted = ['Jan 2022',  'Feb 2022', 'March 2022', 'April 2022', 'May 2022'];
+List<String> pendingMonthsNamesListConverted = [
+  'Jan 2022',
+  'Feb 2022',
+  'March 2022',
+  'April 2022',
+  'May 2022'
+];
+
+// Function for index to monthnames convertion ------
+String getMonthName(int monthValue) {
+  // List of month names
+  List<String> monthNamesConverted = [
+    'Jan',
+    'Feb',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+
+  int year = 2022 + (monthValue - 1) ~/ 12;
+  int monthIndex = (monthValue - 1) % 12;
+
+  return '${monthNamesConverted[monthIndex]} $year';
+}
+
 
 
 // // variable for Usage of list to months class objects :
@@ -50,33 +72,7 @@ List<String> pendingMonthsNamesListConverted = ['Jan 2022',  'Feb 2022', 'March 
 // }
 
 
-// Function for index to monthnames convertion ------
-String getMonthName(int monthValue) {
-  // List of month names
-  List<String> monthNamesConverted = [
-    'Jan',
-    'Feb',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec'
-  ];
-
-  int year = 2022 + (monthValue - 1) ~/ 12;
-  int monthIndex = (monthValue - 1) % 12;
-
-  return '${monthNamesConverted[monthIndex]} $year';
-}
-
-
-
-//Function for dbcall, listcreator etc
+// Function for dbcall, listcreator etc
 // FutureBuilder<DocumentSnapshot> dbBuilderPendingMonths() {
 //   return FutureBuilder<DocumentSnapshot>(
 //     future: FirebaseFirestore.instance

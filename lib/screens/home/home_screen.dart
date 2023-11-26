@@ -1,6 +1,5 @@
 import 'package:accounts3/screens/admin/loan_approve/loan_approve_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
 import 'package:accounts3/screens/home/piechart_total/total_piechart_screen.dart';
 import 'package:accounts3/screens/home/total_pending_view/total_pendingview_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class ScreenHome extends StatefulWidget {
 
 class _ScreenHomeState extends State<ScreenHome> {
   int _selectedNavIndex = 0;
-  
+
   static const List _pageList = [
     ScreenHomePieChartView(),
     ScreenTotPendingView(),
@@ -45,13 +44,12 @@ class _ScreenHomeState extends State<ScreenHome> {
           ],
           onTap: (value) {
             if (value == 3) {
-
               Alert(
                 context: context,
                 // type: AlertType.warning,
                 // image: Image.asset("assets/img/choose.png"),
                 title: "Choose Operation",
-                desc: "Credit - for adding entry\nDebit - for approving loan",                
+                desc: "Credit - for adding entry\nDebit - for approving loan",
                 buttons: [
                   DialogButton(
                     onPressed: () => Navigator.pushAndRemoveUntil(
@@ -70,10 +68,10 @@ class _ScreenHomeState extends State<ScreenHome> {
                     onPressed: () => Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ScreenLoanApprove(),
+                          builder: (context) => const ScreenLoanApprove(),
                         ),
                         (route) => false),
-                        color: Color.fromARGB(255, 23, 109, 190),
+                    color: const Color.fromARGB(255, 23, 109, 190),
                     // gradient: const LinearGradient(colors: [
                     //   Color.fromRGBO(116, 116, 191, 1.0),
                     //   Color.fromRGBO(52, 138, 199, 1.0)
@@ -85,9 +83,6 @@ class _ScreenHomeState extends State<ScreenHome> {
                   )
                 ],
               ).show();
-
-              
-              
             }
 
             if (value == 0 || value == 1 || value == 2) {

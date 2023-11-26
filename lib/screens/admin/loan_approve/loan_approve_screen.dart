@@ -32,10 +32,11 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        // print("back button is pressed");
-        return false;
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) async {
+        print("back button is pressed");
+        return;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -182,7 +183,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
       width: MediaQuery.of(context).size.width,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Color.fromARGB(167, 237, 123, 132),
+          color: const Color.fromARGB(167, 237, 123, 132),
           // gradient: const LinearGradient(colors: [
           //   Colors.redAccent,
           //   Colors.blueAccent,
@@ -198,7 +199,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
         ),
         child: DropdownButtonHideUnderline(
           child: DropdownButtonFormField(
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
             dropdownColor: const Color(0xff252041),
             icon: const Icon(
               Icons.arrow_drop_down_circle_outlined,
