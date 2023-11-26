@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:accounts3/screens/functions/firestore_main_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -125,11 +125,14 @@ class ScreenLogin extends StatelessWidget {
                         padding: const EdgeInsets.all(1.0),
                         child: TextButton(
                             onPressed: () {
-                              // Navigator.of(context).pushNamed('/home');
+                              Navigator.of(context).pushNamed('/home');
                               // newFunc();
                               // readFunc2();
                               // dummyFunc();
-                              dummyFunc1();
+                              // dummyFunc1();
+                              // newFunc01();
+                              // calculateAndCreateTotalDocument();
+                              // updatePendingMonthsAndCount();
                             },
                             child: const Text(
                               'Login',
@@ -151,138 +154,162 @@ class ScreenLogin extends StatelessWidget {
   }
 }
 
-Future<void> newFunc() async {
-  const int idx = 2;
-  final dbcall2 = FirebaseFirestore.instance.collection('monthlyInstallment');
-  final document1 = <String, dynamic>{
-    "comments": {'$idx': 'paid=3000 | added=jasim | comment=phonpe23'},
-    "ispaid": {'$idx': false},
-    "month": {'$idx': 'nov2023'},
-    "date": {'$idx': Timestamp.now()}
-  };
 
-  final document2 = <String, dynamic>{
-    "comments.$idx": 'paid=3000 | added=jasim | comment=phonpe23',
-    "ispaid.$idx": false,
-    "month.$idx": 'nov2023',
-    "date.$idx": Timestamp.now()
-  };
 
-  await dbcall2.doc('name3').set(document2, SetOptions(merge: true));
-  await dbcall2.doc('name2').update(document2);
-}
+//---------<Function>-------------------------------------------------------------
+// Future<void> calculateAndCreateTotalDocument() async {
+//   final db = FirebaseFirestore.instance;
+//   final monthlyInstallmentsCollection = db.collection('monthly_installments');
 
-Future<void> readFunc2() async {
-  final dbcall2 = FirebaseFirestore.instance.collection('monthlyInstallment');
-  final docSnapshot = await dbcall2.doc('name2').get();
+//   // Fetch all documents from the "monthly_installments" collection
+//   QuerySnapshot monthlyInstallments = await monthlyInstallmentsCollection.get();
 
-  var comments = {};
-  var isPaid = {};
-  var month = {};
-  var date = {};
+//   // Calculate the total number of ispaid fields with value true
+//   int totalTrueCount = 0;
+//   monthlyInstallments.docs.forEach((doc) {
+//     // Check if 'ispaid' field exists and is a boolean with value true
+//     if (doc.data()!.containsKey('ispaid') && doc['ispaid'] is Map) {
+//       final ispaidMap = doc['ispaid'] as Map;
+//       // Iterate through the map and count the true values
+//       ispaidMap.forEach((key, value) {
+//         if (value is bool && value) {
+//           totalTrueCount++;
+//         }
+//       });
+//     }
+//   });
 
-  if (docSnapshot.exists) {
-    final data = docSnapshot.data();
-    // Access the fields using the keys
-    comments = data?['comments'] ?? {};
-    isPaid = data?['ispaid'] ?? {};
-    month = data?['month'] ?? {};
-    date = data?['date'] ?? {};
-    // Do something with the data
-  }
+//   // Create a new document with the calculated total
+//   await monthlyInstallmentsCollection.doc('total_document').set({
+//     'totalTrueCount': totalTrueCount,
+//     'timestamp': FieldValue.serverTimestamp(),
+//   });
+// }
 
-  print(comments);
-  print(isPaid);
-  print(month);
-  print(date);
-}
+//--------</Function>--------------------------------------------------------------
 
-Future<void> readFunc() async {
-  Map<String, dynamic>? dataRead;
-  final dbcall3 =
-      FirebaseFirestore.instance.collection("monthlyInstallment").doc("name2");
-  await dbcall3.get().then(
-    (DocumentSnapshot doc) {
-      dataRead = doc.data() as Map<String, dynamic>;
-    },
-    onError: (e) => print("Error getting document: $e"),
-  );
-  print(dataRead);
-}
+//--------<Function>--------------------------------------------------------------
 
-Future<void> dummyFunc() async {
-  final dbcall4 = FirebaseFirestore.instance.collection("monthlyInstallment");
 
-  // final data1 = <String, dynamic>{
-  //   "name": "San Francisco",
-  //   "state": "CA",
-  //   "country": "USA",
-  //   "capital": false,
-  //   "population": 860000,
-  //   "regions": ["west_coast", "norcal"]
-  // };
-  // dbcall4.doc("name3").set(data1);
-  await dbcall4.where("capital", isEqualTo: true).get().then(
-    (querySnapshot) {
-      print("Successfully completed");
-      for (var docSnapshot in querySnapshot.docs) {
-        print('${docSnapshot.id} => ${docSnapshot.data()}');
-      }
-    },
-    onError: (e) => print("Error completing: $e"),
-  );
-}
+//--------</Function>--------------------------------------------------------------
 
-Future<void> dummyFunc1() async {
-  final dbcall5 = FirebaseFirestore.instance.collection("newdoc2");
+//--------<Function>--------------------------------------------------------------
 
-  final data1 = <String, dynamic>{
-    "name": "San Francisco",
-    "state": "CA",
-    "country": "USA",
-    "capital": false,
-    "population": 860000,
-    "regions": ["west_coast", "norcal"]
-  };
-  await dbcall5.doc("SF").set(data1);
 
-  final data2 = <String, dynamic>{
-    "name": "Los Angeles",
-    "state": "CA",
-    "country": "USA",
-    "capital": false,
-    "population": 3900000,
-    "regions": ["west_coast", "socal"],
-  };
-  await dbcall5.doc("LA").set(data2);
 
-  final data3 = <String, dynamic>{
-    "name": "Washington D.C.",
-    "state": null,
-    "country": "USA",
-    "capital": true,
-    "population": 680000,
-    "regions": ["east_coast"]
-  };
-  await dbcall5.doc("DC").set(data3);
+//--------</Function>--------------------------------------------------------------
 
-  final data4 = <String, dynamic>{
-    "name": "Tokyo",
-    "state": null,
-    "country": "Japan",
-    "capital": true,
-    "population": 9000000,
-    "regions": ["kanto", "honshu"]
-  };
-  await dbcall5.doc("TOK").set(data4);
+// Future<void> readFunc2() async {
+//   final dbcall2 = FirebaseFirestore.instance.collection('monthlyInstallment');
+//   final docSnapshot = await dbcall2.doc('name2').get();
 
-  final data5 = <String, dynamic>{
-    "name": "Beijing",
-    "state": null,
-    "country": "China",
-    "capital": true,
-    "population": 21500000,
-    "regions": ["jingjinji", "hebei"],
-  };
-  await dbcall5.doc("BJ").set(data5);
-}
+//   var comments = {};
+//   var isPaid = {};
+//   var month = {};
+//   var date = {};
+
+//   if (docSnapshot.exists) {
+//     final data = docSnapshot.data();
+//     // Access the fields using the keys
+//     comments = data?['comments'] ?? {};
+//     isPaid = data?['ispaid'] ?? {};
+//     month = data?['month'] ?? {};
+//     date = data?['date'] ?? {};
+//     // Do something with the data
+//   }
+
+//   print(comments);
+//   print(isPaid);
+//   print(month);
+//   print(date);
+// }
+
+// Future<void> readFunc() async {
+//   Map<String, dynamic>? dataRead;
+//   final dbcall3 =
+//       FirebaseFirestore.instance.collection("monthlyInstallment").doc("name2");
+//   await dbcall3.get().then(
+//     (DocumentSnapshot doc) {
+//       dataRead = doc.data() as Map<String, dynamic>;
+//     },
+//     onError: (e) => print("Error getting document: $e"),
+//   );
+//   print(dataRead);
+// }
+
+// Future<void> dummyFunc() async {
+//   final dbcall4 = FirebaseFirestore.instance.collection("monthlyInstallment");
+
+//   // final data1 = <String, dynamic>{
+//   //   "name": "San Francisco",
+//   //   "state": "CA",
+//   //   "country": "USA",
+//   //   "capital": false,
+//   //   "population": 860000,
+//   //   "regions": ["west_coast", "norcal"]
+//   // };
+//   // dbcall4.doc("name3").set(data1);
+//   await dbcall4.where("capital", isEqualTo: true).get().then(
+//     (querySnapshot) {
+//       print("Successfully completed");
+//       for (var docSnapshot in querySnapshot.docs) {
+//         print('${docSnapshot.id} => ${docSnapshot.data()}');
+//       }
+//     },
+//     onError: (e) => print("Error completing: $e"),
+//   );
+// }
+
+// Future<void> dummyFunc1() async {
+//   final dbcall5 = FirebaseFirestore.instance.collection("newdoc2");
+
+//   final data1 = <String, dynamic>{
+//     "name": "San Francisco",
+//     "state": "CA",
+//     "country": "USA",
+//     "capital": false,
+//     "population": 860000,
+//     "regions": ["west_coast", "norcal"]
+//   };
+//   await dbcall5.doc("SF").set(data1);
+
+//   final data2 = <String, dynamic>{
+//     "name": "Los Angeles",
+//     "state": "CA",
+//     "country": "USA",
+//     "capital": false,
+//     "population": 3900000,
+//     "regions": ["west_coast", "socal"],
+//   };
+//   await dbcall5.doc("LA").set(data2);
+
+//   final data3 = <String, dynamic>{
+//     "name": "Washington D.C.",
+//     "state": null,
+//     "country": "USA",
+//     "capital": true,
+//     "population": 680000,
+//     "regions": ["east_coast"]
+//   };
+//   await dbcall5.doc("DC").set(data3);
+
+//   final data4 = <String, dynamic>{
+//     "name": "Tokyo",
+//     "state": null,
+//     "country": "Japan",
+//     "capital": true,
+//     "population": 9000000,
+//     "regions": ["kanto", "honshu"]
+//   };
+//   await dbcall5.doc("TOK").set(data4);
+
+//   final data5 = <String, dynamic>{
+//     "name": "Beijing",
+//     "state": null,
+//     "country": "China",
+//     "capital": true,
+//     "population": 21500000,
+//     "regions": ["jingjinji", "hebei"],
+//   };
+//   await dbcall5.doc("BJ").set(data5);
+// }

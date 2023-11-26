@@ -49,7 +49,7 @@ class _ScreenHomeState extends State<ScreenHome> {
               Alert(
                 context: context,
                 // type: AlertType.warning,
-                image: Image.asset("assets/img/choose.png"),
+                // image: Image.asset("assets/img/choose.png"),
                 title: "Choose Operation",
                 desc: "Credit - for adding entry\nDebit - for approving loan",                
                 buttons: [

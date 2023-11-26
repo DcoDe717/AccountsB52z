@@ -1,14 +1,8 @@
-// import 'dart:collection';
-// import 'package:accountstwo/db/add_entry_model.dart';
-// import 'package:accountstwo/repository/add_entry_repository.dart';
-// import 'package:accountstwo/screens/adminpages/adddata/select_entry_fields.dart';
-// import 'package:accountstwo/screens/home/home_screen.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
-import 'package:accounts3/screens/admin/add_data/select_entry_field_screen.dart';
+import 'package:accounts3/screens/admin/add_data/test012.dart';
+import 'package:accounts3/screens/functions/firestore_main_functions.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:accounts3/screens/global/global_files.dart';
 
 class ScreenAddData extends StatefulWidget {
   const ScreenAddData({super.key});
@@ -18,34 +12,33 @@ class ScreenAddData extends StatefulWidget {
 }
 
 class _ScreenAddDataState extends State<ScreenAddData> {
-  String? _selectedDropdownValue;
-
   final List<String> dropdownList = <String>[
-    'Total',
-    'Vahab',
-    'Sherbi',
-    'Adil',
-    'Sulfi',
-    'Dillu',
-    'Rishin',
-    'Akku',
-    'Shammas',
-    'Cheppu',
-    'Sabi',
-    'Ismail',
-    'Jasim'
+    'adil',
+    'akku',
+    'cheppu',
+    'dillu',
+    'ismail',
+    'jasim',
+    'rishin',
+    'sabith',
+    'shammas',
+    'sherbi',
+    'sulfi',
+    'vahab'
   ];
 
- 
-
-  
+  var choosedMember = '';
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        // print("back button is pressed");
-        return false;
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        //do your logic here
+        // setStatusBarColor(statusBarColorPrimary,statusBarIconBrightness: Brightness.light);
+        print("back button is pressed");
+        // do your logic ends
+        return;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -129,19 +122,30 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     );
   }
 
-  
-
   Widget addEntry() {
     return ElevatedButton.icon(
-        onPressed: () {
-          
-          // createEntry(entry1);
-          // Navigator.pushAndRemoveUntil(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => const ScreenHome(),
-          //     ),
-          //     (route) => false);
+        onPressed: () async {
+
+          await updateFirestoreFields("monthly_installments", gSelectedMember, "ispaid", numericValuesListString);
+           print('Firestore fields updated successfully!');
+
+
+             updatePendingMonthsAndCount23();
+
+             setState(() {
+                selectedDropdownValue = null;
+                amountModifier = 0;
+                gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+              });
+
+
+        
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ScreenHome(),
+              ),
+              (route) => false);
         },
         icon: const Icon(Icons.add_sharp),
         label: const Text('Add Entry'));
@@ -159,10 +163,10 @@ class _ScreenAddDataState extends State<ScreenAddData> {
         children: [
           ElevatedButton.icon(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ScreenSelectEntryFields()));
+                gSelectedMember = choosedMember;
+
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Test012()));
               },
               icon: const Icon(Icons.arrow_right),
               label: const Text('Select Entry Fields')),
@@ -174,7 +178,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 borderRadius: BorderRadius.circular(15)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text("Selected Fields",
                     style: TextStyle(
                         fontSize: 20,
@@ -189,24 +193,30 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                         // backgroundColor: Color(0xff232323)
                         color: Colors.white)),
                 SizedBox(height: 10),
-                Text("Jan 2023, Feb 2023, March 2023",
+                Text(gSelectedMonthsMonthlyInstallmentsMultiSelect.join(", "),
                     style: TextStyle(
                         fontSize: 15,
                         // backgroundColor: Color(0xff232323)
-                        color: Colors.white)),
-                SizedBox(height: 20),
-                Text("Loan Installments",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        // backgroundColor: Color(0xff232323)
-                        color: Colors.white)),
-                SizedBox(height: 10),
-                Text("Jan 2023, Feb 2023, March 2023",
-                    style: TextStyle(
-                        fontSize: 15,
-                        // backgroundColor: Color(0xff232323)
-                        color: Colors.white)),
+                        color: Colors.white))
+
+                // Text("Jan 2023, Feb 2023, March 2023",
+                //     style: TextStyle(
+                //         fontSize: 15,
+                //         // backgroundColor: Color(0xff232323)
+                //         color: Colors.white)),
+                // SizedBox(height: 20),
+                // Text("Loan Installments",
+                //     style: TextStyle(
+                //         fontSize: 15,
+                //         fontWeight: FontWeight.bold,
+                //         // backgroundColor: Color(0xff232323)
+                //         color: Colors.white)),
+                // SizedBox(height: 10),
+                // Text("Jan 2023, Feb 2023, March 2023",
+                //     style: TextStyle(
+                //         fontSize: 15,
+                //         // backgroundColor: Color(0xff232323)
+                //         color: Colors.white)),
               ],
             ),
           )
@@ -220,16 +230,20 @@ class _ScreenAddDataState extends State<ScreenAddData> {
       height: 55,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          color: const Color(0xff2a2e3d),
-          borderRadius: BorderRadius.circular(15)),
+        color: const Color(0xff2a2e3d),
+        borderRadius: BorderRadius.circular(15),
+      ),
       child: TextFormField(
+        readOnly: true,
         keyboardType: TextInputType.number,
         style: const TextStyle(color: Colors.white),
-        decoration: const InputDecoration(
-            hintText: "Enter Amount",
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 17),
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.only(left: 15, right: 15, top: 5)),
+        decoration: InputDecoration(
+          hintText: "₹ $amountModifier",
+          hintStyle: TextStyle(
+              color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.only(left: 15, right: 15, top: 5),
+        ),
       ),
     );
   }
@@ -280,15 +294,9 @@ class _ScreenAddDataState extends State<ScreenAddData> {
       width: MediaQuery.of(context).size.width,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          // gradient: LinearGradient(
-          //         colors: [ Color.fromARGB(195, 144, 85, 255),Color.fromARGB(202, 237, 123, 132)]),
-          color: Color.fromARGB(167, 237, 123, 132),
+          color: const Color.fromARGB(167, 237, 123, 132),
           borderRadius: BorderRadius.circular(5),
-          boxShadow: const <BoxShadow>[
-            // BoxShadow(
-            //     color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
-            //     blurRadius: 1) //blur radius of shadow
-          ],
+          boxShadow: const <BoxShadow>[],
         ),
         child: DropdownButtonHideUnderline(
           child: DropdownButtonFormField(
@@ -313,18 +321,31 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 fontWeight: FontWeight.normal,
               ),
             ),
-            value: _selectedDropdownValue,
-            items: dropdownList.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(
-                  value,
-                  style: const TextStyle(fontSize: 23),
-                ),
-              );
-            }).toList(),
+            value: selectedDropdownValue,
+            items: dropdownList
+                .map<DropdownMenuItem<String>>(
+                  (String value) => DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value,
+                      style: const TextStyle(fontSize: 23),
+                    ),
+                  ),
+                )
+                .toList(),
             onChanged: (selectedvalue) {
-              _selectedDropdownValue = selectedvalue;
+              // Handle the selection here
+              // amountModifier = 500;
+              // Call your function here
+              // e.g., _yourFunction(selectedvalue);
+              choosedMember = selectedvalue!;
+              // print('Item selected: $selectedvalue');
+              // print(choosedMember);
+              setState(() {
+                selectedDropdownValue = selectedvalue;
+                amountModifier = 0;
+                gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+              });
             },
           ),
         ),
