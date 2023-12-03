@@ -1,5 +1,8 @@
+import 'package:accounts3/functions/homeScreenFunctions/balance_Fund_WiG.dart';
+import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
 import 'package:accounts3/screens/admin/add_data/multi_select_screen.dart';
-import 'package:accounts3/screens/functions/firestore_main_functions.dart';
+import 'package:accounts3/functions/firestore_main_functions.dart';
+import 'package:accounts3/screens/home/common_files_homepage.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:accounts3/screens/global/global_files.dart';
@@ -12,6 +15,9 @@ class ScreenAddData extends StatefulWidget {
 }
 
 class _ScreenAddDataState extends State<ScreenAddData> {
+  final commentsTextController = TextEditingController();
+  String commentsMonthlyInstAddData = '';
+
   final List<String> dropdownList = <String>[
     'adil',
     'akku',
@@ -30,6 +36,12 @@ class _ScreenAddDataState extends State<ScreenAddData> {
   var choosedMember = '';
 
   @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    commentsTextController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
@@ -125,11 +137,16 @@ class _ScreenAddDataState extends State<ScreenAddData> {
   Widget addEntry() {
     return ElevatedButton.icon(
         onPressed: () async {
+          commentsMonthlyInstAddData = commentsTextController.text;
+          balanceFund();
           await updateFirestoreFields("monthly_installments", gSelectedMember,
-              "ispaid", numericValuesListString);
+              "ispaid", numericValuesListString, commentsMonthlyInstAddData);
+
           print('Firestore fields updated successfully!');
 
-          updatePendingMonthsAndCount23();
+          updatePendingMonthsAndCountMemberWise();
+
+          print('commentsMonthlyInstAddData : $commentsMonthlyInstAddData');
 
           setState(() {
             selectedDropdownValue = null;
@@ -160,12 +177,17 @@ class _ScreenAddDataState extends State<ScreenAddData> {
         children: [
           ElevatedButton.icon(
               onPressed: () {
-                gSelectedMember = choosedMember;
+                // Test functions Deploy
+                totPendingCountMemberWiseList(membersListLocal);
+                // balanceFund();
+                // updatePendingMonthsAndCountMemberWise();
 
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MultiSelectScreen()));
+                // gSelectedMember = choosedMember;
+
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => const MultiSelectScreen()));
               },
               icon: const Icon(Icons.arrow_right),
               label: const Text('Select Entry Fields')),
@@ -182,7 +204,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        // backgroundColor: Color(0xff232323)
+                        // backgroundColor: Color(0xff232323),
                         color: Colors.white)),
                 const SizedBox(height: 10),
                 const Text("Monthly Installments",
@@ -255,8 +277,9 @@ class _ScreenAddDataState extends State<ScreenAddData> {
           color: const Color(0xff2a2e3d),
           borderRadius: BorderRadius.circular(15)),
       child: TextFormField(
+        controller: commentsTextController,
         maxLines: null,
-        keyboardType: TextInputType.number,
+        keyboardType: TextInputType.text,
         style: const TextStyle(color: Colors.white),
         decoration: const InputDecoration(
             hintText: "Optional Entry",
@@ -339,7 +362,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
               // e.g., _yourFunction(selectedvalue);
               choosedMember = selectedvalue!;
               // print('Item selected: $selectedvalue');
-              // print(choosedMember);
+              print("choosedMember : $choosedMember");
               setState(() {
                 selectedDropdownValue = selectedvalue;
                 amountModifier = 0;

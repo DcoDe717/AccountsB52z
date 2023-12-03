@@ -1,3 +1,5 @@
+import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
+import 'package:accounts3/screens/home/common_files_homepage.dart';
 import 'package:flutter/material.dart';
 
 class ScreenTotPendingView extends StatefulWidget {
@@ -8,21 +10,22 @@ class ScreenTotPendingView extends StatefulWidget {
 }
 
 class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
-  String? _selectedDropdownValue = 'Total';
+  
+  String? selectedDropdownValue = 'Total';
   final List<String> dropdownList = <String>[
     'Total',
-    'Vahab',
-    'Sherbi',
     'Adil',
-    'Sulfi',
-    'Dillu',
-    'Rishin',
     'Akku',
-    'Shammas',
     'Cheppu',
-    'Sabi',
+    'Dillu',
     'Ismail',
-    'Jasim'
+    'Jasim',
+    'Rishin',
+    'Sabith',
+    'Shammas',
+    'Sherbi',
+    'Sulfi',
+    'Vahab'
   ];
 
   @override
@@ -58,8 +61,8 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 15.0),
                         ),
-                        hint: const Text('Select '),
-                        value: _selectedDropdownValue,
+                        // hint: const Text('Select '),
+                        value: selectedDropdownValue,
                         items: dropdownList
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
@@ -71,9 +74,58 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                           );
                         }).toList(),
                         onChanged: (selectedvalue) {
+                          switch (selectedvalue) {
+                            case 'Total':
+                              switchCaseRetrievedValue =
+                                  totalValueAllMembersPendingAmount;
+                              break;
+
+                            case 'Adil':
+                              switchCaseRetrievedValue = pendingCounts[0] * 500;
+                              break;
+                            case 'Akku':
+                              switchCaseRetrievedValue = pendingCounts[1] * 500;
+                              break;
+                            case 'Cheppu':
+                              switchCaseRetrievedValue = pendingCounts[2] * 500;
+                              break;
+                            case 'Dillu':
+                              switchCaseRetrievedValue = pendingCounts[3] * 500;
+                              break;
+                            case 'Ismail':
+                              switchCaseRetrievedValue = pendingCounts[4] * 500;
+                              break;
+                            case 'Jasim':
+                              switchCaseRetrievedValue = pendingCounts[5] * 500;
+                              break;
+                            case 'Rishin':
+                              switchCaseRetrievedValue = pendingCounts[6] * 500;
+                              break;
+                            case 'Sabith':
+                              switchCaseRetrievedValue = pendingCounts[7] * 500;
+                              break;
+                            case 'Shammas':
+                              switchCaseRetrievedValue = pendingCounts[8] * 500;
+                              break;
+                            case 'Sherbi':
+                              switchCaseRetrievedValue = pendingCounts[9] * 500;
+                              break;
+                            case 'Sulfi':
+                              switchCaseRetrievedValue =
+                                  pendingCounts[10] * 500;
+                              break;
+                            case 'Vahab':
+                              switchCaseRetrievedValue =
+                                  pendingCounts[11] * 500;
+                              break;
+                          }
+
                           setState(() {
-                            _selectedDropdownValue = selectedvalue as String;
+                            selectedDropdownValue = selectedvalue as String;
                           });
+
+                          print(
+                              'switchCaseRetrievedValue : $switchCaseRetrievedValue');
                         },
                       ),
                     ),
@@ -92,21 +144,21 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                               ),
                               elevation: 5,
                               margin: const EdgeInsets.all(10),
-                              child: const Padding(
-                                padding: EdgeInsets.only(top: 20),
+                              child:  Padding(
+                                padding: const EdgeInsets.only(top: 20),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Monthly Pending',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18),
                                     ),
-                                    SizedBox(height: 25),
+                                    const SizedBox(height: 25),
                                     Text(
-                                      "₹ 145000",
-                                      style: TextStyle(
+                                      "₹ $switchCaseRetrievedValue",
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 20),
                                     )

@@ -40,8 +40,16 @@ Future<void> calculateAndCreateTotalDocument() async {
   // Create a new document with the calculated total and timestamp if required
   await db3.doc('total_doc_values').set({
     'totalTrueCount': totalTrueCount,
+    'balance_fund_from_true_count': (totalTrueCount*500),
     // 'timestamp': FieldValue.serverTimestamp(),
   });
+
+  // await db3.doc('total_doc_values').set({
+  //   'balance_fund_from_true_count': (totalTrueCount*500),
+  //   // 'timestamp': FieldValue.serverTimestamp(),
+  // });
+
+
 }
 
 
@@ -243,7 +251,7 @@ Future<void> updatePendingMonthsAndCount() async {
 
 
 
-Future<void> updatePendingMonthsAndCount23() async {
+Future<void> updatePendingMonthsAndCountMemberWise() async {
   final db = FirebaseFirestore.instance;
   final String documentId = gSelectedMember; // Specify the document ID
 
@@ -305,7 +313,7 @@ Future<void> updatePendingMonthsAndCount23() async {
 final FirebaseFirestore firestoreFun = FirebaseFirestore.instance;
 
 // Update true of the ispaid list in DB with the index value selected
-Future<void> updateFirestoreFields(String collection, String document, String field, List<String> indexFinal) async {
+Future<void> updateFirestoreFields(String collection, String document, String field, List<String> indexFinal, String commentsDown) async {
   final DocumentReference documentReference = firestoreFun.collection(collection).doc(document);
 
   // Loop through indexFinal list and update Firestore fields
@@ -315,6 +323,13 @@ Future<void> updateFirestoreFields(String collection, String document, String fi
       // Use update method to update specific field
       await documentReference.update({
         '$field.$parsedIndex': true,
+      });
+      await documentReference.update({
+        'comments.$parsedIndex': commentsDown,
+      });
+
+      await documentReference.update({
+        'dateTime.$parsedIndex': Timestamp.now(),
       });
     }
   }

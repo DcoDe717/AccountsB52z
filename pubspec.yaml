@@ -39,6 +39,7 @@ dependencies:
   cloud_firestore: ^4.13.1
   multiselect_dropdown_flutter: ^0.0.7
   firebase_app_check: ^0.2.1+5
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

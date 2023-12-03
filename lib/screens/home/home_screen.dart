@@ -1,10 +1,13 @@
+import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
 import 'package:accounts3/screens/admin/loan_approve/loan_approve_screen.dart';
+import 'package:accounts3/screens/home/common_files_homepage.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:accounts3/screens/home/piechart_total/total_piechart_screen.dart';
 import 'package:accounts3/screens/home/total_pending_view/total_pendingview_screen.dart';
 import 'package:flutter/material.dart';
 import '../admin/add_data/add_data_screen.dart';
 import 'individual_listview/individual_listview_screen.dart';
+import 'package:accounts3/functions/homeScreenFunctions/balance_fund_wig.dart';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -14,6 +17,10 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
+
+  
+
+
   int _selectedNavIndex = 0;
 
   static const List _pageList = [
@@ -23,7 +30,20 @@ class _ScreenHomeState extends State<ScreenHome> {
     ScreenAddData()
   ];
 
+    _ScreenHomeState() {
+    // Call your initialization function here
+    // balanceFund();
+    // totPendingCountMemberWiseList(membersListLocal);
+
+  }
+
+
   void _onItemTapped(int index) {
+    if (index == 1) {
+      switchCaseRetrievedValue =
+                                  totalValueAllMembersPendingAmount;
+    }
+
     setState(() {
       _selectedNavIndex = index;
     });

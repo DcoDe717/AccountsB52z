@@ -1,3 +1,4 @@
+import 'package:accounts3/screens/home/common_files_homepage.dart';
 import 'package:flutter/material.dart';
 
 class ScreenMembersPendingListView extends StatelessWidget {
@@ -13,15 +14,15 @@ class ScreenMembersPendingListView extends StatelessWidget {
       child: ListView.separated(
         itemBuilder: (ctx, index) {
           // final category = newList[index];
-          return const Card(
+          return Card(
             child: ListTile(
-              contentPadding: EdgeInsets.all(10),
-              leading: CircleAvatar(
-                backgroundImage: AssetImage("assets/img/pic1.jpg"),
-              ),
-              title: Text('Dillu'),
-              subtitle: Text('Total Unsettled : ₹ 6500'),
-              trailing: Text('MI Unsettled : ₹ 4500 \nLoan Unsettled : ₹ 2000'),
+              contentPadding: const EdgeInsets.all(10),
+              leading: const CircleAvatar(
+                  // backgroundImage: AssetImage("assets/img/pic1.jpg"),
+                  ),
+              title: Text(listviewMembersList[index]),
+              subtitle: Text('Total Unsettled : ₹ to be announced later '),
+              trailing: Text('MI Unsettled : ₹ ${(pendingCounts[index])*500} \nLoan Unsettled : ₹ Unfinished'),
 
               //  IconButton(
               //   onPressed: () {
