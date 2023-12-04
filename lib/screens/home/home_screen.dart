@@ -32,8 +32,8 @@ class _ScreenHomeState extends State<ScreenHome> {
 
     _ScreenHomeState() {
     // Call your initialization function here
-    // balanceFund();
-    // totPendingCountMemberWiseList(membersListLocal);
+    balanceFund();
+    totPendingCountMemberWiseList(membersListLocal);
 
   }
 

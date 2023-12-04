@@ -1,4 +1,3 @@
-import 'package:accounts3/screens/admin/add_data/add_data_screen.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';

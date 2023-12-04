@@ -6,6 +6,24 @@ int totalValueAllMembersPendingAmount = 0;
 
 List<int> pendingCounts = [];
 
+String? selectedDropdownValueTotalPendingView = 'Total';
+
+final List<String> dropdownList = <String>[
+  'Total',
+  'Adil',
+  'Akku',
+  'Cheppu',
+  'Dillu',
+  'Ismail',
+  'Jasim',
+  'Rishin',
+  'Sabith',
+  'Shammas',
+  'Sherbi',
+  'Sulfi',
+  'Vahab'
+];
+
 final List<String> membersListLocal = <String>[
   'adil',
   'akku',
