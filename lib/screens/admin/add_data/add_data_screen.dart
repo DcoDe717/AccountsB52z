@@ -1,7 +1,7 @@
 import 'package:accounts3/functions/homeScreenFunctions/balance_Fund_WiG.dart';
 import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
-import 'package:accounts3/screens/admin/add_data/multi_select_screen.dart';
 import 'package:accounts3/functions/firestore_main_functions.dart';
+import 'package:accounts3/screens/admin/admin_common_files.dart';
 import 'package:accounts3/screens/home/common_files_homepage.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,33 +15,16 @@ class ScreenAddData extends StatefulWidget {
 }
 
 class _ScreenAddDataState extends State<ScreenAddData> {
-  final commentsTextController = TextEditingController();
-  String commentsMonthlyInstAddData = '';
-
-  final List<String> dropdownList = <String>[
-    'adil',
-    'akku',
-    'cheppu',
-    'dillu',
-    'ismail',
-    'jasim',
-    'rishin',
-    'sabith',
-    'shammas',
-    'sherbi',
-    'sulfi',
-    'vahab'
-  ];
-
-  var choosedMember = '';
+  final commentsTextControllerAddDataScreen = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    commentsTextController.dispose();
+    commentsTextControllerAddDataScreen.dispose();
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
@@ -137,7 +120,8 @@ class _ScreenAddDataState extends State<ScreenAddData> {
   Widget addEntry() {
     return ElevatedButton.icon(
         onPressed: () async {
-          commentsMonthlyInstAddData = commentsTextController.text;
+          commentsMonthlyInstAddData =
+              commentsTextControllerAddDataScreen.text;
           balanceFund();
           await updateFirestoreFields("monthly_installments", gSelectedMember,
               "ispaid", numericValuesListString, commentsMonthlyInstAddData);
@@ -277,7 +261,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
           color: const Color(0xff2a2e3d),
           borderRadius: BorderRadius.circular(15)),
       child: TextFormField(
-        controller: commentsTextController,
+        controller: commentsTextControllerAddDataScreen,
         maxLines: null,
         keyboardType: TextInputType.text,
         style: const TextStyle(color: Colors.white),
@@ -344,7 +328,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
               ),
             ),
             value: selectedDropdownValue,
-            items: dropdownList
+            items: dropDownListAdmin
                 .map<DropdownMenuItem<String>>(
                   (String value) => DropdownMenuItem<String>(
                     value: value,

@@ -1,3 +1,5 @@
+import 'package:accounts3/screens/admin/admin_common_files.dart';
+import 'package:accounts3/screens/admin/functions/firebase_functions_admin.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,26 +11,18 @@ class ScreenLoanApprove extends StatefulWidget {
 }
 
 class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
-  String? _selectedDropdownValue;
-
-  final List<String> dropdownList = <String>[
-    'Total',
-    'Vahab',
-    'Sherbi',
-    'Adil',
-    'Sulfi',
-    'Dillu',
-    'Rishin',
-    'Akku',
-    'Shammas',
-    'Cheppu',
-    'Sabi',
-    'Ismail',
-    'Jasim'
-  ];
-
   // final heightdevice = MediaQuery.of().size.height;
   // final widthdevice = MediaQuery.of(context).size.width;
+
+
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    loanAmountTextControllerLoanApproveScreen.dispose();
+    commentsTextControllerLoanApproveScreen.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +93,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
                     children: [
                       labelTitle("Loan Amount"),
                       SizedBox(width: MediaQuery.of(context).size.width / 10),
-                      labelTitle("Current Balance  ₹ 1285000"),
+                      labelTitle("Current Balance  ₹ 1285000")
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -115,64 +109,6 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget commentsEntry() {
-    return Container(
-      height: 100,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          color: const Color(0xff2a2e3d),
-          borderRadius: BorderRadius.circular(15)),
-      child: TextFormField(
-        maxLines: null,
-        keyboardType: TextInputType.number,
-        style: const TextStyle(color: Colors.white),
-        decoration: const InputDecoration(
-            hintText: "Optional Entry",
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 17),
-            border: InputBorder.none,
-            contentPadding:
-                EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5)),
-      ),
-    );
-  }
-
-  Widget approveEntry() {
-    return ElevatedButton.icon(
-        onPressed: () {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ScreenHome(),
-              ),
-              (route) => false);
-
-          // Navigator.popUntil(context, (ScreenHome) => false);
-        },
-        icon: const Icon(Icons.check_circle),
-        label: const Text('Approve'));
-  }
-
-  Widget amountEntry() {
-    return Container(
-      height: 55,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          color: const Color(0xff2a2e3d),
-          borderRadius: BorderRadius.circular(15)),
-      child: TextFormField(
-        keyboardType: TextInputType.number,
-        style: const TextStyle(color: Colors.white),
-        decoration: const InputDecoration(
-            hintText: "Enter Amount",
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 17),
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.only(left: 15, right: 15, top: 5)
-            // labelText: "Amount",
-            ),
       ),
     );
   }
@@ -224,8 +160,9 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
                 fontWeight: FontWeight.normal,
               ),
             ),
-            value: _selectedDropdownValue,
-            items: dropdownList.map<DropdownMenuItem<String>>((String value) {
+            value: selectedDropdownValueAdmin,
+            items:
+                dropDownListAdmin.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(
@@ -235,10 +172,54 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
               );
             }).toList(),
             onChanged: (selectedvalue) {
-              _selectedDropdownValue = selectedvalue;
+              selectedDropdownValueAdmin = selectedvalue;
             },
           ),
         ),
+      ),
+    );
+  }
+
+  Widget amountEntry() {
+    return Container(
+      height: 55,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          color: const Color(0xff2a2e3d),
+          borderRadius: BorderRadius.circular(15)),
+      child: TextFormField(
+        controller: loanAmountTextControllerLoanApproveScreen,
+        keyboardType: TextInputType.number,
+        style: const TextStyle(color: Colors.white),
+        decoration: const InputDecoration(
+            hintText: "Enter Amount",
+            hintStyle: TextStyle(color: Colors.grey, fontSize: 17),
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.only(left: 15, right: 15, top: 5)
+            // labelText: "Amount",
+            ),
+      ),
+    );
+  }
+
+  Widget commentsEntry() {
+    return Container(
+      height: 100,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          color: const Color(0xff2a2e3d),
+          borderRadius: BorderRadius.circular(15)),
+      child: TextFormField(
+        controller: commentsTextControllerLoanApproveScreen,
+        maxLines: null,
+        keyboardType: TextInputType.number,
+        style: const TextStyle(color: Colors.white),
+        decoration: const InputDecoration(
+            hintText: "Optional Entry",
+            hintStyle: TextStyle(color: Colors.grey, fontSize: 17),
+            border: InputBorder.none,
+            contentPadding:
+                EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5)),
       ),
     );
   }
@@ -253,5 +234,24 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
         letterSpacing: 0.2,
       ),
     );
+  }
+
+  Widget approveEntry() {
+    return ElevatedButton.icon(
+        onPressed: () {
+          checkLoanActive(selectedDropdownValueAdmin);
+         
+
+          // Navigator.pushAndRemoveUntil(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => const ScreenHome(),
+          //     ),
+          //     (route) => false);
+
+          // Navigator.popUntil(context, (ScreenHome) => false);
+        },
+        icon: const Icon(Icons.check_circle),
+        label: const Text('Approve'));
   }
 }

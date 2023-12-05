@@ -59,7 +59,7 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
         ),
         // hint: const Text('Select '),
         value: selectedDropdownValueTotalPendingView,
-        items: dropdownList.map<DropdownMenuItem<String>>((String value) {
+        items: dropdownListHomePage.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

@@ -8,7 +8,7 @@ List<int> pendingCounts = [];
 
 String? selectedDropdownValueTotalPendingView = 'Total';
 
-final List<String> dropdownList = <String>[
+final List<String> dropdownListHomePage = <String>[
   'Total',
   'Adil',
   'Akku',
