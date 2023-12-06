@@ -13,6 +13,12 @@ int? loanAmountParsed;
 final loanAmountTextControllerLoanApproveScreen = TextEditingController();
 final commentsTextControllerLoanApproveScreen = TextEditingController();
 
+// variable to store month name and year using conversion in DateTime object
+String formattedDate = '';
+
+// Create a list to store month strings
+List<String> monthsList = [];
+
 // String choosedMemberLoanApprove = '';
 
 final List<String> dropDownListAdmin = <String>[

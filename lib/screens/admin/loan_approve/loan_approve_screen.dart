@@ -1,6 +1,8 @@
 import 'package:accounts3/screens/admin/admin_common_files.dart';
 import 'package:accounts3/screens/admin/functions/firebase_functions_admin.dart';
+import 'package:accounts3/screens/admin/functions/months_emi_calculator_func.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ScreenLoanApprove extends StatefulWidget {
@@ -14,15 +16,13 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
   // final heightdevice = MediaQuery.of().size.height;
   // final widthdevice = MediaQuery.of(context).size.width;
 
-
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    loanAmountTextControllerLoanApproveScreen.dispose();
-    commentsTextControllerLoanApproveScreen.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   // Clean up the controller when the widget is disposed.
+  //   loanAmountTextControllerLoanApproveScreen.dispose();
+  //   commentsTextControllerLoanApproveScreen.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -239,8 +239,16 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
   Widget approveEntry() {
     return ElevatedButton.icon(
         onPressed: () {
-          checkLoanActive(selectedDropdownValueAdmin);
-         
+          checkLoanActive(selectedDropdownValueAdmin, context);
+
+          approvedMonthAndEMIMonthsListCreator();
+          updateApprovedMonthDateAndEmiList();
+
+          // setState(() {
+          //   selectedDropdownValueAdmin = null;
+          //   loanAmountTextControllerLoanApproveScreen.clear();
+          //   commentsTextControllerLoanApproveScreen.clear();
+          // });
 
           // Navigator.pushAndRemoveUntil(
           //     context,
@@ -253,5 +261,23 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
         },
         icon: const Icon(Icons.check_circle),
         label: const Text('Approve'));
+  }
+
+  Future<void> updateApprovedMonthDateAndEmiList() async {
+    final DocumentReference
+        documentReferenceInsideupdateApprovedMonthDateAndEmiList =
+        FirebaseFirestore.instance
+            .collection('loan_installments')
+            .doc(selectedDropdownValueAdmin);
+
+             Map<String, bool> monthsMap = { for (var month in monthsList) month : false };
+
+    await documentReferenceInsideupdateApprovedMonthDateAndEmiList.set(
+      {
+        'approved_month_date': formattedDate,
+        'emi_status':monthsMap
+      },
+      SetOptions(merge: true),
+    );
   }
 }
