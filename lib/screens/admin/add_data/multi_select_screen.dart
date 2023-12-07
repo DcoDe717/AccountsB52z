@@ -59,7 +59,7 @@ class MultiSelectScreen extends StatelessWidget {
 
   Future<DocumentSnapshot> getMonthlyInstallments() async {
     try {
-      return await FirebaseFirestore.instance
+      return await firestoreInstanceCall
           .collection('monthly_installments')
           .doc(gSelectedMember)
           .get();

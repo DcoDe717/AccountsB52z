@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Funtion to update the TotalTrueCount
 Future<void> calculateAndCreateTotalDocument() async {
-  final db3 = FirebaseFirestore.instance.collection('monthly_installments');
+  final dbCallCollectionDocuments = firestoreInstanceCall.collection('monthly_installments');
 
   // Fetch all documents from the "monthly_installments" collection
-  QuerySnapshot monthlyInstallments = await db3.get();
+  QuerySnapshot monthlyInstallments = await dbCallCollectionDocuments.get();
 
   // Calculate the total number of ispaid fields with value true
   int totalTrueCount = 0;
@@ -38,13 +38,13 @@ Future<void> calculateAndCreateTotalDocument() async {
   }
 
   // Create a new document with the calculated total and timestamp if required
-  await db3.doc('total_doc_values').set({
+  await dbCallCollectionDocuments.doc('total_doc_values').set({
     'totalTrueCount': totalTrueCount,
     'balance_fund_from_true_count': (totalTrueCount*500),
     // 'timestamp': FieldValue.serverTimestamp(),
   });
 
-  // await db3.doc('total_doc_values').set({
+  // await dbCallCollectionDocuments.doc('total_doc_values').set({
   //   'balance_fund_from_true_count': (totalTrueCount*500),
   //   // 'timestamp': FieldValue.serverTimestamp(),
   // });
@@ -59,8 +59,8 @@ Future<void> calculateAndCreateTotalDocument() async {
 
 // Funtion to update (ispaid = false) pending months and count in each member document
 Future<void> updatePendingMonthsAndCount() async {
-  final db = FirebaseFirestore.instance;
-  final monthlyInstallmentsCollection = db.collection('monthly_installments');
+  
+  final monthlyInstallmentsCollection = firestoreInstanceCall.collection('monthly_installments');
 
   // Fetch all documents from the "monthly_installments" collection
   QuerySnapshot monthlyInstallments = await monthlyInstallmentsCollection.get();
@@ -109,7 +109,7 @@ Future<void> updatePendingMonthsAndCount() async {
 //   int idx = 1;
 //   var members = 'try1';
 
-//   final dbcall2 = FirebaseFirestore.instance.collection('monthly_installments');
+//   final dbcall2 = firestoreInstanceCall.collection('monthly_installments');
 //   var document1 = <String, dynamic>{
 //     // "comments": {'$idx': 'old book records'},
 //     // "ispaid": {'$idx': true},
@@ -210,7 +210,7 @@ Future<void> updatePendingMonthsAndCount() async {
 
 // Funtion to update (ispaid = false) pending months and count in each member document
 // Future<void> updatePendingMonthsAndCount23() async {
-//   final db = FirebaseFirestore.instance;
+//   final db = firestoreInstanceCall;
 //   final monthlyInstallmentsCollection = db.collection('monthly_installments');
 
 //   // Fetch all documents from the "monthly_installments" collection
@@ -252,12 +252,12 @@ Future<void> updatePendingMonthsAndCount() async {
 
 
 Future<void> updatePendingMonthsAndCountMemberWise() async {
-  final db = FirebaseFirestore.instance;
+
   final String documentId = gSelectedMember; // Specify the document ID
 
   // Get a reference to the specific document
   final DocumentReference monthlyInstallmentsDocument =
-      db.collection('monthly_installments').doc(documentId);
+      firestoreInstanceCall.collection('monthly_installments').doc(documentId);
 
   try {
     // Fetch the specific document
@@ -309,12 +309,11 @@ Future<void> updatePendingMonthsAndCountMemberWise() async {
 }
 
 
-// Calling a Firestore instance
-final FirebaseFirestore firestoreFun = FirebaseFirestore.instance;
+
 
 // Update true of the ispaid list in DB with the index value selected
 Future<void> updateFirestoreFields(String collection, String document, String field, List<String> indexFinal, String commentsDown) async {
-  final DocumentReference documentReference = firestoreFun.collection(collection).doc(document);
+  final DocumentReference documentReference = firestoreInstanceCall.collection(collection).doc(document);
 
   // Loop through indexFinal list and update Firestore fields
   for (String index in indexFinal) {

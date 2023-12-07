@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 import 'package:accounts3/screens/admin/admin_common_files.dart';
+import 'package:accounts3/screens/global/global_files.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -10,7 +11,7 @@ Future<void> checkLoanActive(
   print('checkLoanActive passed value is $memberCheckLoanActive');
   // Get the document reference
   final DocumentReference documentReferenceInsideCheckLoanActiveFunction =
-      FirebaseFirestore.instance
+      firestoreInstanceCall
           .collection('loan_installments')
           .doc(memberCheckLoanActive);
   try {

@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'package:accounts3/screens/admin/admin_common_files.dart';
 import 'package:accounts3/screens/admin/functions/firebase_functions_admin.dart';
 import 'package:accounts3/screens/admin/functions/months_emi_calculator_func.dart';
+import 'package:accounts3/screens/global/global_files.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -264,18 +267,27 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
   }
 
   Future<void> updateApprovedMonthDateAndEmiList() async {
+    Map<String, bool> emiStatusInitializer = {
+      '1': false,
+      '2': false,
+      '3': false,
+      '4': false,
+      '5': false,
+      '6': false,
+      '7': false,
+      '8': false,
+      '9': false,
+      '10': false,
+    };
     final DocumentReference
         documentReferenceInsideupdateApprovedMonthDateAndEmiList =
-        FirebaseFirestore.instance
-            .collection('loan_installments')
-            .doc(selectedDropdownValueAdmin);
-
-             Map<String, bool> monthsMap = { for (var month in monthsList) month : false };
+        firestoreInstanceCall.collection('loan_installments').doc(selectedDropdownValueAdmin);
 
     await documentReferenceInsideupdateApprovedMonthDateAndEmiList.set(
       {
-        'approved_month_date': formattedDate,
-        'emi_status':monthsMap
+        'emi_months_status': emiStatusInitializer,
+        'approved_month_timestamp': Timestamp.now(),
+        'emi_months': emiMonthsListIndexValued
       },
       SetOptions(merge: true),
     );

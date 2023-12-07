@@ -1,3 +1,4 @@
+// import 'package:accounts3/screens/global/global_files.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:intl/intl.dart';
 
@@ -76,48 +77,48 @@
 
 
 
-// // // import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
-// // // Future<void> addEntryToLoanInstallemnt() async {
-// // //   final dbcall = FirebaseFirestore.instance.collection('loan_installments');
+// Future<void> addEntryToLoanInstallemnt() async {
 
-// // //   var document1 = <String, dynamic>{
-// // //       "emi_status": {
-// // //         '1': true,
-// // //         '2': true,
-// // //         '3': true,
-// // //         '4': true,
-// // //         '5': false,
-// // //         '6': false,
-// // //         '7': false,
-// // //         '8': false,
-// // //         '9': false,
-// // //         '10': false
-// // //       },
-// // //     };
 
-// // //   // Fetch all documents from the "loan_installments" collection
-// // //   QuerySnapshot monthlyInstallments = await dbcall.get();
+//   var document1 = <String, dynamic>{
+//       "emi_status": {
+//        '1': true ,
+//         '2': true,
+//         '3': true,
+//         '4': true,
+//         '5': false,
+//         '6': false,
+//         '7': false,
+//         '8': false,
+//         '9': false,
+//         '10': false
+//       },
+//     };
 
-// // //   for (var doc in monthlyInstallments.docs) {
-// // //     // Get the reference to the document
-// // //     DocumentReference docRef = dbcall.doc(doc.id);
+//   // Fetch all documents from the "loan_installments" collection
+//   QuerySnapshot monthlyInstallments = await firestoreInstanceCall.get();
+
+//   for (var doc in monthlyInstallments.docs) {
+//     // Get the reference to the document
+//     DocumentReference docRef = firestoreInstanceCall.doc(doc.id);
     
 
-// // //     print(doc.id);
+//     print(doc.id);
 
-// // //     await docRef.set(document1, SetOptions(merge: true));
+//     await docRef.set(document1, SetOptions(merge: true));
 
-// // //     // Update the common field in the document
-// // //     // await docRef.update({
-// // //     //   'isloanactive':
-// // //     //       false, // Replace 'commonField' with the actual field you want to update
-// // //     // });
+//     // Update the common field in the document
+//     // await docRef.update({
+//     //   'isloanactive':
+//     //       false, // Replace 'commonField' with the actual field you want to update
+//     // });
 
     
     
-// // //   }
-// // // }
+//   }
+// }
 
 
 

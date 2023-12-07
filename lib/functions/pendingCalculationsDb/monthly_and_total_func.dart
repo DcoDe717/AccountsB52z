@@ -1,10 +1,13 @@
+// ignore_for_file: avoid_print
+
+import 'package:accounts3/screens/global/global_files.dart';
 import 'package:accounts3/screens/home/common_files_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Future<int> totPendingCountMemberWise(String nameMember) async {
 //   int nameMemberPendingStore = 0;
 
-//   final dbcall = FirebaseFirestore.instance;
+//   final dbcall = firestoreInstanceCall;
 
 //   final DocumentReference docTotal =
 //       dbcall.collection('monthly_installments').doc('nameMember');
@@ -21,7 +24,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // Future<int> totPendingCountMemberWise(String nameMember) async {
 //   int nameMemberPendingStore = 0;
 
-//   final dbcall = FirebaseFirestore.instance;
+//   final dbcall = firestoreInstanceCall;
 
 //   final DocumentReference docTotal =
 //       dbcall.collection('monthly_installments').doc('nameMember');
@@ -32,12 +35,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // }
 
 Future<int> totPendingCountMemberWiseList(List<String> members) async {
-  final dbcall = FirebaseFirestore.instance;
+
   pendingCounts = [];
 
   for (String nameMember in members) {
     final DocumentReference docTotal =
-        dbcall.collection('monthly_installments').doc(nameMember);
+        firestoreInstanceCall.collection('monthly_installments').doc(nameMember);
 
     DocumentSnapshot docTotalSnapshot = await docTotal.get();
     if (docTotalSnapshot.exists) {
