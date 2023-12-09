@@ -1,4 +1,4 @@
-int balanceFundPieChart = 0;
+int balanceFundTotal = 0;
 
 int switchCaseRetrievedValue = 0;
 

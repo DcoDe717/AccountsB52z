@@ -39,7 +39,7 @@ Future<void> calculateAndCreateTotalDocument() async {
 
   // Create a new document with the calculated total and timestamp if required
   await dbCallCollectionDocuments.doc('total_doc_values').set({
-    'totalTrueCount': totalTrueCount,
+    'total_true_count': totalTrueCount,
     'balance_fund_from_true_count': (totalTrueCount*500),
     // 'timestamp': FieldValue.serverTimestamp(),
   });

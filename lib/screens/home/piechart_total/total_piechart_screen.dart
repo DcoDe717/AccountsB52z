@@ -82,7 +82,7 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
                 ),
                 const SizedBox(height: 25),
                 Text(
-                  "₹ $balanceFundPieChart",
+                  "₹ $balanceFundTotal",
                   style: const TextStyle(
                       fontWeight: FontWeight.w500, fontSize: 20),
                 )

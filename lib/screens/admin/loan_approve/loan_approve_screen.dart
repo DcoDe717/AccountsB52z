@@ -2,10 +2,8 @@
 
 import 'package:accounts3/screens/admin/admin_common_files.dart';
 import 'package:accounts3/screens/admin/functions/firebase_functions_admin.dart';
-import 'package:accounts3/screens/admin/functions/months_emi_calculator_func.dart';
-import 'package:accounts3/screens/global/global_files.dart';
+import 'package:accounts3/screens/home/common_files_homepage.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ScreenLoanApprove extends StatefulWidget {
@@ -96,7 +94,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
                     children: [
                       labelTitle("Loan Amount"),
                       SizedBox(width: MediaQuery.of(context).size.width / 10),
-                      labelTitle("Current Balance  ₹ 1285000")
+                      labelTitle("Current Balance  ₹ $balanceFundTotal")
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -240,12 +238,22 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
   }
 
   Widget approveEntry() {
+    loanApprovalProcessTrueCheck = false;
+
     return ElevatedButton.icon(
         onPressed: () {
-          checkLoanActive(selectedDropdownValueAdmin, context);
+          print(
+              'loanApprovalProcessTrueCheck before: $loanApprovalProcessTrueCheck');
 
-          approvedMonthAndEMIMonthsListCreator();
-          updateApprovedMonthDateAndEmiList();
+          loanApprovalProcess(selectedDropdownValueAdmin, context);
+
+          print(
+              'loanApprovalProcessTrueCheck after: $loanApprovalProcessTrueCheck');
+
+          // if (loanApprovalProcessTrueCheck) {
+          //   approvedMonthAndEMIMonthsListCreator();
+          //   updateApprovedMonthDateAndEmiList();
+          // }
 
           // setState(() {
           //   selectedDropdownValueAdmin = null;
@@ -266,30 +274,32 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
         label: const Text('Approve'));
   }
 
-  Future<void> updateApprovedMonthDateAndEmiList() async {
-    Map<String, bool> emiStatusInitializer = {
-      '1': false,
-      '2': false,
-      '3': false,
-      '4': false,
-      '5': false,
-      '6': false,
-      '7': false,
-      '8': false,
-      '9': false,
-      '10': false,
-    };
-    final DocumentReference
-        documentReferenceInsideupdateApprovedMonthDateAndEmiList =
-        firestoreInstanceCall.collection('loan_installments').doc(selectedDropdownValueAdmin);
+  // Future<void> updateApprovedMonthDateAndEmiList() async {
+  //   Map<String, bool> emiStatusInitializer = {
+  //     '1': false,
+  //     '2': false,
+  //     '3': false,
+  //     '4': false,
+  //     '5': false,
+  //     '6': false,
+  //     '7': false,
+  //     '8': false,
+  //     '9': false,
+  //     '10': false,
+  //   };
+  //   final DocumentReference
+  //       documentReferenceInsideupdateApprovedMonthDateAndEmiList =
+  //       firestoreInstanceCall
+  //           .collection('loan_installments')
+  //           .doc(selectedDropdownValueAdmin);
 
-    await documentReferenceInsideupdateApprovedMonthDateAndEmiList.set(
-      {
-        'emi_months_status': emiStatusInitializer,
-        'approved_month_timestamp': Timestamp.now(),
-        'emi_months': emiMonthsListIndexValued
-      },
-      SetOptions(merge: true),
-    );
-  }
+  //   await documentReferenceInsideupdateApprovedMonthDateAndEmiList.set(
+  //     {
+  //       'emi_months_status': emiStatusInitializer,
+  //       'approved_month_timestamp': Timestamp.now(),
+  //       'emi_months': emiMonthsListIndexValued
+  //     },
+  //     SetOptions(merge: true),
+  //   );
+  // }
 }
