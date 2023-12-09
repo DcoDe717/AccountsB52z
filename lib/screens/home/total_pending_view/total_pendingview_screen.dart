@@ -1,4 +1,6 @@
-import 'package:accounts3/screens/home/common_files_homepage.dart';
+// ignore_for_file: avoid_print
+
+import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
 
 class ScreenTotPendingView extends StatefulWidget {

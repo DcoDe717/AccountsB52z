@@ -1,11 +1,14 @@
+// ignore_for_file: avoid_print
+
+import 'package:accounts3/functions/firestoreFunctions/update_fs_fields_from_selected_months.dart';
 import 'package:accounts3/functions/homeScreenFunctions/balance_Fund_WiG.dart';
 import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
-import 'package:accounts3/functions/firestore_main_functions.dart';
+import 'package:accounts3/functions/firestoreFunctions/update_pending_months_and_count.dart';
 import 'package:accounts3/screens/admin/admin_common_files.dart';
-import 'package:accounts3/screens/home/common_files_homepage.dart';
+import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:accounts3/screens/global/global_files.dart';
+import 'package:accounts3/screens/global/global_variables.dart';
 
 class ScreenAddData extends StatefulWidget {
   const ScreenAddData({super.key});
@@ -123,7 +126,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
           commentsMonthlyInstAddData =
               commentsTextControllerAddDataScreen.text;
           balanceFund();
-          await updateFirestoreFields("monthly_installments", gSelectedMember,
+          await updateFSFieldsFromSelectedMonths("monthly_installments", gSelectedMember,
               "ispaid", numericValuesListString, commentsMonthlyInstAddData);
 
           print('Firestore fields updated successfully!');

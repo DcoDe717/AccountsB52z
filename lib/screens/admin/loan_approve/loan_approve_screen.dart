@@ -2,7 +2,7 @@
 
 import 'package:accounts3/screens/admin/admin_common_files.dart';
 import 'package:accounts3/screens/admin/functions/firebase_functions_admin.dart';
-import 'package:accounts3/screens/home/common_files_homepage.dart';
+import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 

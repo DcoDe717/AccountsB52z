@@ -1,6 +1,6 @@
-import 'package:accounts3/screens/global/global_files.dart';
-import 'package:accounts3/screens/home/common_files_homepage.dart';
+import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../screens/global/global_variables.dart';
 
 Future<void> balanceFund() async {
   // int totaltruecountholder = 0;

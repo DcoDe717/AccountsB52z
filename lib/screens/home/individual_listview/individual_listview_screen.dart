@@ -1,4 +1,4 @@
-import 'package:accounts3/screens/home/common_files_homepage.dart';
+import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
 
 class ScreenMembersPendingListView extends StatelessWidget {
@@ -26,7 +26,7 @@ class ScreenMembersPendingListView extends StatelessWidget {
                 // backgroundImage: AssetImage("assets/img/pic1.jpg"),
                 ),
             title: Text(listviewMembersList[index]),
-            subtitle: Text('Total Unsettled : ₹ to be announced later '),
+            subtitle: const Text('Total Unsettled : ₹ to be announced later '),
             trailing: Text(
                 'MI Unsettled : ₹ ${(pendingCounts[index]) * 500} \nLoan Unsettled : ₹ Unfinished'),
 

@@ -1,25 +1,18 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-var gSelectedMember = '';
-int amountModifier = 0;
+import 'package:accounts3/screens/global/global_variables.dart';
 
-// Globally Create a single instance of FirebaseFirestore
-final FirebaseFirestore firestoreInstanceCall = FirebaseFirestore.instance;
+List<String> numericListStringConverter(List<int> numericListPara) {
+  numericValuesListString =
+      numericValuesList.map((value) => value.toString()).toList();
 
-// Variable for list of selected MOnthly Installments Months index value
-List<int> numericValuesList = [];
-List<String> numericValuesListString = [];
-
-// Variable for drop down value displayed in Add New Entry Screen
-String? selectedDropdownValue;
-
-// Selection of Monthly Installment Multiselect saved here
-List<dynamic> gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
-
-// Funtion that takes array string and return the value count strings multiplied by 500
-int calculateAmountModifier(List<dynamic> selectedMonths) {
-  return selectedMonths.length * 500;
+  return numericValuesListString;
 }
+
+// Funtion to modify the amount in the Add New Entry Screen
+void updateSelectedDropdownValue() {
+  selectedDropdownValue = gSelectedMember;
+}
+
 
 // Call the function to calculate the new amountModifier value
 void updateAmountModifier() {
@@ -27,10 +20,13 @@ void updateAmountModifier() {
       calculateAmountModifier(gSelectedMonthsMonthlyInstallmentsMultiSelect);
 }
 
-// Funtion to modify the amount in the Add New Entry Screen
-void updateSelectedDropdownValue() {
-  selectedDropdownValue = gSelectedMember;
+
+// Funtion that takes array string and return the value count strings multiplied by 500
+int calculateAmountModifier(List<dynamic> selectedMonths) {
+  return selectedMonths.length * 500;
 }
+
+
 
 // Function to reverse create the list from months selected to the universal index string list to update the database
 
@@ -73,11 +69,4 @@ List<int> reverseMonthNameList(List<dynamic> monthNamesList) {
   }
 
   return numericValuesList;
-}
-
-List<String> numericListStringConverter(List<int> numericListPara) {
-  numericValuesListString =
-      numericValuesList.map((value) => value.toString()).toList();
-
-  return numericValuesListString;
 }

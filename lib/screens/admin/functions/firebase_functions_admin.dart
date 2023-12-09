@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_print
 import 'package:accounts3/screens/admin/admin_common_files.dart';
 import 'package:accounts3/screens/admin/functions/months_emi_calculator_func.dart';
-import 'package:accounts3/screens/global/global_files.dart';
-import 'package:accounts3/screens/home/common_files_homepage.dart';
+import 'package:accounts3/screens/global/global_variables.dart';
+import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';

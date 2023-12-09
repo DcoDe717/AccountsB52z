@@ -1,6 +1,6 @@
 import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
 import 'package:accounts3/screens/admin/loan_approve/loan_approve_screen.dart';
-import 'package:accounts3/screens/home/common_files_homepage.dart';
+import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:accounts3/screens/home/piechart_total/total_piechart_screen.dart';
 import 'package:accounts3/screens/home/total_pending_view/total_pendingview_screen.dart';
@@ -17,10 +17,6 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
-
-  
-
-
   int _selectedNavIndex = 0;
 
   static const List _pageList = [
@@ -30,18 +26,15 @@ class _ScreenHomeState extends State<ScreenHome> {
     ScreenAddData()
   ];
 
-    _ScreenHomeState() {
+  _ScreenHomeState() {
     // Call your initialization function here
     balanceFund();
     totPendingCountMemberWiseList(membersListLocal);
-
   }
-
 
   void _onItemTapped(int index) {
     if (index == 1) {
-      switchCaseRetrievedValue =
-                                  totalValueAllMembersPendingAmount;
+      switchCaseRetrievedValue = totalValueAllMembersPendingAmount;
     }
 
     setState(() {
@@ -53,72 +46,75 @@ class _ScreenHomeState extends State<ScreenHome> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: _pageList[_selectedNavIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.pie_chart), label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.bar_chart_sharp), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.people_alt), label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.admin_panel_settings_outlined), label: '')
-          ],
-          onTap: (value) {
-            if (value == 3) {
-              Alert(
-                context: context,
-                // type: AlertType.warning,
-                // image: Image.asset("assets/img/choose.png"),
-                title: "Choose Operation",
-                desc: "Credit - for adding entry\nDebit - for approving loan",
-                buttons: [
-                  DialogButton(
-                    onPressed: () => Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ScreenAddData(),
-                        ),
-                        (route) => false),
-                    color: const Color.fromARGB(255, 230, 46, 55),
-                    child: const Text(
-                      "Credit",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
-                  DialogButton(
-                    onPressed: () => Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ScreenLoanApprove(),
-                        ),
-                        (route) => false),
-                    color: const Color.fromARGB(255, 23, 109, 190),
-                    // gradient: const LinearGradient(colors: [
-                    //   Color.fromRGBO(116, 116, 191, 1.0),
-                    //   Color.fromRGBO(52, 138, 199, 1.0)
-                    // ]),
-                    child: const Text(
-                      "Debit",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  )
-                ],
-              ).show();
-            }
+        bottomNavigationBar: bottomNavHome());
+  }
 
-            if (value == 0 || value == 1 || value == 2) {
-              _onItemTapped(value);
-            }
-            // _onItemTapped(value);
-          },
-          currentIndex: _selectedNavIndex,
-          // backgroundColor:Color(0xffE6EFFF),
+  Widget bottomNavHome() {
+    return BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.pie_chart), label: ''),
+        BottomNavigationBarItem(icon: Icon(Icons.bar_chart_sharp), label: ''),
+        BottomNavigationBarItem(icon: Icon(Icons.people_alt), label: ''),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.admin_panel_settings_outlined), label: '')
+      ],
+      onTap: (value) {
+        if (value == 3) {
+          Alert(
+            context: context,
+            // type: AlertType.warning,
+            // image: Image.asset("assets/img/choose.png"),
+            title: "Choose Operation",
+            desc: "Credit - for adding entry\nDebit - for approving loan",
+            buttons: [
+              DialogButton(
+                onPressed: () => Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ScreenAddData(),
+                    ),
+                    (route) => false),
+                color: const Color.fromARGB(255, 230, 46, 55),
+                child: const Text(
+                  "Credit",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+              DialogButton(
+                onPressed: () => Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ScreenLoanApprove(),
+                    ),
+                    (route) => false),
+                color: const Color.fromARGB(255, 23, 109, 190),
+                // gradient: const LinearGradient(colors: [
+                //   Color.fromRGBO(116, 116, 191, 1.0),
+                //   Color.fromRGBO(52, 138, 199, 1.0)
+                // ]),
+                child: const Text(
+                  "Debit",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              )
+            ],
+          ).show();
+        }
 
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.grey,
-          type: BottomNavigationBarType.fixed,
-          elevation: 2,
-          selectedIconTheme: const IconThemeData(size: 30),
-        ));
+        if (value == 0 || value == 1 || value == 2) {
+          _onItemTapped(value);
+        }
+        // _onItemTapped(value);
+      },
+      currentIndex: _selectedNavIndex,
+      // backgroundColor:Color(0xffE6EFFF),
+
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
+      type: BottomNavigationBarType.fixed,
+      elevation: 2,
+      selectedIconTheme: const IconThemeData(size: 30),
+    );
   }
 }
 

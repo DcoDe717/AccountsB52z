@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/screens/global/global_files.dart';
+import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import '../admin_common_files.dart';
