@@ -1,3 +1,6 @@
+import 'package:accounts3/functions/firestoreFunctions/total_fund_balace_updater.dart';
+import 'package:accounts3/functions/firestoreFunctions/update_pending_loan_amount_total.dart';
+import 'package:accounts3/roughpage.dart';
 import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -181,9 +184,8 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
             padding: const EdgeInsets.only(top: 20),
             child: TextButton(
                 onPressed: () {
-                  // addEntryToLoanInstallemnt();
-                  // calculateAndCreateTotalDocument();
-                  // timer022();
+                  calculateTotalBalanceFundWhole();
+                  // calculateTotalPendingLoanAmount();
                 },
                 child: const Text(
                   'Press me',

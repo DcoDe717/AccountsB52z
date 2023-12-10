@@ -7,7 +7,7 @@ import 'package:accounts3/screens/home/total_pending_view/total_pendingview_scre
 import 'package:flutter/material.dart';
 import '../admin/add_data/add_data_screen.dart';
 import 'individual_listview/individual_listview_screen.dart';
-import 'package:accounts3/functions/homeScreenFunctions/balance_fund_wig.dart';
+import 'package:accounts3/functions/firestoreFunctions/balance_fund_wig.dart';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
