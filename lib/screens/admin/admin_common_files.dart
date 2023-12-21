@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 String? selectedDropdownValueAdmin;
-var choosedMember = '';
+var chosenMember = '';
 String commentsMonthlyInstAddData = '';
 
 // Variables to check the Loan approval process is success or not, for updating remaining fields

@@ -1,4 +1,6 @@
+// ignore_for_file: avoid_print
 
+import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/global/global_variables.dart';
 
 List<String> numericListStringConverter(List<int> numericListPara) {
@@ -13,20 +15,31 @@ void updateSelectedDropdownValue() {
   selectedDropdownValue = gSelectedMember;
 }
 
-
 // Call the function to calculate the new amountModifier value
 void updateAmountModifier() {
-  amountModifier =
-      calculateAmountModifier(gSelectedMonthsMonthlyInstallmentsMultiSelect);
+  amountModifier = 0;
+
+  double monthlyTotalAmount = calcSelectedMonthlyMonthsTotalAmount(
+      gSelectedMonthsMonthlyInstallmentsMultiSelect);
+
+  double loanTotalAmount = calcSelectedLoanMonthsTotalAmount(
+      gSelectedMonthsLoanInstallmentsMultiSelect);
+
+  amountModifier = monthlyTotalAmount + loanTotalAmount;
+
+  print(
+      ' amountModifier = monthlyTotalAmount + loanTotalAmoun : $amountModifier');
 }
 
-
 // Funtion that takes array string and return the value count strings multiplied by 500
-int calculateAmountModifier(List<dynamic> selectedMonths) {
+double calcSelectedMonthlyMonthsTotalAmount(List<dynamic> selectedMonths) {
   return selectedMonths.length * 500;
 }
 
-
+double calcSelectedLoanMonthsTotalAmount(List<dynamic> selectedMonths) {
+  double loanAmountEmiValue = loanAmountPulledFromDb / 10;
+  return selectedMonths.length * loanAmountEmiValue;
+}
 
 // Function to reverse create the list from months selected to the universal index string list to update the database
 

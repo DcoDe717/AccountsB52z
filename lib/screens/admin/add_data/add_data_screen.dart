@@ -1,11 +1,11 @@
 // ignore_for_file: avoid_print
 
+import 'package:accounts3/functions/firestoreFunctions/balance_fund_wig.dart';
 import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_counts.dart';
 import 'package:accounts3/functions/firestoreFunctions/update_fs_fields_from_selected_months.dart';
-import 'package:accounts3/functions/homeScreenFunctions/balance_Fund_WiG.dart';
-import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
+import 'package:accounts3/screens/admin/add_data/multi_select_screen.dart';
 import 'package:accounts3/screens/admin/admin_common_files.dart';
-import 'package:accounts3/screens/home/common_variables_homepage.dart';
+import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:accounts3/screens/global/global_variables.dart';
@@ -102,7 +102,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                       const SizedBox(height: 30),
                       labelTitle("Credit Fields"),
                       const SizedBox(height: 15),
-                      creditFieldWidget(),
+                      selectEntryFieldsWid(),
                       const SizedBox(height: 30),
                       labelTitle("Enter Comments"),
                       const SizedBox(height: 15),
@@ -152,7 +152,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
         label: const Text('Add Entry'));
   }
 
-  Widget creditFieldWidget() {
+  Widget selectEntryFieldsWid() {
     return Container(
       padding: const EdgeInsets.all(15),
       width: MediaQuery.of(context).size.width,
@@ -165,16 +165,16 @@ class _ScreenAddDataState extends State<ScreenAddData> {
           ElevatedButton.icon(
               onPressed: () {
                 // Test functions Deploy
-                totPendingCountMemberWiseList(membersListLocal);
+                // totPendingCountMemberWiseList(membersListLocal);
                 // balanceFund();
                 // updatePendingMonthsAndCountMemberWise();
 
-                // gSelectedMember = choosedMember;
+                gSelectedMember = chosenMember;
 
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => const MultiSelectScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MultiSelectScreen()));
               },
               icon: const Icon(Icons.arrow_right),
               label: const Text('Select Entry Fields')),
@@ -297,70 +297,74 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     );
   }
 
-  Widget memberDropDown() {
-    return SizedBox(
-      height: 55,
-      width: MediaQuery.of(context).size.width,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(167, 237, 123, 132),
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: const <BoxShadow>[],
-        ),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButtonFormField(
-            dropdownColor: Colors.deepPurple.shade50,
-            icon: const Icon(
-              Icons.arrow_drop_down_circle_outlined,
-              color: Colors.white,
-            ),
-            isExpanded: true,
-            decoration: const InputDecoration(
-              fillColor: Color(0xff2a2e3d),
-              labelText: '',
-              border: OutlineInputBorder(borderSide: BorderSide.none),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-            ),
-            hint: const Text(
-              'Select Member',
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-            value: selectedDropdownValue,
-            items: dropDownListAdmin
-                .map<DropdownMenuItem<String>>(
-                  (String value) => DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(fontSize: 23),
-                    ),
-                  ),
-                )
-                .toList(),
-            onChanged: (selectedvalue) {
-              // Handle the selection here
-              // amountModifier = 500;
-              // Call your function here
-              // e.g., _yourFunction(selectedvalue);
-              choosedMember = selectedvalue!;
-              // print('Item selected: $selectedvalue');
-              print("choosedMember : $choosedMember");
-              setState(() {
-                selectedDropdownValue = selectedvalue;
-                amountModifier = 0;
-                gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
-              });
-            },
+Widget memberDropDown() {
+  return SizedBox(
+    height: 55,
+    width: MediaQuery.of(context).size.width,
+    child: DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(167, 237, 123, 132),
+        borderRadius: BorderRadius.circular(5),
+        boxShadow: const <BoxShadow>[],
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButtonFormField(
+          dropdownColor: Colors.deepPurple.shade50,
+          icon: const Icon(
+            Icons.arrow_drop_down_circle_outlined,
+            color: Colors.white,
           ),
+          isExpanded: true,
+          decoration: const InputDecoration(
+            fillColor: Color(0xff2a2e3d),
+            labelText: '',
+            border: OutlineInputBorder(borderSide: BorderSide.none),
+            contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+          ),
+          hint: const Text(
+            'Select Member',
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          value: selectedDropdownValue,
+          items: dropDownListAdmin
+              .map<DropdownMenuItem<String>>(
+                (String value) => DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: const TextStyle(fontSize: 23),
+                  ),
+                ),
+              )
+              .toList(),
+          onChanged: handleDropdownChange,
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
+void handleDropdownChange(String? selectedValue) {
+  // Handle the selection here
+  // amountModifier = 500;
+  // Call your function here
+  // e.g., _yourFunction(selectedvalue);
+  chosenMember = selectedValue!;
+  print("chosenMember: $chosenMember");
+
+  setState(() {
+    selectedDropdownValue = selectedValue;
+    amountModifier = 0;
+    gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+  });
+}
+
+
+
 
   Widget labelTitle(String label) {
     return Text(

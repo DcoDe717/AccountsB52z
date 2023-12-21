@@ -1,7 +1,10 @@
 // Global Variables ----------------
 int pendingMonthsCountFromDb = 0;
+
 String pendindMonthsFromDbRaw = '';
+
 List<String> pendingMonthsListSplittedArray = [];
+
 List<String> pendingMonthsNamesListConverted = [
   'Jan 2022',
   'Feb 2022',
@@ -9,6 +12,18 @@ List<String> pendingMonthsNamesListConverted = [
   'April 2022',
   'May 2022'
 ];
+
+List<String> trueMonthsListRetrievedFromTrueIndexList = [];
+
+// Selection of Monthly Installment Multiselect saved here
+List<dynamic> gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+
+// Selection of Loan Installment Multiselect saved here
+List<dynamic> gSelectedMonthsLoanInstallmentsMultiSelect = [];
+
+// variable to store the loan amount of a member for calculating total and emi
+double loanAmountPulledFromDb = 0;
+
 
 
 
