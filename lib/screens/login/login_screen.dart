@@ -1,3 +1,6 @@
+import 'package:accounts3/screens/admin/admin_common_files.dart';
+import 'package:accounts3/screens/admin/common_variables_admin.dart';
+import 'package:accounts3/screens/login/functions/authentication_function.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -61,8 +64,9 @@ class ScreenLogin extends StatelessWidget {
                     SizedBox(
                       width: width2,
                       height: 60,
-                      child: const TextField(
-                        decoration: InputDecoration(
+                      child: TextField(
+                        controller: loginUsernameTextController,
+                        decoration: const InputDecoration(
                             suffix: Icon(
                               FontAwesomeIcons.user,
                               color: Colors.red,
@@ -78,9 +82,10 @@ class ScreenLogin extends StatelessWidget {
                     SizedBox(
                       width: width2,
                       height: 60,
-                      child: const TextField(
+                      child: TextField(
+                        controller: loginPasswordTextController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             suffix: Icon(
                               FontAwesomeIcons.eyeSlash,
                               color: Colors.red,
@@ -124,7 +129,15 @@ class ScreenLogin extends StatelessWidget {
                         padding: const EdgeInsets.all(1.0),
                         child: TextButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/home');
+                              userNameGlobal=
+                                  loginUsernameTextController.text;
+
+                              String passWord =
+                                  loginPasswordTextController.text;
+
+                              loginAuthentication(context,userNameGlobal, passWord);
+
+                              // Navigator.of(context).pushNamed('/home');
                             },
                             child: const Text(
                               'Login',

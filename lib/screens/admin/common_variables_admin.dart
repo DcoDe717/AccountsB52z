@@ -5,6 +5,9 @@ String pendindMonthsFromDbRaw = '';
 
 List<String> pendingMonthsListSplittedArray = [];
 
+bool loggedUserAdminCheck = false;
+String userNameGlobal = '';
+
 List<String> pendingMonthsNamesListConverted = [
   'Jan 2022',
   'Feb 2022',

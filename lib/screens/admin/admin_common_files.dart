@@ -16,6 +16,9 @@ int? loanAmountParsed;
 final loanAmountTextControllerLoanApproveScreen = TextEditingController();
 final commentsTextControllerLoanApproveScreen = TextEditingController();
 
+final loginUsernameTextController = TextEditingController();
+final loginPasswordTextController = TextEditingController();
+
 // Variable to store months emi status as map objects index : months
 Map<String, String> emiMonthsListIndexValued = {};
 

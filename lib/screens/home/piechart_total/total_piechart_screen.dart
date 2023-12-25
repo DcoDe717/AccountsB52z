@@ -1,7 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'package:accounts3/functions/firestoreFunctions/calculate_and_create_total_document.dart';
 import 'package:accounts3/functions/firestoreFunctions/total_fund_balance_updater.dart';
 import 'package:accounts3/functions/manualTriggeringFunctions/data_entry_using_loop.dart';
 import 'package:accounts3/functions/manualTriggeringFunctions/update_pend_months_counts_whole.dart';
+import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -188,6 +191,9 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
                   // updatePendingMonthsAndCountWhole();
                   // dataLoopAddDbEntryMemberWise();
                   // calculateAndCreateTotalDocument();
+
+                  print('user is $userNameGlobal');
+                  print('user admin status: $loggedUserAdminCheck');
                 },
                 child: const Text(
                   'Press me',

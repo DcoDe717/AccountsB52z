@@ -3,6 +3,7 @@ import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func
 import 'package:accounts3/screens/admin/loan_approve/loan_approve_screen.dart';
 import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:accounts3/screens/home/home_init_functions.dart';
+import 'package:accounts3/screens/login/login_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:accounts3/screens/home/piechart_total/total_piechart_screen.dart';
 import 'package:accounts3/screens/home/total_pending_view/total_pendingview_screen.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import '../admin/add_data/add_data_screen.dart';
 import 'individual_listview/individual_listview_screen.dart';
 import 'package:accounts3/functions/firestoreFunctions/get_total_balance_fund_wig.dart';
+import 'dart:async';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -20,6 +22,7 @@ class ScreenHome extends StatefulWidget {
 
 class _ScreenHomeState extends State<ScreenHome> {
   int _selectedNavIndex = 0;
+  late Timer _idleTimer;
 
   static const List _pageList = [
     ScreenHomePieChartView(),
@@ -31,8 +34,31 @@ class _ScreenHomeState extends State<ScreenHome> {
   @override
   void initState() {
     super.initState();
+    _startIdleTimer();
 
     homeScreenInitFunctionsOrdered();
+  }
+
+  void _startIdleTimer() {
+    const Duration idleDuration =
+        Duration(minutes: 2); // Adjust the idle duration as needed
+
+    _idleTimer = Timer(idleDuration, () {
+      // Perform actions when the user is idle
+      print('User is idle.');
+      // Navigate to the login screen
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ScreenLogin(),
+          ),
+          (route) => false);
+    });
+  }
+
+  void _resetIdleTimer() {
+    _idleTimer.cancel(); // Cancel the existing timer
+    _startIdleTimer(); // Restart the timer
   }
 
   // _ScreenHomeState() {
@@ -57,8 +83,19 @@ class _ScreenHomeState extends State<ScreenHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: _pageList[_selectedNavIndex],
+        body:
+            // Reset the timer on any user interaction (e.g., tap)
+            GestureDetector(
+          onTap: _resetIdleTimer,
+          child: _pageList[_selectedNavIndex],
+        ),
         bottomNavigationBar: bottomNavHome());
+  }
+
+  @override
+  void dispose() {
+    _idleTimer.cancel(); // Cancel the timer when the widget is disposed
+    super.dispose();
   }
 
   Widget bottomNavHome() {
