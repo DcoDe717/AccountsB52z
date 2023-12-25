@@ -2,6 +2,7 @@ import 'package:accounts3/functions/firestoreFunctions/total_fund_balance_update
 import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
 import 'package:accounts3/screens/admin/loan_approve/loan_approve_screen.dart';
 import 'package:accounts3/screens/home/common_variables_homepage.dart';
+import 'package:accounts3/screens/home/home_init_functions.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:accounts3/screens/home/piechart_total/total_piechart_screen.dart';
 import 'package:accounts3/screens/home/total_pending_view/total_pendingview_screen.dart';
@@ -27,17 +28,25 @@ class _ScreenHomeState extends State<ScreenHome> {
     ScreenAddData()
   ];
 
-  _ScreenHomeState() {
-    // Call your initialization function here
-    
-    totPendingCountMemberWiseList(membersListLocal);
-    calculateTotalBalanceFundWhole();
-    getTotalBalanceFundDb();
+  @override
+  void initState() {
+    super.initState();
+
+    homeScreenInitFunctionsOrdered();
   }
+
+  // _ScreenHomeState() {
+  //   // Call your initialization function here
+
+  //   totPendingCountMemberWiseList(membersListLocal);
+  //   calculateTotalBalanceFundWhole();
+  //   getTotalBalanceFundDb();
+  // }
 
   void _onItemTapped(int index) {
     if (index == 1) {
-      switchCaseRetrievedValue = totalValueAllMembersPendingAmountCalcFromListMemberWise;
+      switchCaseRetrievedValue =
+          totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
     }
 
     setState(() {

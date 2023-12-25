@@ -73,7 +73,7 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
         onChanged: (selectedvalue) {
           switch (selectedvalue) {
             case 'Total':
-              switchCaseRetrievedValue = totalValueAllMembersPendingAmountCalcFromListMemberWise;
+              switchCaseRetrievedValue = totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
               break;
 
             case 'Adil':

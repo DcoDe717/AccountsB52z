@@ -2,7 +2,7 @@ int balanceFundTotal = 0;
 
 int switchCaseRetrievedValue = 0;
 
-int totalValueAllMembersPendingAmountCalcFromListMemberWise = 0;
+int totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise = 0;
 
 List<int> pendingCountListMemberWiseMonthly = [];
 

@@ -28,16 +28,16 @@ Future<int> totPendingCountMemberWiseList(List<String> members) async {
 
   print('pendingCounts: $pendingCountListMemberWiseMonthly');
 
-  totalValueAllMembersPendingAmountCalcFromListMemberWise = 0;
+  totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise = 0;
 
   print(
-      'totalValueAllMembersPendingAmountCalcFromListMemberWise before : $totalValueAllMembersPendingAmountCalcFromListMemberWise');
+      'totalValueAllMembersPendingAmountCalcFromListMemberWise before : $totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise');
 
-  totalValueAllMembersPendingAmountCalcFromListMemberWise =
+  totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise =
       (pendingCountListMemberWiseMonthly.reduce((value, element) => value + element)) * 500;
 
   print(
-      "totalValueAllMembersPendingAmountCalcFromListMemberWise after: $totalValueAllMembersPendingAmountCalcFromListMemberWise");
+      "totalValueAllMembersPendingAmountCalcFromListMemberWise after: $totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise");
 
   return 0;
 }

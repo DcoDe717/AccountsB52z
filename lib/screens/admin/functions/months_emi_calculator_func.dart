@@ -42,7 +42,7 @@ List<String> monthsList = [];
         dateTimeCoverted.month + 2 + i, dateTimeCoverted.day);
     String formattedMonth = DateFormat('MMM y').format(currentMonth);
     monthsList.add(formattedMonth);
-    print(monthsList);
+    // print(monthsList);
   }
 
   for (int i = 0; i < 10; i++) {
@@ -52,31 +52,4 @@ List<String> monthsList = [];
 }
 
 
-  Future<void> updateApprovedMonthDateAndEmiList() async {
-    Map<String, bool> emiStatusInitializer = {
-      '1': false,
-      '2': false,
-      '3': false,
-      '4': false,
-      '5': false,
-      '6': false,
-      '7': false,
-      '8': false,
-      '9': false,
-      '10': false,
-    };
-    final DocumentReference
-        documentReferenceInsideupdateApprovedMonthDateAndEmiList =
-        firestoreInstanceCall
-            .collection('loan_installments')
-            .doc(selectedDropdownValueAdmin);
 
-    await documentReferenceInsideupdateApprovedMonthDateAndEmiList.set(
-      {
-        'emi_months_status': emiStatusInitializer,
-        'approved_month_timestamp': Timestamp.now(),
-        'emi_months': emiMonthsListIndexValued
-      },
-      SetOptions(merge: true),
-    );
-  }
