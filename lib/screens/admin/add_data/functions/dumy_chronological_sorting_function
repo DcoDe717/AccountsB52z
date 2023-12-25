@@ -1,0 +1,72 @@
+// // ignore_for_file: avoid_print
+
+// void main() {
+//   List<String> dateStrings = [
+// "May 2021", "Feb 2021", "Jan 2023", "Mar 2021", "Jun 2021", "Apr 2022", "Jul 2021", "Sep 2021", "Oct 2021", "Nov 2021", "Dec 2021", "Jan 2022", "Feb 2022", "Mar 2022", "May 2022"
+
+
+//   ];
+
+//   List<String> sortedDates = sortDatesChronologicallyForLoanEmiTrueMonthsSelected(dateStrings);
+
+//   print(sortedDates);
+// }
+
+// List<String> sortDatesChronologicallyForLoanEmiTrueMonthsSelected(List<String> dateStrings) {
+
+//   String monthToString(int month) {
+//   // Map numeric month values to corresponding month names
+//   var monthMap = {
+//     1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
+//     7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'
+//   };
+
+//   return monthMap[month] ?? '';
+// }
+
+
+
+//   // Convert the date strings to DateTime objects
+//   List<DateTime> dates = dateStrings.map((dateString) {
+//     // Parse the month and year from the date string
+//     var parts = dateString.split(' ');
+
+//     // Input validation: Check that the date string has the expected format
+//     if (parts.length != 2) {
+//       throw FormatException('Invalid date format: $dateString');
+//     }
+
+//     var month = parts[0];
+//     var year = int.tryParse(parts[1]);
+
+//     // Map month names to corresponding numeric values
+//     var monthMap = {
+//       'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+//       'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+//     };
+
+//     // Handling default values: Choose a default date that indicates invalid or missing date
+//     if (year == null || monthMap[month] == null) {
+//       return DateTime(1, 1, 1); // Default to January 1, 1 AD
+//     }
+
+//     // Create a DateTime object if year and month are non-null
+//     return DateTime(year, monthMap[month]!);
+//   }).toList();
+
+//   // Sort the DateTime objects
+//   dates.sort();
+
+//   // Convert the sorted DateTime objects back to formatted date strings
+//   List<String> sortedDateStrings = dates.map((date) {
+//     var month = date.month;
+//     var year = date.year;
+//     return '${monthToString(month)} $year';
+//   }).toList();
+
+//   return sortedDateStrings;
+
+  
+// }
+
+

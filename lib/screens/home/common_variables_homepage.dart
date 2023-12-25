@@ -2,9 +2,9 @@ int balanceFundTotal = 0;
 
 int switchCaseRetrievedValue = 0;
 
-int totalValueAllMembersPendingAmount = 0;
+int totalValueAllMembersPendingAmountCalcFromListMemberWise = 0;
 
-List<int> pendingCounts = [];
+List<int> pendingCountListMemberWiseMonthly = [];
 
 String? selectedDropdownValueTotalPendingView = 'Total';
 

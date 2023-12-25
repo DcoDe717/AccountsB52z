@@ -7,10 +7,11 @@ double amountModifier = 0;
 final FirebaseFirestore firestoreInstanceCall = FirebaseFirestore.instance;
 
 // Variable for list of selected MOnthly Installments Months index value
-List<int> numericValuesList = [];
-List<String> numericValuesListString = [];
+List<int> numericValuesListMonthlyInst = [];
+List<String> numericValuesListMonthlyInstString = [];
+
+// Variable for list of selected Loan Installments Months index value
+List<String> extractedIndexValueFromSelectedLoanMonths = [];
 
 // Variable for drop down value displayed in Add New Entry Screen
 String? selectedDropdownValue;
-
-

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../screens/global/global_variables.dart';
 
 // Update true of the ispaid list in DB with the index value selected, and comments / Timestamp
-Future<void> updateFSFieldsFromSelectedMonths(
+Future<void> updateFSFieldsForLoanSelectedMonths(
     String collection,
     String document,
     String field,
@@ -19,8 +19,8 @@ Future<void> updateFSFieldsFromSelectedMonths(
       // Use update method to update specific field
       await documentReference.update({
         '$field.$parsedIndex': true,
-        'comments.$parsedIndex': commentsDown,
-        'dateTime.$parsedIndex': Timestamp.now(),
+        'comments_emi.$parsedIndex': commentsDown,
+        'dateTime_emi.$parsedIndex': Timestamp.now(),
       });
       // await documentReference.update({
       //   'comments.$parsedIndex': commentsDown,

@@ -3,7 +3,7 @@
 import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> calculateTotalBalanceFundWhole() async {
+Future<void> calculateTotalBalanceFundWhole() async {   
   try {
     double totalBalanceFund = 0;
     double monthlyTotalFund = 0;
@@ -20,7 +20,7 @@ Future<void> calculateTotalBalanceFundWhole() async {
         .get();
 
     if (docSnapMonthly.exists) {
-      monthlyTotalFund = docSnapMonthly['balance_fund_from_true_count'] ?? 0;
+      monthlyTotalFund = docSnapMonthly['balance_fund_from_true_count_monthly'] ?? 0;
     }
 
     if (docSnapLoan.exists) {

@@ -7,12 +7,12 @@ Future<void> calculateAndCreateTotalDocument() async {
       firestoreInstanceCall.collection('monthly_installments');
 
   // Fetch all documents from the "monthly_installments" collection
-  QuerySnapshot monthlyInstallments = await dbCallCollectionDocuments.get();
+  QuerySnapshot monthlyInstallmentsAllDocs = await dbCallCollectionDocuments.get();
 
   // Calculate the total number of ispaid fields with value true
   int totalTrueCount = 0;
 
-  for (var doc in monthlyInstallments.docs) {
+  for (var doc in monthlyInstallmentsAllDocs.docs) {
     // Explicitly cast doc.data() to Map<String, dynamic>
     // Casting to Map: doc.data() is used to get the data of the current document.
     // Since the exact type is not known, it is explicitly cast to Map<String, dynamic> using as Map<String, dynamic>.
@@ -39,13 +39,8 @@ Future<void> calculateAndCreateTotalDocument() async {
 
   // Create a new document with the calculated total and timestamp if required
   await dbCallCollectionDocuments.doc('total_doc_values').set({
-    'total_true_count': totalTrueCount,
-    'balance_fund_from_true_count': (totalTrueCount * 500),
+    'total_true_count_monthly': totalTrueCount,
+    'balance_fund_from_true_count_monthly': (totalTrueCount * 500),
     // 'timestamp': FieldValue.serverTimestamp(),
   });
-
-  // await dbCallCollectionDocuments.doc('total_doc_values').set({
-  //   'balance_fund_from_true_count': (totalTrueCount*500),
-  //   // 'timestamp': FieldValue.serverTimestamp(),
-  // });
 }

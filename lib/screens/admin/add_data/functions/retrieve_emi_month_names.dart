@@ -39,8 +39,8 @@ Future<void> retrieveEmiMonthNames(List<String> keysToAccess) async {
           monthsNameListRetrievedFromDB['emi_months'] != null &&
           monthsNameListRetrievedFromDB['emi_months'][key.toString()] != null) {
         trueMonthsListRetrievedFromTrueIndexList.add(
-            monthsNameListRetrievedFromDB['emi_months'][key.toString()]
-                .toString());
+  '${monthsNameListRetrievedFromDB['emi_months'][key.toString()]} | $key');
+
         print(trueMonthsListRetrievedFromTrueIndexList);
       } else {
         // If key not found, add a default value and print debugging information

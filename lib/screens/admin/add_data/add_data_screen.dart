@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/functions/firestoreFunctions/balance_fund_wig.dart';
+import 'package:accounts3/functions/firestoreFunctions/get_total_balance_fund_wig.dart';
 import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_counts.dart';
-import 'package:accounts3/functions/firestoreFunctions/update_fs_fields_from_selected_months.dart';
+import 'package:accounts3/functions/firestoreFunctions/update_fs_fields_for_loan_selected_months.dart';
+import 'package:accounts3/functions/firestoreFunctions/update_fs_fields_from_selected_months_monthly.dart';
 import 'package:accounts3/screens/admin/add_data/multi_select_screen.dart';
 import 'package:accounts3/screens/admin/admin_common_files.dart';
 import 'package:accounts3/screens/admin/common_variables_admin.dart';
@@ -123,17 +124,23 @@ class _ScreenAddDataState extends State<ScreenAddData> {
   Widget addEntry() {
     return ElevatedButton.icon(
         onPressed: () async {
-          commentsMonthlyInstAddData =
-              commentsTextControllerAddDataScreen.text;
-          balanceFund();
-          await updateFSFieldsFromSelectedMonths("monthly_installments", gSelectedMember,
-              "ispaid", numericValuesListString, commentsMonthlyInstAddData);
+          commentsAddData = commentsTextControllerAddDataScreen.text;
+          // balanceFund();
+          await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
+              "monthly_installments",
+              gSelectedMember,
+              "ispaid",
+              numericValuesListMonthlyInstString,
+              commentsAddData);
 
-          print('Firestore fields updated successfully!');
+          // await updateFSFieldsForLoanSelectedMonths(
+          //     'loan_installments', gSelectedMember, 'emi_months_status', extractedIndexValueFromSelectedLoanMonths, commentsAddData);
 
-          updatePendingMonthsAndCountMemberWise();
+          // print('Firestore fields updated successfully!');
 
-          print('commentsMonthlyInstAddData : $commentsMonthlyInstAddData');
+          // updatePendingMonthsAndCountMemberWise(gSelectedMember);
+
+          // print('commentsMonthlyInstAddData : $commentsAddData');
 
           setState(() {
             selectedDropdownValue = null;
@@ -165,9 +172,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
           ElevatedButton.icon(
               onPressed: () {
                 // Test functions Deploy
-                // totPendingCountMemberWiseList(membersListLocal);
-                // balanceFund();
-                // updatePendingMonthsAndCountMemberWise();
+
 
                 gSelectedMember = chosenMember;
 
@@ -205,26 +210,20 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                     style: const TextStyle(
                         fontSize: 15,
                         // backgroundColor: Color(0xff232323)
-                        color: Colors.white))
-
-                // Text("Jan 2023, Feb 2023, March 2023",
-                //     style: TextStyle(
-                //         fontSize: 15,
-                //         // backgroundColor: Color(0xff232323)
-                //         color: Colors.white)),
-                // SizedBox(height: 20),
-                // Text("Loan Installments",
-                //     style: TextStyle(
-                //         fontSize: 15,
-                //         fontWeight: FontWeight.bold,
-                //         // backgroundColor: Color(0xff232323)
-                //         color: Colors.white)),
-                // SizedBox(height: 10),
-                // Text("Jan 2023, Feb 2023, March 2023",
-                //     style: TextStyle(
-                //         fontSize: 15,
-                //         // backgroundColor: Color(0xff232323)
-                //         color: Colors.white)),
+                        color: Colors.white)),
+                const SizedBox(height: 20),
+                const Text("Loan Installments",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        // backgroundColor: Color(0xff232323)
+                        color: Colors.white)),
+                const SizedBox(height: 10),
+                Text(gSelectedMonthsLoanInstallmentsMultiSelect.join(", "),
+                    style: const TextStyle(
+                        fontSize: 15,
+                        // backgroundColor: Color(0xff232323)
+                        color: Colors.white)),
               ],
             ),
           )
@@ -297,74 +296,72 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     );
   }
 
-Widget memberDropDown() {
-  return SizedBox(
-    height: 55,
-    width: MediaQuery.of(context).size.width,
-    child: DecoratedBox(
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(167, 237, 123, 132),
-        borderRadius: BorderRadius.circular(5),
-        boxShadow: const <BoxShadow>[],
-      ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButtonFormField(
-          dropdownColor: Colors.deepPurple.shade50,
-          icon: const Icon(
-            Icons.arrow_drop_down_circle_outlined,
-            color: Colors.white,
-          ),
-          isExpanded: true,
-          decoration: const InputDecoration(
-            fillColor: Color(0xff2a2e3d),
-            labelText: '',
-            border: OutlineInputBorder(borderSide: BorderSide.none),
-            contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-          ),
-          hint: const Text(
-            'Select Member',
-            style: TextStyle(
-              fontSize: 15,
+  Widget memberDropDown() {
+    return SizedBox(
+      height: 55,
+      width: MediaQuery.of(context).size.width,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(167, 237, 123, 132),
+          borderRadius: BorderRadius.circular(5),
+          boxShadow: const <BoxShadow>[],
+        ),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButtonFormField(
+            dropdownColor: Colors.deepPurple.shade50,
+            icon: const Icon(
+              Icons.arrow_drop_down_circle_outlined,
               color: Colors.white,
-              fontWeight: FontWeight.normal,
             ),
-          ),
-          value: selectedDropdownValue,
-          items: dropDownListAdmin
-              .map<DropdownMenuItem<String>>(
-                (String value) => DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: const TextStyle(fontSize: 23),
+            isExpanded: true,
+            decoration: const InputDecoration(
+              fillColor: Color(0xff2a2e3d),
+              labelText: '',
+              border: OutlineInputBorder(borderSide: BorderSide.none),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+            ),
+            hint: const Text(
+              'Select Member',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            value: selectedDropdownValue,
+            items: dropDownListAdmin
+                .map<DropdownMenuItem<String>>(
+                  (String value) => DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value,
+                      style: const TextStyle(fontSize: 23),
+                    ),
                   ),
-                ),
-              )
-              .toList(),
-          onChanged: handleDropdownChange,
+                )
+                .toList(),
+            onChanged: handleDropdownChange,
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-void handleDropdownChange(String? selectedValue) {
-  // Handle the selection here
-  // amountModifier = 500;
-  // Call your function here
-  // e.g., _yourFunction(selectedvalue);
-  chosenMember = selectedValue!;
-  print("chosenMember: $chosenMember");
+  void handleDropdownChange(String? selectedValue) {
+    // Handle the selection here
+    // amountModifier = 500;
+    // Call your function here
+    // e.g., _yourFunction(selectedvalue);
+    chosenMember = selectedValue!;
+    print("chosenMember: $chosenMember");
 
-  setState(() {
-    selectedDropdownValue = selectedValue;
-    amountModifier = 0;
-    gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
-  });
-}
-
-
-
+    setState(() {
+      selectedDropdownValue = selectedValue;
+      amountModifier = 0;
+      gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+    });
+  }
 
   Widget labelTitle(String label) {
     return Text(

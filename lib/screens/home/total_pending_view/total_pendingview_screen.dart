@@ -73,44 +73,44 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
         onChanged: (selectedvalue) {
           switch (selectedvalue) {
             case 'Total':
-              switchCaseRetrievedValue = totalValueAllMembersPendingAmount;
+              switchCaseRetrievedValue = totalValueAllMembersPendingAmountCalcFromListMemberWise;
               break;
 
             case 'Adil':
-              switchCaseRetrievedValue = pendingCounts[0] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[0] * 500;
               break;
             case 'Akku':
-              switchCaseRetrievedValue = pendingCounts[1] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[1] * 500;
               break;
             case 'Cheppu':
-              switchCaseRetrievedValue = pendingCounts[2] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[2] * 500;
               break;
             case 'Dillu':
-              switchCaseRetrievedValue = pendingCounts[3] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[3] * 500;
               break;
             case 'Ismail':
-              switchCaseRetrievedValue = pendingCounts[4] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[4] * 500;
               break;
             case 'Jasim':
-              switchCaseRetrievedValue = pendingCounts[5] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[5] * 500;
               break;
             case 'Rishin':
-              switchCaseRetrievedValue = pendingCounts[6] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[6] * 500;
               break;
             case 'Sabith':
-              switchCaseRetrievedValue = pendingCounts[7] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[7] * 500;
               break;
             case 'Shammas':
-              switchCaseRetrievedValue = pendingCounts[8] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[8] * 500;
               break;
             case 'Sherbi':
-              switchCaseRetrievedValue = pendingCounts[9] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[9] * 500;
               break;
             case 'Sulfi':
-              switchCaseRetrievedValue = pendingCounts[10] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[10] * 500;
               break;
             case 'Vahab':
-              switchCaseRetrievedValue = pendingCounts[11] * 500;
+              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[11] * 500;
               break;
           }
 

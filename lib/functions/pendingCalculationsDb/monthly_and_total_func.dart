@@ -5,7 +5,7 @@ import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<int> totPendingCountMemberWiseList(List<String> members) async {
-  pendingCounts = [];
+  pendingCountListMemberWiseMonthly = [];
 
   for (String nameMember in members) {
     final DocumentReference docTotal = firestoreInstanceCall
@@ -15,29 +15,29 @@ Future<int> totPendingCountMemberWiseList(List<String> members) async {
     DocumentSnapshot docTotalSnapshot = await docTotal.get();
     if (docTotalSnapshot.exists) {
       int nameMemberPendingStore = docTotalSnapshot['pending_months_count'];
-      pendingCounts.add(nameMemberPendingStore);
+      pendingCountListMemberWiseMonthly.add(nameMemberPendingStore);
 
-      print('pendingCounts.add(nameMemberPendingStore): $pendingCounts');
+      // print('pendingCounts.add(nameMemberPendingStore): $pendingCounts');
     } else {
       // Handle the case when the document doesn't exist for a member
-      pendingCounts.add(0);
-      print('pendingCounts.add(0); $pendingCounts');
+      pendingCountListMemberWiseMonthly.add(0);
+      print('pendingCounts.add(0); $pendingCountListMemberWiseMonthly');
       // You can use any default value
     }
   }
 
-  print('pendingCounts: $pendingCounts');
+  print('pendingCounts: $pendingCountListMemberWiseMonthly');
 
-  totalValueAllMembersPendingAmount = 0;
-
-  print(
-      'totalValueAllMembersPendingAmount before : $totalValueAllMembersPendingAmount');
-
-  totalValueAllMembersPendingAmount =
-      (pendingCounts.reduce((value, element) => value + element)) * 500;
+  totalValueAllMembersPendingAmountCalcFromListMemberWise = 0;
 
   print(
-      "totalValueAllMembersPendingAmount after: $totalValueAllMembersPendingAmount");
+      'totalValueAllMembersPendingAmountCalcFromListMemberWise before : $totalValueAllMembersPendingAmountCalcFromListMemberWise');
+
+  totalValueAllMembersPendingAmountCalcFromListMemberWise =
+      (pendingCountListMemberWiseMonthly.reduce((value, element) => value + element)) * 500;
+
+  print(
+      "totalValueAllMembersPendingAmountCalcFromListMemberWise after: $totalValueAllMembersPendingAmountCalcFromListMemberWise");
 
   return 0;
 }

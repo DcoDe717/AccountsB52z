@@ -1,3 +1,4 @@
+import 'package:accounts3/functions/firestoreFunctions/total_fund_balance_updater.dart';
 import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
 import 'package:accounts3/screens/admin/loan_approve/loan_approve_screen.dart';
 import 'package:accounts3/screens/home/common_variables_homepage.dart';
@@ -7,7 +8,7 @@ import 'package:accounts3/screens/home/total_pending_view/total_pendingview_scre
 import 'package:flutter/material.dart';
 import '../admin/add_data/add_data_screen.dart';
 import 'individual_listview/individual_listview_screen.dart';
-import 'package:accounts3/functions/firestoreFunctions/balance_fund_wig.dart';
+import 'package:accounts3/functions/firestoreFunctions/get_total_balance_fund_wig.dart';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -28,13 +29,15 @@ class _ScreenHomeState extends State<ScreenHome> {
 
   _ScreenHomeState() {
     // Call your initialization function here
-    balanceFund();
+    
     totPendingCountMemberWiseList(membersListLocal);
+    calculateTotalBalanceFundWhole();
+    getTotalBalanceFundDb();
   }
 
   void _onItemTapped(int index) {
     if (index == 1) {
-      switchCaseRetrievedValue = totalValueAllMembersPendingAmount;
+      switchCaseRetrievedValue = totalValueAllMembersPendingAmountCalcFromListMemberWise;
     }
 
     setState(() {

@@ -3,10 +3,9 @@
 import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> updatePendingMonthsAndCountMemberWise() async {
-  final String documentId = gSelectedMember; // Specify the document ID
-
-  // Get a reference to the specific document
+Future<void> updatePendingMonthsAndCountMemberWise(String documentId) async {
+ 
+   // Get a reference to the specific document
   final DocumentReference monthlyInstallmentsDocument =
       firestoreInstanceCall.collection('monthly_installments').doc(documentId);
 

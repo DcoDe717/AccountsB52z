@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_print
 
+import 'package:accounts3/screens/admin/add_data/add_data_screen.dart';
 import 'package:accounts3/screens/admin/add_data/functions/retrieve_emi_month_names.dart';
 import 'package:accounts3/screens/admin/common_variables_admin.dart';
-import 'package:accounts3/screens/admin/functions/approval_functions_collections.dart';
+import 'package:accounts3/screens/admin/add_data/functions/approval_functions_collections.dart';
 import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -138,7 +139,7 @@ class MultiSelectScreen extends StatelessWidget {
 
             if (isLoanActive != true) {
               // The loan is not active, you can handle this case accordingly
-              return const Center(child: Text('Loan is not active'));
+              // return const Center(child: Text('Loan is not active'));
             } // If Loan is active continue code for retrieving pending months
             else {
               print('isloanactive value: $isLoanActive');
@@ -262,14 +263,15 @@ class MultiSelectScreen extends StatelessWidget {
                         FilledButton.icon(
                             onPressed: () {
                               onPressedFunctionsCallForMonthly();
+                              onPressedFunctionsCallForLoan();
 
                               // // Navigate using push to get the refreshed screen of Screen Add Data
-                              // Navigator.pushAndRemoveUntil(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => const ScreenAddData(),
-                              //     ),
-                              //     (route) => false);
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ScreenAddData(),
+                                  ),
+                                  (route) => false);
                             },
                             icon: const Icon(Icons.done),
                             label: const Text('Submit'))

@@ -4,7 +4,7 @@ import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Funtion to update (ispaid = false) pending months and count in each member document
-Future<void> updatePendingMonthsAndCount() async {
+Future<void> updatePendingMonthsAndCountWhole() async {
   final monthlyInstallmentsCollection =
       firestoreInstanceCall.collection('monthly_installments');
 

@@ -4,10 +4,10 @@ import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/global/global_variables.dart';
 
 List<String> numericListStringConverter(List<int> numericListPara) {
-  numericValuesListString =
-      numericValuesList.map((value) => value.toString()).toList();
+  numericValuesListMonthlyInstString =
+      numericValuesListMonthlyInst.map((value) => value.toString()).toList();
 
-  return numericValuesListString;
+  return numericValuesListMonthlyInstString;
 }
 
 // Funtion to modify the amount in the Add New Entry Screen
@@ -61,7 +61,7 @@ List<int> reverseMonthNameList(List<dynamic> monthNamesList) {
   };
 
   // Extract numeric values from the month names
-  numericValuesList = [];
+  numericValuesListMonthlyInst = [];
   int totalMonths = 0;
   int currentYear = 2022;
 
@@ -78,8 +78,8 @@ List<int> reverseMonthNameList(List<dynamic> monthNamesList) {
 
     // Calculate the final numeric value
     int numericValue = totalMonths + monthValue;
-    numericValuesList.add(numericValue);
+    numericValuesListMonthlyInst.add(numericValue);
   }
 
-  return numericValuesList;
+  return numericValuesListMonthlyInst;
 }

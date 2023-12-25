@@ -28,7 +28,7 @@ class ScreenMembersPendingListView extends StatelessWidget {
             title: Text(listviewMembersList[index]),
             subtitle: const Text('Total Unsettled : ₹ to be announced later '),
             trailing: Text(
-                'MI Unsettled : ₹ ${(pendingCounts[index]) * 500} \nLoan Unsettled : ₹ Unfinished'),
+                'MI Unsettled : ₹ ${(pendingCountListMemberWiseMonthly[index]) * 500} \nLoan Unsettled : ₹ Unfinished'),
 
             //  IconButton(
             //   onPressed: () {
