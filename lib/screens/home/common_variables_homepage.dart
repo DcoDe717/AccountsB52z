@@ -1,10 +1,14 @@
-int balanceFundTotal = 0;
+double balanceFundTotalPulledFromDB = 0;
+double totalFundRecievedPulledFromDB = 0;
+double totalFundExpectedCalculatedLocal = 0;
 
-int switchCaseRetrievedValue = 0;
+int switchCaseRetrievedValueMonthly = 0;
+double switchCaseRetrievedValueLoan = 0;
 
 int totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise = 0;
 
 List<int> pendingCountListMemberWiseMonthly = [];
+List<double> pendingLoanAmountAllMembersPulledDB = [];
 
 String? selectedDropdownValueTotalPendingView = 'Total';
 

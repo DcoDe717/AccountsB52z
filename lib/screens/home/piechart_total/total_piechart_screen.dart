@@ -1,9 +1,12 @@
 // ignore_for_file: avoid_print
 
 import 'package:accounts3/functions/firestoreFunctions/calculate_and_create_total_document.dart';
+import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_amount_loan.dart';
 import 'package:accounts3/functions/firestoreFunctions/total_fund_balance_updater.dart';
+import 'package:accounts3/functions/firestoreFunctions/update_pending_loan_amount_total.dart';
 import 'package:accounts3/functions/manualTriggeringFunctions/data_entry_using_loop.dart';
 import 'package:accounts3/functions/manualTriggeringFunctions/update_pend_months_counts_whole.dart';
+import 'package:accounts3/functions/pendingCalculationsDb/loan_pending_all_members_and_total.dart';
 import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +92,7 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
                 ),
                 const SizedBox(height: 25),
                 Text(
-                  "₹ $balanceFundTotal",
+                  "₹ $balanceFundTotalPulledFromDB",
                   style: const TextStyle(
                       fontWeight: FontWeight.w500, fontSize: 20),
                 )
@@ -114,19 +117,19 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
           ),
           elevation: 5,
           margin: const EdgeInsets.all(15),
-          child: const Padding(
-            padding: EdgeInsets.only(top: 20),
+          child:  Padding(
+            padding: const EdgeInsets.only(top: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Total Fund\nReceived',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 Text(
-                  "₹ 329000",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  "₹ $totalFundRecievedPulledFromDB",
+                  style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 )
               ],
             ),
@@ -149,19 +152,19 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
           ),
           elevation: 5,
           margin: const EdgeInsets.all(15),
-          child: const Padding(
-            padding: EdgeInsets.only(top: 20),
+          child:  Padding(
+            padding: const EdgeInsets.only(top: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Total Fund\nExpected',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 Text(
-                  "₹ 425000",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  "₹ $totalFundExpectedCalculatedLocal",
+                  style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 )
               ],
             ),
@@ -191,9 +194,12 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
                   // updatePendingMonthsAndCountWhole();
                   // dataLoopAddDbEntryMemberWise();
                   // calculateAndCreateTotalDocument();
+                  // updatePendingMonthsAndAmountMemberWiseLoan('ismail');
+                  // calculateTotalPendingLoanAmount();
+                  //  totPendingCountMemberWiseListLoan(membersListLocal);
 
-                  print('user is $userNameGlobal');
-                  print('user admin status: $loggedUserAdminCheck');
+                  // print('user is $userNameGlobal');
+                  // print('user admin status: $loggedUserAdminCheck');
                 },
                 child: const Text(
                   'Press me',

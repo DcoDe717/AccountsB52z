@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -7,7 +8,7 @@ Future<void> calculateTotalBalanceFundWhole() async {
   try {
     double totalBalanceFund = 0;
     double monthlyTotalFund = 0;
-    double loanTotalFund = 0;
+    
 
     final docSnapMonthly = await firestoreInstanceCall
         .collection('monthly_installments')
@@ -24,10 +25,10 @@ Future<void> calculateTotalBalanceFundWhole() async {
     }
 
     if (docSnapLoan.exists) {
-      loanTotalFund = docSnapLoan['total_loan_pending_all_members'] ?? 0;
+      loanTotalPendingFundPulledDB = docSnapLoan['total_loan_pending_all_members'] ?? 0;
     }
 
-    totalBalanceFund = monthlyTotalFund - loanTotalFund;
+    totalBalanceFund = monthlyTotalFund - loanTotalPendingFundPulledDB;
 
     final docRefLoan = firestoreInstanceCall
         .collection('loan_installments')

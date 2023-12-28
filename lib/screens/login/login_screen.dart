@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ScreenLogin extends StatelessWidget {
   const ScreenLogin({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -129,13 +130,15 @@ class ScreenLogin extends StatelessWidget {
                         padding: const EdgeInsets.all(1.0),
                         child: TextButton(
                             onPressed: () {
-                              userNameGlobal=
-                                  loginUsernameTextController.text;
+                              userNameGlobal = loginUsernameTextController.text;
 
                               String passWord =
                                   loginPasswordTextController.text;
 
-                              loginAuthentication(context,userNameGlobal, passWord);
+                              loginPasswordTextController.clear();
+
+                              loginAuthentication(
+                                  context, userNameGlobal, passWord);
 
                               // Navigator.of(context).pushNamed('/home');
                             },

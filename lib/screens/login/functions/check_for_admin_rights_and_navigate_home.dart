@@ -3,6 +3,7 @@
 import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
+import 'package:accounts3/screens/login/splash_screen/splash_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ Future<void> checkForAdminRightsAndNavigateHomeScreen(
   Navigator.pushAndRemoveUntil(
       contextInside,
       MaterialPageRoute(
-        builder: (context) => const ScreenHome(),
+        builder: (context) => const ScreenSplash(),
       ),
       (route) => false);
 }

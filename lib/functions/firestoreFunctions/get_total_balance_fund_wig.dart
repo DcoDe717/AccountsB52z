@@ -11,5 +11,5 @@ Future<void> getTotalBalanceFundDb() async {
 
   DocumentSnapshot docTotalSnapshot = await docTotal.get();
 
-  balanceFundTotal = docTotalSnapshot['total_balance_fund_whole'];
+  balanceFundTotalPulledFromDB = docTotalSnapshot['total_balance_fund_whole'];
 }

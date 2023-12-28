@@ -4,7 +4,7 @@ import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<int> totPendingCountMemberWiseList(List<String> members) async {
+Future<int> totPendingCountMemberWiseListMonthly(List<String> members) async {
   pendingCountListMemberWiseMonthly = [];
 
   for (String nameMember in members) {

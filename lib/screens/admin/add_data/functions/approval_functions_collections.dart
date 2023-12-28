@@ -6,11 +6,7 @@ import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:accounts3/screens/global/utils/common_converters.dart';
 
 Future<void> onPressedFunctionsCallForMonthly() async {
-  // Calling amount modifier update function
-  updateAmountModifier();
 
-  // Calling Funtion to modify the amount in the Add New Entry Screen
-  updateSelectedDropdownValue();
 
   // Calling funtion to create index number list from selected months list
   numericValuesListMonthlyInst =
@@ -20,7 +16,7 @@ Future<void> onPressedFunctionsCallForMonthly() async {
   print(
       "gSelectedMonthsMonthlyInstallmentsMultiSelect :  $gSelectedMonthsMonthlyInstallmentsMultiSelect");
 
-  print("numericValuesList : $numericValuesListMonthlyInst");
+  print("numericValuesListMonthlyInst : $numericValuesListMonthlyInst");
 
   // // Function to create list of string from list of int
   numericListStringConverter(numericValuesListMonthlyInst);

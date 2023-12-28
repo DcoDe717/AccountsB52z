@@ -1,5 +1,6 @@
 // Function to show confirmation alert to the screen and navigate to Home screen after 2 seconds
 import 'package:accounts3/screens/home/home_screen.dart';
+import 'package:accounts3/screens/login/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -39,7 +40,7 @@ void showLoanApprovedAlertAndNavigate(
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) => const ScreenHome(),
+          builder: (context) => const ScreenSplash(),
         ),
         (route) => false);
   });

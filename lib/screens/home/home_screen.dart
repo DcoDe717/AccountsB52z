@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:accounts3/functions/firestoreFunctions/total_fund_balance_updater.dart';
-import 'package:accounts3/functions/pendingCalculationsDb/monthly_and_total_func.dart';
+import 'package:accounts3/functions/pendingCalculationsDb/monthly_pending_all_members_and_total.dart';
+import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/admin/loan_approve/loan_approve_screen.dart';
 import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:accounts3/screens/home/home_init_functions.dart';
@@ -36,16 +39,18 @@ class _ScreenHomeState extends State<ScreenHome> {
     super.initState();
     _startIdleTimer();
 
-    homeScreenInitFunctionsOrdered();
+    // homeScreenInitFunctionsOrdered();
   }
 
   void _startIdleTimer() {
     const Duration idleDuration =
-        Duration(minutes: 2); // Adjust the idle duration as needed
+        Duration(minutes: 5); // Adjust the idle duration as needed
 
     _idleTimer = Timer(idleDuration, () {
       // Perform actions when the user is idle
+
       print('User is idle.');
+
       // Navigate to the login screen
       Navigator.pushAndRemoveUntil(
           context,
@@ -71,8 +76,9 @@ class _ScreenHomeState extends State<ScreenHome> {
 
   void _onItemTapped(int index) {
     if (index == 1) {
-      switchCaseRetrievedValue =
+      switchCaseRetrievedValueMonthly =
           totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
+      switchCaseRetrievedValueLoan = loanTotalPendingFundPulledDB;
     }
 
     setState(() {
@@ -89,7 +95,8 @@ class _ScreenHomeState extends State<ScreenHome> {
           onTap: _resetIdleTimer,
           child: _pageList[_selectedNavIndex],
         ),
-        bottomNavigationBar: bottomNavHome());
+        bottomNavigationBar: bottomNavHome(
+            loggedUserAdminCheck ? botNavItemAdmin : botNavItemNonAdmin));
   }
 
   @override
@@ -98,15 +105,9 @@ class _ScreenHomeState extends State<ScreenHome> {
     super.dispose();
   }
 
-  Widget bottomNavHome() {
+  Widget bottomNavHome(List<BottomNavigationBarItem> botNavItemLocal) {
     return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.pie_chart), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.bar_chart_sharp), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.people_alt), label: ''),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.admin_panel_settings_outlined), label: '')
-      ],
+      items: botNavItemLocal,
       onTap: (value) {
         if (value == 3) {
           Alert(
@@ -165,19 +166,18 @@ class _ScreenHomeState extends State<ScreenHome> {
       selectedIconTheme: const IconThemeData(size: 30),
     );
   }
+
+  List<BottomNavigationBarItem> botNavItemNonAdmin = const [
+    BottomNavigationBarItem(icon: Icon(Icons.pie_chart), label: ''),
+    BottomNavigationBarItem(icon: Icon(Icons.bar_chart_sharp), label: ''),
+    BottomNavigationBarItem(icon: Icon(Icons.people_alt), label: '')
+  ];
+
+  List<BottomNavigationBarItem> botNavItemAdmin = const [
+    BottomNavigationBarItem(icon: Icon(Icons.pie_chart), label: ''),
+    BottomNavigationBarItem(icon: Icon(Icons.bar_chart_sharp), label: ''),
+    BottomNavigationBarItem(icon: Icon(Icons.people_alt), label: ''),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.admin_panel_settings_outlined), label: '')
+  ];
 }
-
-
-//old comments
-// {
-//             if (isAdmin) {
-//               if (updatedIndex == 3) {
-//                 return _pages[updatedIndex];
-//               }
-//             } else {
-//               if (updatedIndex == 3) {
-//                 return _pages[4];
-//               }
-//             }
-//             return _pages[updatedIndex];
-//           },

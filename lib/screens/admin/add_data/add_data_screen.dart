@@ -1,13 +1,14 @@
 // ignore_for_file: avoid_print
 
 import 'package:accounts3/functions/firestoreFunctions/get_total_balance_fund_wig.dart';
-import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_counts.dart';
+import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_counts_monthly.dart';
 import 'package:accounts3/functions/firestoreFunctions/update_fs_fields_for_loan_selected_months.dart';
 import 'package:accounts3/functions/firestoreFunctions/update_fs_fields_from_selected_months_monthly.dart';
-import 'package:accounts3/screens/admin/add_data/multi_select_screen.dart';
+import 'package:accounts3/screens/admin/add_data/multiselectscreen/multi_select_screen.dart';
 import 'package:accounts3/screens/admin/admin_common_files.dart';
 import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/home/home_screen.dart';
+import 'package:accounts3/screens/login/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:accounts3/screens/global/global_variables.dart';
 
@@ -125,33 +126,48 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     return ElevatedButton.icon(
         onPressed: () async {
           commentsAddData = commentsTextControllerAddDataScreen.text;
-          // balanceFund();
-          await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
-              "monthly_installments",
-              gSelectedMember,
-              "ispaid",
-              numericValuesListMonthlyInstString,
-              commentsAddData);
+          if (gSelectedMember.isNotEmpty) {
+            // If no loan months is selected updateLoanField wont run
+            if (extractedIndexValueFromSelectedLoanMonths.isNotEmpty) {
+              await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
+                  "monthly_installments",
+                  gSelectedMember,
+                  "ispaid",
+                  numericValuesListMonthlyInstString,
+                  commentsAddData);
 
-          // await updateFSFieldsForLoanSelectedMonths(
-          //     'loan_installments', gSelectedMember, 'emi_months_status', extractedIndexValueFromSelectedLoanMonths, commentsAddData);
+              await updateFSFieldsForLoanSelectedMonths(
+                  'loan_installments',
+                  gSelectedMember,
+                  'emi_months_status',
+                  extractedIndexValueFromSelectedLoanMonths,
+                  commentsAddData);
+            } else {
+              await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
+                  "monthly_installments",
+                  gSelectedMember,
+                  "ispaid",
+                  numericValuesListMonthlyInstString,
+                  commentsAddData);
+            }
+          }
 
           // print('Firestore fields updated successfully!');
-
-          // updatePendingMonthsAndCountMemberWise(gSelectedMember);
 
           // print('commentsMonthlyInstAddData : $commentsAddData');
 
           setState(() {
             selectedDropdownValue = null;
             amountModifier = 0;
-            gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+            gSelectedMonthsMonthlyInstallmentsMultiSelect.clear();
+            gSelectedMonthsLoanInstallmentsMultiSelect.clear();
+            chosenMemberAddEntryDropdown = '';
           });
 
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => const ScreenHome(),
+                builder: (context) => const ScreenSplash(),
               ),
               (route) => false);
         },
@@ -173,13 +189,13 @@ class _ScreenAddDataState extends State<ScreenAddData> {
               onPressed: () {
                 // Test functions Deploy
 
-
-                gSelectedMember = chosenMember;
+                gSelectedMember = chosenMemberAddEntryDropdown;
 
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const MultiSelectScreen()));
+                        builder: (context) =>
+                            const MultiSelectScreenAddEntry()));
               },
               icon: const Icon(Icons.arrow_right),
               label: const Text('Select Entry Fields')),
@@ -353,8 +369,8 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     // amountModifier = 500;
     // Call your function here
     // e.g., _yourFunction(selectedvalue);
-    chosenMember = selectedValue!;
-    print("chosenMember: $chosenMember");
+    chosenMemberAddEntryDropdown = selectedValue!;
+    print("chosenMember: $chosenMemberAddEntryDropdown");
 
     setState(() {
       selectedDropdownValue = selectedValue;

@@ -1,10 +1,14 @@
 // ignore_for_file: avoid_print
 
 import 'package:accounts3/screens/admin/add_data/add_data_screen.dart';
+import 'package:accounts3/screens/admin/add_data/functions/onpressed_functions_collection_entry_field_submit.dart';
 import 'package:accounts3/screens/admin/add_data/functions/retrieve_emi_month_names.dart';
+import 'package:accounts3/screens/admin/add_data/multiselectscreen/popup_alerts/choose_any_member_popup.dart';
 import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/admin/add_data/functions/approval_functions_collections.dart';
 import 'package:accounts3/screens/global/global_variables.dart';
+import 'package:accounts3/screens/global/utils/common_converters.dart';
+import 'package:accounts3/screens/home/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:multiselect_dropdown_flutter/multiselect_dropdown_flutter.dart';
@@ -59,8 +63,8 @@ String getMonthName(int monthValue) {
   return '${monthNamesConverted[monthIndex]} $year';
 }
 
-class MultiSelectScreen extends StatelessWidget {
-  const MultiSelectScreen({Key? key}) : super(key: key);
+class MultiSelectScreenAddEntry extends StatelessWidget {
+  const MultiSelectScreenAddEntry({Key? key}) : super(key: key);
 
   // Your other widget code...
 
@@ -100,10 +104,58 @@ class MultiSelectScreen extends StatelessWidget {
         if (snapshots.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshots.hasError) {
-          return const Center(child: Text('Error fetching data'));
+          // selectAnyMemberPopup(context);
+          // return Container();
+          // selectAnyMemberPopup(context);
+          // return const Center(child:  );
+          return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Text('Error fetching data.',
+                style:
+                    TextStyle(decoration: TextDecoration.none, fontSize: 35)),
+            const SizedBox(height: 35),
+            const Text('Choose any member.',
+                style:
+                    TextStyle(decoration: TextDecoration.none, fontSize: 35)),
+            const SizedBox(height: 35),
+            const Text(
+                'To continue, you need to choose someone from the group.',
+                style:
+                    TextStyle(decoration: TextDecoration.none, fontSize: 25)),
+            const SizedBox(height: 35),
+            TextButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ScreenHome(),
+                    ),
+                    (route) => false);
+              },
+              style: TextButton.styleFrom(
+                backgroundColor:
+                    Colors.blue, // Change the button background color
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 12.0), // Adjust padding
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(8.0), // Adjust border radius
+                ),
+              ),
+              child: const Text(
+                'Go Back !',
+                style: TextStyle(
+                  fontSize: 16.0, // Adjust the font size as needed
+                  color: Colors.white, // Change the text color
+                  fontWeight: FontWeight.bold, // Adjust the font weight
+                ),
+              ),
+            )
+          ]);
         } else {
           final monthlyInstallmentsDocSnapshot = snapshots.data![0];
           final loanInstallmentsDocSnapshot = snapshots.data![1];
+          gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+          gSelectedMonthsLoanInstallmentsMultiSelect = [];
 
           if (!monthlyInstallmentsDocSnapshot.exists) {
             return const Center(
@@ -178,6 +230,8 @@ class MultiSelectScreen extends StatelessWidget {
                     child: Text('Error: ${snapshot.error}'),
                   );
                 } else {
+                  gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+
                   // If the future has completed successfully, build your widgets
                   return Scaffold(
                     body: Column(
@@ -231,7 +285,7 @@ class MultiSelectScreen extends StatelessWidget {
                             gSelectedMonthsLoanInstallmentsMultiSelect =
                                 newList;
                             print(
-                                "Multi select items : $gSelectedMonthsLoanInstallmentsMultiSelect");
+                                "gSelectedMonthsLoanInstallmentsMultiSelect : $gSelectedMonthsLoanInstallmentsMultiSelect");
 
                             // your logic
                           },
@@ -262,10 +316,9 @@ class MultiSelectScreen extends StatelessWidget {
                         const SizedBox(height: 40),
                         FilledButton.icon(
                             onPressed: () {
-                              onPressedFunctionsCallForMonthly();
-                              onPressedFunctionsCallForLoan();
+                              onpressedSelectEntryFieldSubmitCollection();
 
-                              // // Navigate using push to get the refreshed screen of Screen Add Data
+                              // Navigate using push to get the refreshed screen of Screen Add Data
                               Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(

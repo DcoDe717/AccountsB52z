@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/home/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -61,7 +62,8 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
         ),
         // hint: const Text('Select '),
         value: selectedDropdownValueTotalPendingView,
-        items: dropdownListHomePage.map<DropdownMenuItem<String>>((String value) {
+        items:
+            dropdownListHomePage.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -73,44 +75,82 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
         onChanged: (selectedvalue) {
           switch (selectedvalue) {
             case 'Total':
-              switchCaseRetrievedValue = totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
+              switchCaseRetrievedValueMonthly =
+                  totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
+              switchCaseRetrievedValueLoan = loanTotalPendingFundPulledDB;
               break;
 
             case 'Adil':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[0] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[0] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[0];
               break;
             case 'Akku':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[1] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[1] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[1];
               break;
             case 'Cheppu':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[2] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[2] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[2];
               break;
             case 'Dillu':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[3] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[3] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[3];
               break;
             case 'Ismail':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[4] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[4] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[4];
               break;
             case 'Jasim':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[5] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[5] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[5];
               break;
             case 'Rishin':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[6] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[6] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[6];
               break;
             case 'Sabith':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[7] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[7] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[7];
               break;
             case 'Shammas':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[8] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[8] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[8];
               break;
             case 'Sherbi':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[9] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[9] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[9];
               break;
             case 'Sulfi':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[10] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[10] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[10];
               break;
             case 'Vahab':
-              switchCaseRetrievedValue = pendingCountListMemberWiseMonthly[11] * 500;
+              switchCaseRetrievedValueMonthly =
+                  pendingCountListMemberWiseMonthly[11] * 500;
+              switchCaseRetrievedValueLoan =
+                  pendingLoanAmountAllMembersPulledDB[11];
               break;
           }
 
@@ -118,7 +158,8 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
             selectedDropdownValueTotalPendingView = selectedvalue as String;
           });
 
-          print('switchCaseRetrievedValue : $switchCaseRetrievedValue');
+          print('switchCaseRetrievedValueMonthly : $switchCaseRetrievedValueMonthly');
+          print('switchCaseRetrievedValueLoan : $switchCaseRetrievedValueLoan');
         },
       ),
     );
@@ -148,7 +189,7 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                 ),
                 const SizedBox(height: 25),
                 Text(
-                  "₹ $switchCaseRetrievedValue",
+                  "₹ $switchCaseRetrievedValueMonthly",
                   style: const TextStyle(
                       fontWeight: FontWeight.w500, fontSize: 20),
                 )
@@ -173,19 +214,19 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
           ),
           elevation: 5,
           margin: const EdgeInsets.all(10),
-          child: const Padding(
-            padding: EdgeInsets.only(top: 20),
+          child:  Padding(
+            padding: const EdgeInsets.only(top: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Loan Pending',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 Text(
-                  "₹ 11000",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  "₹ $switchCaseRetrievedValueLoan",
+                  style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 )
               ],
             ),

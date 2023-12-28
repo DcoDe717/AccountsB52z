@@ -11,12 +11,12 @@ List<String> numericListStringConverter(List<int> numericListPara) {
 }
 
 // Funtion to modify the amount in the Add New Entry Screen
-void updateSelectedDropdownValue() {
+Future<void> updateSelectedDropdownValue() async{
   selectedDropdownValue = gSelectedMember;
 }
 
 // Call the function to calculate the new amountModifier value
-void updateAmountModifier() {
+Future<void> updateAmountModifier() async{
   amountModifier = 0;
 
   double monthlyTotalAmount = calcSelectedMonthlyMonthsTotalAmount(

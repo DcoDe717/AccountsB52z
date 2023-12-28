@@ -1,34 +1,35 @@
 import 'package:accounts3/functions/firestoreFunctions/calculate_and_create_total_document.dart';
-import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_counts.dart';
+import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_counts_monthly.dart';
+import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../screens/global/global_variables.dart';
 
 // Update true of the ispaid list in DB with the index value selected, and comments / Timestamp
-Future<void> updateFSFieldsFromSelectedMonthsMonthlyInst(
-    String collection,
-    String document,
-    String field,
-    List<String> indexFinal,
-    String commentsDown) async {
-  final DocumentReference documentReference =
-      firestoreInstanceCall.collection(collection).doc(document);
+// Future<void> updateFSFieldsFromSelectedMonthsMonthlyInst(
+//     String collection,
+//     String document,
+//     String field,
+//     List<String> indexFinal,
+//     String commentsDown) async {
+//   final DocumentReference documentReference =
+//       firestoreInstanceCall.collection(collection).doc(document);
 
-  // Loop through indexFinal list and update Firestore fields
-  for (String index in indexFinal) {
-    int? parsedIndex = int.tryParse(index);
-    if (parsedIndex != null) {
-      // Use update method to update specific field
-      await documentReference.update({
-        '$field.$parsedIndex': true,
-        'commentsMonthly.$parsedIndex': commentsDown,
-        'dateTimeMonthly.$parsedIndex': Timestamp.now(),
-      });
-    }
-  }
+//   // Loop through indexFinal list and update Firestore fields
+//   for (String index in indexFinal) {
+//     int? parsedIndex = int.tryParse(index);
+//     if (parsedIndex != null) {
+//       // Use update method to update specific field
+//       await documentReference.update({
+//         '$field.$parsedIndex': true,
+//         'commentsMonthly.$parsedIndex': commentsDown,
+//         'dateTimeMonthly.$parsedIndex': Timestamp.now(),
+//       });
+//     }
+//   }
 
-  updatePendingMonthsAndCountMemberWise(gSelectedMember);
-}
+//   updatePendingMonthsAndCountMemberWiseMonthly(gSelectedMember);
+// }
 
 
 
@@ -52,7 +53,7 @@ Future<void> updateFSFieldsFromSelectedMonthsMonthlyInstTest(
       // Use update method to update specific field and store the future in the list
       Future<void> updateOperation = documentReference.update({
         '$field.$parsedIndex': true,
-        'commentsMonthly.$parsedIndex': commentsDown,
+        'commentsMonthly.$parsedIndex': 'Added by $userNameGlobal | $commentsDown',
         'dateTimeMonthly.$parsedIndex': Timestamp.now(),
       });
       updateOperations.add(updateOperation);
@@ -63,7 +64,7 @@ Future<void> updateFSFieldsFromSelectedMonthsMonthlyInstTest(
   await Future.wait(updateOperations);
 
   // Now, you can execute the next function
-  await updatePendingMonthsAndCountMemberWise(gSelectedMember);
+  await updatePendingMonthsAndCountMemberWiseMonthly(gSelectedMember);
 
   // Now, you can execute the additional function
   await calculateAndCreateTotalDocument();

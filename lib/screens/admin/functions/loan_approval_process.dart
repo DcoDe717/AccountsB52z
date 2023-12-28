@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_print
 
+import 'package:accounts3/functions/firestoreFunctions/total_fund_balance_updater.dart';
 import 'package:accounts3/functions/firestoreFunctions/update_pending_loan_amount_total.dart';
 import 'package:accounts3/screens/admin/admin_common_files.dart';
+import 'package:accounts3/screens/admin/common_variables_admin.dart';
 import 'package:accounts3/screens/admin/functions/clear_state_loan_approval_screen.dart';
 import 'package:accounts3/screens/admin/functions/months_emi_calculator_func.dart';
 import 'package:accounts3/screens/admin/functions/popup_alerts/loan_active_popup_alert.dart';
@@ -52,7 +54,7 @@ Future<void> loanApprovalProcess(
           // Valid integer, continue processing
 
           // level 3 (if)
-          if (loanAmountParsed! < balanceFundTotal) {
+          if (loanAmountParsed! < balanceFundTotalPulledFromDB) {
             // Main Section: Your logic here
             print('loan can be approved since amount is less than balance');
 
@@ -68,7 +70,7 @@ Future<void> loanApprovalProcess(
                 'is_loan_active': true,
                 'loan_amount': loanAmountParsed,
                 'comments_loan_approve':
-                    commentsTextFromTextControllerLoanApproveScreen,
+                    'Approved by $userNameGlobal | $commentsTextFromTextControllerLoanApproveScreen',
                 'loan_amount_pending_to_pay': loanAmountParsed
               },
               SetOptions(merge: true),
@@ -77,6 +79,7 @@ Future<void> loanApprovalProcess(
             approvedMonthAndEMIMonthsListCreator();
             await updateApprovedMonthDateAndEmiList();
             await calculateTotalPendingLoanAmount();
+            await calculateTotalBalanceFundWhole();
 
             // Calling Confirmation popup for 2 seconds and navigate to Homescreen
             showLoanApprovedAlertAndNavigate(

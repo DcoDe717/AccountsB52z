@@ -4,7 +4,7 @@ import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> calculateTotalPendingLoanAmount() async {
-  double totalEMIPending = 0.0;
+  double totalEMIPending = 0;
 
   QuerySnapshot<Map<String, dynamic>> querySnapshot =
       await firestoreInstanceCall.collection('loan_installments').get();

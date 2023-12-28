@@ -94,7 +94,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
                     children: [
                       labelTitle("Loan Amount"),
                       SizedBox(width: MediaQuery.of(context).size.width / 10),
-                      labelTitle("Current Balance  ₹ $balanceFundTotal")
+                      labelTitle("Current Balance  ₹ $balanceFundTotalPulledFromDB")
                     ],
                   ),
                   const SizedBox(height: 15),

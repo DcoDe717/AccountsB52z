@@ -8,6 +8,8 @@ List<String> pendingMonthsListSplittedArray = [];
 bool loggedUserAdminCheck = false;
 String userNameGlobal = '';
 
+double loanTotalPendingFundPulledDB = 0;
+
 List<String> pendingMonthsNamesListConverted = [
   'Jan 2022',
   'Feb 2022',

@@ -3,7 +3,7 @@
 import 'package:accounts3/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> updatePendingMonthsAndCountMemberWise(String documentId) async {
+Future<void> updatePendingMonthsAndCountMemberWiseMonthly(String documentId) async {
  
    // Get a reference to the specific document
   final DocumentReference monthlyInstallmentsDocument =
