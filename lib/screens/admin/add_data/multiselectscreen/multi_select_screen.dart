@@ -101,6 +101,8 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
         getLoanInstallments(),
       ]),
       builder: (context, snapshots) {
+        // Clearing loan pending false list due to after isloanactive is changed it still have old values.
+        loanPendingFalseList.clear();
         if (snapshots.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshots.hasError) {

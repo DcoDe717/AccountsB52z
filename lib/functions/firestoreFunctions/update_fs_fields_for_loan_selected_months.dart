@@ -1,3 +1,4 @@
+import 'package:accounts3/functions/firestoreFunctions/all_pending_months_false_check_for_is_active_update.dart';
 import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_amount_loan.dart';
 import 'package:accounts3/functions/firestoreFunctions/total_fund_balance_updater.dart';
 import 'package:accounts3/functions/firestoreFunctions/update_pending_loan_amount_total.dart';
@@ -43,4 +44,6 @@ Future<void> updateFSFieldsForLoanSelectedMonths(
   await calculateTotalPendingLoanAmount();
 
   await calculateTotalBalanceFundWhole();
+
+  await isLoanActiveUpdater(gSelectedMember);
 }
