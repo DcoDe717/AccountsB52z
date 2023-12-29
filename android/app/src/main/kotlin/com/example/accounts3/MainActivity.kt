@@ -1,4 +1,4 @@
-package com.example.accountsb52z
+package com.dcode717.accountsb52z
 
 import io.flutter.embedding.android.FlutterActivity
 
