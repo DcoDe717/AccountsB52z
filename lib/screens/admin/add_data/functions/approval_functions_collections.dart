@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/screens/admin/add_data/functions/index_extractor_from_selected_months.dart';
-import 'package:accounts3/screens/admin/common_variables_admin.dart';
-import 'package:accounts3/screens/global/global_variables.dart';
-import 'package:accounts3/screens/global/utils/common_converters.dart';
+import 'package:accountsb52z/screens/admin/add_data/functions/index_extractor_from_selected_months.dart';
+import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
+import 'package:accountsb52z/screens/global/global_variables.dart';
+import 'package:accountsb52z/screens/global/utils/common_converters.dart';
 
 Future<void> onPressedFunctionsCallForMonthly() async {
 

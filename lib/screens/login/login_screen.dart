@@ -1,6 +1,6 @@
-import 'package:accounts3/screens/admin/admin_common_files.dart';
-import 'package:accounts3/screens/admin/common_variables_admin.dart';
-import 'package:accounts3/screens/login/functions/authentication_function.dart';
+import 'package:accountsb52z/screens/admin/admin_common_files.dart';
+import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
+import 'package:accountsb52z/screens/login/functions/authentication_function.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

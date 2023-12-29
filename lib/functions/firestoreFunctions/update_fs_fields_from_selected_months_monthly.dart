@@ -1,6 +1,6 @@
-import 'package:accounts3/functions/firestoreFunctions/calculate_and_create_total_document.dart';
-import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_counts_monthly.dart';
-import 'package:accounts3/screens/admin/common_variables_admin.dart';
+import 'package:accountsb52z/functions/firestoreFunctions/calculate_and_create_total_document.dart';
+import 'package:accountsb52z/functions/firestoreFunctions/memberwise_update_pend_months_counts_monthly.dart';
+import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../screens/global/global_variables.dart';

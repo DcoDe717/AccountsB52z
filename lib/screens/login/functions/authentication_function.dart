@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/screens/global/global_variables.dart';
-import 'package:accounts3/screens/login/functions/check_for_admin_rights_and_navigate_home.dart';
-import 'package:accounts3/screens/login/functions/popup_alerts/username_not_exist.dart';
-import 'package:accounts3/screens/login/functions/popup_alerts/wrong_password_popup.dart';
+import 'package:accountsb52z/screens/global/global_variables.dart';
+import 'package:accountsb52z/screens/login/functions/check_for_admin_rights_and_navigate_home.dart';
+import 'package:accountsb52z/screens/login/functions/popup_alerts/username_not_exist.dart';
+import 'package:accountsb52z/screens/login/functions/popup_alerts/wrong_password_popup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

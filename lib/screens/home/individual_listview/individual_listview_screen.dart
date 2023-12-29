@@ -1,4 +1,4 @@
-import 'package:accounts3/screens/home/common_variables_homepage.dart';
+import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
 
 class ScreenMembersPendingListView extends StatelessWidget {

@@ -1,14 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/functions/firestoreFunctions/calculate_and_create_total_document.dart';
-import 'package:accounts3/functions/firestoreFunctions/memberwise_update_pend_months_amount_loan.dart';
-import 'package:accounts3/functions/firestoreFunctions/total_fund_balance_updater.dart';
-import 'package:accounts3/functions/firestoreFunctions/update_pending_loan_amount_total.dart';
-import 'package:accounts3/functions/manualTriggeringFunctions/data_entry_using_loop.dart';
-import 'package:accounts3/functions/manualTriggeringFunctions/update_pend_months_counts_whole.dart';
-import 'package:accounts3/functions/pendingCalculationsDb/loan_pending_all_members_and_total.dart';
-import 'package:accounts3/screens/admin/common_variables_admin.dart';
-import 'package:accounts3/screens/home/common_variables_homepage.dart';
+
+import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
 
 class ScreenHomePieChartView extends StatefulWidget {

@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/screens/global/global_variables.dart';
+import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Funtion to update (ispaid = false) pending months and count in each member document

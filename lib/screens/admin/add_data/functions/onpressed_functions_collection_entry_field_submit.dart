@@ -1,5 +1,5 @@
-import 'package:accounts3/screens/admin/add_data/functions/approval_functions_collections.dart';
-import 'package:accounts3/screens/global/utils/common_converters.dart';
+import 'package:accountsb52z/screens/admin/add_data/functions/approval_functions_collections.dart';
+import 'package:accountsb52z/screens/global/utils/common_converters.dart';
 
 Future<void> onpressedSelectEntryFieldSubmitCollection() async {
   await onPressedFunctionsCallForMonthly();

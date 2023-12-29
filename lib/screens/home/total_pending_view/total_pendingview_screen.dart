@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/screens/admin/common_variables_admin.dart';
-import 'package:accounts3/screens/home/common_variables_homepage.dart';
+import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
+import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
 
 class ScreenTotPendingView extends StatefulWidget {
@@ -237,8 +237,8 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
   }
 
   Widget recentBox() {
-    final isMonthlyInst = true;
-    final isLoanInst = false;
+    const isMonthlyInst = true;
+    const isLoanInst = false;
     return Container(
       // padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.all(15),
@@ -268,22 +268,22 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                       ),
                       elevation: 5,
                       margin: const EdgeInsets.all(10),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               '₹ 3500 Paid: Jasim | Added: Sulfi',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 15),
                             ),
                             Visibility(
                                 visible: isMonthlyInst,
-                                child: const SizedBox(height: 15)),
+                                child: SizedBox(height: 15)),
                             Visibility(
                               visible: isMonthlyInst,
-                              child: const Text(
+                              child: Text(
                                 'Monthly Installments : Jan2023, Feb2023, March2023',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 15),
@@ -291,17 +291,17 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                             ),
                             Visibility(
                                 visible: isLoanInst,
-                                child: const SizedBox(height: 15)),
+                                child: SizedBox(height: 15)),
                             Visibility(
                               visible: isLoanInst,
-                              child: const Text(
+                              child: Text(
                                 'Loan Installments : Jan2023, Feb2023',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 15),
                               ),
                             ),
-                            const SizedBox(height: 15),
-                            const Text(
+                            SizedBox(height: 15),
+                            Text(
                               "Comments : Gpay received",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 15),
@@ -322,22 +322,22 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                       ),
                       elevation: 5,
                       margin: const EdgeInsets.all(10),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               '₹ 1000 Paid: Vahab | Added: Rishin',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 15),
                             ),
                             Visibility(
                                 visible: isMonthlyInst,
-                                child: const SizedBox(height: 15)),
+                                child: SizedBox(height: 15)),
                             Visibility(
                               visible: isMonthlyInst,
-                              child: const Text(
+                              child: Text(
                                 'Monthly Installments : Jan2023, Feb2023',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 15),
@@ -345,17 +345,17 @@ class _ScreenTotPendingViewState extends State<ScreenTotPendingView> {
                             ),
                             Visibility(
                                 visible: isLoanInst,
-                                child: const SizedBox(height: 15)),
+                                child: SizedBox(height: 15)),
                             Visibility(
                               visible: isLoanInst,
-                              child: const Text(
+                              child: Text(
                                 'Loan Installments : Jan2023, Feb2023',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 15),
                               ),
                             ),
-                            const SizedBox(height: 15),
-                            const Text(
+                            SizedBox(height: 15),
+                            Text(
                               "Comments : Gpay received",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 15),

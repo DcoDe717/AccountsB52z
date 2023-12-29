@@ -1,5 +1,5 @@
-import 'package:accounts3/screens/home/home_init_functions.dart';
-import 'package:accounts3/screens/home/home_screen.dart';
+import 'package:accountsb52z/screens/home/home_init_functions.dart';
+import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class ScreenSplash extends StatefulWidget {

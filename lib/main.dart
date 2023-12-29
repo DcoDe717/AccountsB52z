@@ -1,6 +1,5 @@
-import 'package:accounts3/screens/admin/add_data/add_data_screen.dart';
-import 'package:accounts3/screens/home/home_screen.dart';
-import 'package:accounts3/screens/login/login_screen.dart';
+import 'package:accountsb52z/screens/home/home_screen.dart';
+import 'package:accountsb52z/screens/login/login_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

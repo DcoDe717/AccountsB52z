@@ -1,6 +1,6 @@
 // Funtion to add complete data using loop (commentind down - open if required)
 
-import 'package:accounts3/screens/global/global_variables.dart';
+import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> dataLoopAddDbEntryMemberWise() async {

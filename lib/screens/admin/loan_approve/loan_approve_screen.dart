@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/screens/admin/admin_common_files.dart';
-import 'package:accounts3/screens/admin/functions/loan_approval_process.dart';
-import 'package:accounts3/screens/home/common_variables_homepage.dart';
-import 'package:accounts3/screens/home/home_screen.dart';
+import 'package:accountsb52z/screens/admin/admin_common_files.dart';
+import 'package:accountsb52z/screens/admin/functions/loan_approval_process.dart';
+import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
+import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class ScreenLoanApprove extends StatefulWidget {

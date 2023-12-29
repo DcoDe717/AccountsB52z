@@ -2,10 +2,10 @@ double balanceFundTotalPulledFromDB = 0;
 double totalFundRecievedPulledFromDB = 0;
 double totalFundExpectedCalculatedLocal = 0;
 
-int switchCaseRetrievedValueMonthly = 0;
+double switchCaseRetrievedValueMonthly = 0;
 double switchCaseRetrievedValueLoan = 0;
 
-int totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise = 0;
+double totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise = 0;
 
 List<int> pendingCountListMemberWiseMonthly = [];
 List<double> pendingLoanAmountAllMembersPulledDB = [];

@@ -1,5 +1,5 @@
-import 'package:accounts3/screens/admin/admin_common_files.dart';
-import 'package:accounts3/screens/global/global_variables.dart';
+import 'package:accountsb52z/screens/admin/admin_common_files.dart';
+import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> updateApprovedMonthDateAndEmiList() async {

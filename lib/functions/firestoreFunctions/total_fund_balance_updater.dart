@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/screens/admin/common_variables_admin.dart';
-import 'package:accounts3/screens/global/global_variables.dart';
+import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
+import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> calculateTotalBalanceFundWhole() async {   

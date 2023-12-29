@@ -1,17 +1,17 @@
 // ignore_for_file: avoid_print
 
-import 'package:accounts3/functions/firestoreFunctions/total_fund_balance_updater.dart';
-import 'package:accounts3/functions/firestoreFunctions/update_pending_loan_amount_total.dart';
-import 'package:accounts3/screens/admin/admin_common_files.dart';
-import 'package:accounts3/screens/admin/common_variables_admin.dart';
-import 'package:accounts3/screens/admin/functions/clear_state_loan_approval_screen.dart';
-import 'package:accounts3/screens/admin/functions/months_emi_calculator_func.dart';
-import 'package:accounts3/screens/admin/functions/popup_alerts/loan_active_popup_alert.dart';
-import 'package:accounts3/screens/admin/functions/popup_alerts/loan_amount_higher_than_balance_fund_popup_alert.dart';
-import 'package:accounts3/screens/admin/functions/popup_alerts/show_loan_approved_alert_and_navigate.dart';
-import 'package:accounts3/screens/admin/functions/update_db_loan_approve_fields.dart';
-import 'package:accounts3/screens/global/global_variables.dart';
-import 'package:accounts3/screens/home/common_variables_homepage.dart';
+import 'package:accountsb52z/functions/firestoreFunctions/total_fund_balance_updater.dart';
+import 'package:accountsb52z/functions/firestoreFunctions/update_pending_loan_amount_total.dart';
+import 'package:accountsb52z/screens/admin/admin_common_files.dart';
+import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
+import 'package:accountsb52z/screens/admin/functions/clear_state_loan_approval_screen.dart';
+import 'package:accountsb52z/screens/admin/functions/months_emi_calculator_func.dart';
+import 'package:accountsb52z/screens/admin/functions/popup_alerts/loan_active_popup_alert.dart';
+import 'package:accountsb52z/screens/admin/functions/popup_alerts/loan_amount_higher_than_balance_fund_popup_alert.dart';
+import 'package:accountsb52z/screens/admin/functions/popup_alerts/show_loan_approved_alert_and_navigate.dart';
+import 'package:accountsb52z/screens/admin/functions/update_db_loan_approve_fields.dart';
+import 'package:accountsb52z/screens/global/global_variables.dart';
+import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
