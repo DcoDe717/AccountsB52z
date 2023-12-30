@@ -19,7 +19,7 @@ Future<double> totPendingCountMemberWiseListLoan(List<String> members) async {
 
     if (docCollectionMapped != null && docCollectionMapped.containsKey('loan_amount_pending_to_pay')) {
       double storePendingLoanAmountMemberWise =
-          docTotalSnapshot['loan_amount_pending_to_pay'];
+          (docTotalSnapshot['loan_amount_pending_to_pay']).toDouble();
       print(
           'loan amount pending to pay for $nameMember is ₹ $storePendingLoanAmountMemberWise');
       pendingLoanAmountAllMembersPulledDB.add(storePendingLoanAmountMemberWise);

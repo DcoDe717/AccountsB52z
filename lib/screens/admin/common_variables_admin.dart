@@ -17,8 +17,8 @@ List<String> pendingMonthsNamesListConverted = [
   'April 2022',
   'May 2022'
 ];
-
-List<String> trueMonthsListRetrievedFromTrueIndexList = [];
+List<String> pendingMonthlyMonthsNamesListConvertedForMultiSelect = [];
+List<String> falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect = [];
 
 // Selection of Monthly Installment Multiselect saved here
 List<dynamic> gSelectedMonthsMonthlyInstallmentsMultiSelect = [];

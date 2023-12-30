@@ -21,11 +21,11 @@ Future<void> calculateTotalBalanceFundWhole() async {
         .get();
 
     if (docSnapMonthly.exists) {
-      monthlyTotalFund = docSnapMonthly['balance_fund_from_true_count_monthly'] ?? 0;
+      monthlyTotalFund = (docSnapMonthly['balance_fund_from_true_count_monthly'] ?? 0).toDouble();
     }
 
     if (docSnapLoan.exists) {
-      loanTotalPendingFundPulledDB = docSnapLoan['total_loan_pending_all_members'] ?? 0;
+      loanTotalPendingFundPulledDB = (docSnapLoan['total_loan_pending_all_members'] ?? 0).toDouble();
     }
 
     totalBalanceFund = monthlyTotalFund - loanTotalPendingFundPulledDB;

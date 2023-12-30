@@ -19,7 +19,7 @@ Future<void> calculateTotalPendingLoanAmount() async {
   for (QueryDocumentSnapshot<Map<String, dynamic>> document in documents) {
     // Ensure that the 'emi_pending' field exists in all documents to prevent runtime errors.
     if (document.data().containsKey('loan_amount_pending_to_pay')) {
-      double emiPending = document['loan_amount_pending_to_pay'] ?? 0.0;
+      double emiPending = (document['loan_amount_pending_to_pay'] ?? 0.0).toDouble();
       totalEMIPending += emiPending;
     }
   }

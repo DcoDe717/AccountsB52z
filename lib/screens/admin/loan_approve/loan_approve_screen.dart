@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:accountsb52z/screens/admin/admin_common_files.dart';
+import 'package:accountsb52z/screens/admin/functions/clear_state_loan_approval_screen.dart';
 import 'package:accountsb52z/screens/admin/functions/loan_approval_process.dart';
+import 'package:accountsb52z/screens/admin/loan_approve/popup_alerts/choose_member_for_loan_approval_popup.dart';
 import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
 import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +47,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
           ),
           leading: IconButton(
             onPressed: () {
+              stateClearLoanApprovalScreen();
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -94,7 +97,8 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
                     children: [
                       labelTitle("Loan Amount"),
                       SizedBox(width: MediaQuery.of(context).size.width / 10),
-                      labelTitle("Current Balance  ₹ $balanceFundTotalPulledFromDB")
+                      labelTitle(
+                          "Current Balance  ₹ $balanceFundTotalPulledFromDB")
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -213,7 +217,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
       child: TextFormField(
         controller: commentsTextControllerLoanApproveScreen,
         maxLines: null,
-        keyboardType: TextInputType.number,
+        keyboardType: TextInputType.text,
         style: const TextStyle(color: Colors.white),
         decoration: const InputDecoration(
             hintText: "Optional Entry",
@@ -242,64 +246,14 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
 
     return ElevatedButton.icon(
         onPressed: () {
-          print(
-              'loanApprovalProcessTrueCheck before: $loanApprovalProcessTrueCheck');
-
-          loanApprovalProcess(selectedDropdownValueAdmin, context);
-
-          print(
-              'loanApprovalProcessTrueCheck after: $loanApprovalProcessTrueCheck');
-
-          // if (loanApprovalProcessTrueCheck) {
-          //   approvedMonthAndEMIMonthsListCreator();
-          //   updateApprovedMonthDateAndEmiList();
-          // }
-
-          // setState(() {
-          //   selectedDropdownValueAdmin = null;
-          //   loanAmountTextControllerLoanApproveScreen.clear();
-          //   commentsTextControllerLoanApproveScreen.clear();
-          // });
-
-          // Navigator.pushAndRemoveUntil(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => const ScreenHome(),
-          //     ),
-          //     (route) => false);
-
-          // Navigator.popUntil(context, (ScreenHome) => false);
+          if (selectedDropdownValueAdmin?.isEmpty ?? true) {
+            selectAnyMemberPopupForLoanApproval(context);
+            print('selecetedDropdownValue is $selectedDropdownValueAdmin');
+          } else {
+            loanApprovalProcess(selectedDropdownValueAdmin, context);
+          }
         },
         icon: const Icon(Icons.check_circle),
         label: const Text('Approve'));
   }
-
-  // Future<void> updateApprovedMonthDateAndEmiList() async {
-  //   Map<String, bool> emiStatusInitializer = {
-  //     '1': false,
-  //     '2': false,
-  //     '3': false,
-  //     '4': false,
-  //     '5': false,
-  //     '6': false,
-  //     '7': false,
-  //     '8': false,
-  //     '9': false,
-  //     '10': false,
-  //   };
-  //   final DocumentReference
-  //       documentReferenceInsideupdateApprovedMonthDateAndEmiList =
-  //       firestoreInstanceCall
-  //           .collection('loan_installments')
-  //           .doc(selectedDropdownValueAdmin);
-
-  //   await documentReferenceInsideupdateApprovedMonthDateAndEmiList.set(
-  //     {
-  //       'emi_months_status': emiStatusInitializer,
-  //       'approved_month_timestamp': Timestamp.now(),
-  //       'emi_months': emiMonthsListIndexValued
-  //     },
-  //     SetOptions(merge: true),
-  //   );
-  // }
 }

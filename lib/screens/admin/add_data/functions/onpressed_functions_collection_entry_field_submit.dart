@@ -1,7 +1,7 @@
 import 'package:accountsb52z/screens/admin/add_data/functions/approval_functions_collections.dart';
 import 'package:accountsb52z/screens/global/utils/common_converters.dart';
 
-Future<void> onpressedSelectEntryFieldSubmitCollection() async {
+Future<void> onpressedSelectEntryFieldSubmitFunctionsCollection() async {
   await onPressedFunctionsCallForMonthly();
 
   await onPressedFunctionsCallForLoan();
@@ -10,5 +10,5 @@ Future<void> onpressedSelectEntryFieldSubmitCollection() async {
   await updateAmountModifier();
 
   // Calling Funtion to modify the amount in the Add New Entry Screen
-  await updateSelectedDropdownValue();
+  await updateSelectedDropdownValueAddEntryScreen();
 }

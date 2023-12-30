@@ -11,13 +11,13 @@ List<String> numericListStringConverter(List<int> numericListPara) {
 }
 
 // Funtion to modify the amount in the Add New Entry Screen
-Future<void> updateSelectedDropdownValue() async{
-  selectedDropdownValue = gSelectedMember;
+Future<void> updateSelectedDropdownValueAddEntryScreen() async{
+  selectedDropdownValueAddEntry = gSelectedMember;
 }
 
 // Call the function to calculate the new amountModifier value
 Future<void> updateAmountModifier() async{
-  amountModifier = 0;
+  amountModifierAddEntryPageLocal = 0;
 
   double monthlyTotalAmount = calcSelectedMonthlyMonthsTotalAmount(
       gSelectedMonthsMonthlyInstallmentsMultiSelect);
@@ -25,10 +25,10 @@ Future<void> updateAmountModifier() async{
   double loanTotalAmount = calcSelectedLoanMonthsTotalAmount(
       gSelectedMonthsLoanInstallmentsMultiSelect);
 
-  amountModifier = monthlyTotalAmount + loanTotalAmount;
+  amountModifierAddEntryPageLocal = monthlyTotalAmount + loanTotalAmount;
 
   print(
-      ' amountModifier = monthlyTotalAmount + loanTotalAmoun : $amountModifier');
+      ' amountModifier = monthlyTotalAmount + loanTotalAmoun : $amountModifierAddEntryPageLocal');
 }
 
 // Funtion that takes array string and return the value count strings multiplied by 500

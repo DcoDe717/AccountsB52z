@@ -1,9 +1,6 @@
-import 'package:accountsb52z/screens/admin/admin_common_files.dart';
 import 'package:flutter/material.dart';
 
-
-void showLoanAmountIsHigherThanBalancePopup(
-    BuildContext context) {
+void noMemberSelectedAddEntryScreenPopup(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -12,7 +9,7 @@ void showLoanAmountIsHigherThanBalancePopup(
           borderRadius: BorderRadius.circular(20), // Rounded border
         ),
         title: const Text(
-          'Insufficient Fund.',
+          'Select member.',
           style: TextStyle(
             color: Colors.green, // Green text
             fontWeight: FontWeight.bold, // Bold text
@@ -20,7 +17,7 @@ void showLoanAmountIsHigherThanBalancePopup(
           ),
         ),
         content: const Text(
-          'Loan cannot be provided since balance fund is not enough',
+          'Select any member for entry.',
           style: TextStyle(
             fontSize: 18, // 18pt font
           ),
@@ -28,8 +25,6 @@ void showLoanAmountIsHigherThanBalancePopup(
         actions: <Widget>[
           TextButton(
               onPressed: () {
-                // Clear the loan amount text field
-                loanAmountTextControllerLoanApproveScreen.clear();
                 // Close the alert dialog
                 Navigator.of(context).pop();
               },
@@ -38,5 +33,4 @@ void showLoanAmountIsHigherThanBalancePopup(
       );
     },
   );
-
 }

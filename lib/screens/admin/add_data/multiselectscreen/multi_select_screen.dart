@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_print
 
-import 'package:accountsb52z/screens/admin/add_data/add_data_screen.dart';
 import 'package:accountsb52z/screens/admin/add_data/functions/onpressed_functions_collection_entry_field_submit.dart';
 import 'package:accountsb52z/screens/admin/add_data/functions/retrieve_emi_month_names.dart';
+import 'package:accountsb52z/screens/admin/add_data/functions/state_clear_add_entry.dart';
+import 'package:accountsb52z/screens/admin/add_data/multiselectscreen/common_variables_multiselect_screen.dart';
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
+import 'package:accountsb52z/screens/admin/functions/get_month_name.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
 
 import 'package:accountsb52z/screens/home/home_screen.dart';
@@ -11,57 +13,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:multiselect_dropdown_flutter/multiselect_dropdown_flutter.dart';
 
-// Global Variables ----------------
-int pendingMonthlyMonthsCountFromDb = 0;
-String pendingMonthlyMonthsFromDbRaw = '';
-List<String> pendingMonthlyMonthsListSplittedArray = [];
-List<String> pendingMonthlyMonthsNamesListConverted = [];
-Map<int, bool> loanPendingFalseMapStoring = {};
-List<String> loanPendingFalseList = [];
-
-// Test variables
-List<dynamic> monthsNameDemo = [
-  "Jan 2022",
-  "Feb 2022",
-  "March 2022",
-  "April 2022",
-  "May 2022",
-  "June 2022",
-  "July 2022",
-  "Aug 2022",
-  "Sept 2022",
-  "Oct 2022",
-  "Nov 2022",
-  "Dec 2022",
-  "Jan 2023",
-  "Feb 2023",
-  "March 2023"
-];
-
-String getMonthName(int monthValue) {
-  // List of month names
-  List<String> monthNamesConverted = [
-    'Jan',
-    'Feb',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec'
-  ];
-
-  int year = 2022 + (monthValue - 1) ~/ 12;
-  int monthIndex = (monthValue - 1) % 12;
-
-  return '${monthNamesConverted[monthIndex]} $year';
-}
-
 class MultiSelectScreenAddEntry extends StatelessWidget {
+  // final bool amountUpdateCheckMultiSelectScreen;
+
   const MultiSelectScreenAddEntry({Key? key}) : super(key: key);
 
   // Your other widget code...
@@ -124,6 +78,8 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
             const SizedBox(height: 35),
             TextButton(
               onPressed: () {
+                stateClearAddEnrtyScreen();
+
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
@@ -157,6 +113,7 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
           gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
           gSelectedMonthsLoanInstallmentsMultiSelect = [];
 
+          // Monthly Installments Functions Section
           if (!monthlyInstallmentsDocSnapshot.exists) {
             return const Center(
                 child: Text('Monthly installments document does not exist'));
@@ -164,25 +121,30 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
             // Retrieve the data from the snapshot
             pendingMonthlyMonthsFromDbRaw =
                 monthlyInstallmentsDocSnapshot['pending_months'];
+
             print(
                 "Pending months from db Raw : $pendingMonthlyMonthsFromDbRaw");
 
-            // Use the string value in your local variable
-            pendingMonthlyMonthsListSplittedArray =
-                pendingMonthlyMonthsFromDbRaw.split(',');
-            print(
-                "Pending months from db Splitted: $pendingMonthlyMonthsListSplittedArray");
+            if (pendingMonthlyMonthsFromDbRaw.isNotEmpty) {
+              // Use the string value in your local variable
+              pendingMonthlyMonthsListSplittedArray =
+                  pendingMonthlyMonthsFromDbRaw.split(',');
 
-            // Create a new list with month names
-            pendingMonthlyMonthsNamesListConverted =
-                pendingMonthlyMonthsListSplittedArray
-                    .map((monthValue) => getMonthName(int.parse(monthValue)))
-                    .toList();
+              print(
+                  "Pending months from db Splitted: $pendingMonthlyMonthsListSplittedArray");
 
-            print(
-                "Pending months names list converted : $pendingMonthlyMonthsNamesListConverted");
+              // Create a new list with month names
+              pendingMonthlyMonthsNamesListConvertedForMultiSelect =
+                  pendingMonthlyMonthsListSplittedArray
+                      .map((monthValue) => getMonthName(int.parse(monthValue)))
+                      .toList();
+
+              print(
+                  "Pending months names list converted : $pendingMonthlyMonthsNamesListConvertedForMultiSelect");
+            }
           }
 
+          // Loan Installments Functions Section
           if (!loanInstallmentsDocSnapshot.exists) {
             return const Center(
                 child: Text('Loan installment document does not exist'));
@@ -195,13 +157,13 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
             } // If Loan is active continue code for retrieving pending months
             else {
               print('isloanactive value: $isLoanActive');
-              Map<String, dynamic> loanPendingMonthsTrueListIndex =
+              Map<String, dynamic> loanPendingMonthsFalseListIndex =
                   loanInstallmentsDocSnapshot['emi_months_status'];
 
               // Clearing the old values stored before the list updation process.
               loanPendingFalseList = [];
 
-              loanPendingMonthsTrueListIndex.forEach((key, value) {
+              loanPendingMonthsFalseListIndex.forEach((key, value) {
                 if (value is bool && value == false) {
                   // int parsedKey = int.tryParse(key) ?? 0;
                   // loanPendingFalseMapStoring[parsedKey] = false;
@@ -216,7 +178,7 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
 
           // Return the Scaffold widget as the root widget
           return FutureBuilder(
-              future: retrieveEmiMonthNames(loanPendingFalseList),
+              future: retrieveEmiMonthNamesLoan(loanPendingFalseList),
               builder: (context, snapshot) {
                 // Check if the future is still executing
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -239,7 +201,8 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         MultiSelectDropdown.simpleList(
-                          list: pendingMonthlyMonthsNamesListConverted,
+                          list:
+                              pendingMonthlyMonthsNamesListConvertedForMultiSelect,
                           whenEmpty: 'Select Monthly Installments',
                           numberOfItemsLabelToShow: 3,
                           initiallySelected: List.empty(growable: true),
@@ -277,7 +240,8 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         MultiSelectDropdown.simpleList(
-                          list: trueMonthsListRetrievedFromTrueIndexList,
+                          list:
+                              falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect,
                           whenEmpty: 'Select Loan Installments',
                           numberOfItemsLabelToShow: 3,
                           initiallySelected: List.empty(growable: true),
@@ -316,15 +280,10 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
                         const SizedBox(height: 40),
                         FilledButton.icon(
                             onPressed: () {
-                              onpressedSelectEntryFieldSubmitCollection();
+                              onpressedSelectEntryFieldSubmitFunctionsCollection();
 
                               // Navigate using push to get the refreshed screen of Screen Add Data
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const ScreenAddData(),
-                                  ),
-                                  (route) => false);
+                              Navigator.of(context).pop('done');
                             },
                             icon: const Icon(Icons.done),
                             label: const Text('Submit'))

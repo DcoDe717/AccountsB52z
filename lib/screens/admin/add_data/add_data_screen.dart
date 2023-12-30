@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_print
 
-
 import 'package:accountsb52z/functions/firestoreFunctions/update_fs_fields_for_loan_selected_months.dart';
 import 'package:accountsb52z/functions/firestoreFunctions/update_fs_fields_from_selected_months_monthly.dart';
+import 'package:accountsb52z/screens/admin/add_data/functions/state_clear_add_entry.dart';
 import 'package:accountsb52z/screens/admin/add_data/multiselectscreen/multi_select_screen.dart';
+import 'package:accountsb52z/screens/admin/add_data/popup_alerts/select_any_fields_add_entry_popup.dart';
+import 'package:accountsb52z/screens/admin/add_data/popup_alerts/select_any_user_add_entry_popup.dart';
 import 'package:accountsb52z/screens/admin/admin_common_files.dart';
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/home/home_screen.dart';
@@ -22,10 +24,35 @@ class _ScreenAddDataState extends State<ScreenAddData> {
   final commentsTextControllerAddDataScreen = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    // Initialize variables here
+    chosenMemberAddEntryDropdown = '';
+    gSelectedMonthsMonthlyInstallmentsMultiSelect.clear();
+    gSelectedMonthsLoanInstallmentsMultiSelect.clear();
+  }
+
+  @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     commentsTextControllerAddDataScreen.dispose();
     super.dispose();
+  }
+
+  Future<void> goToMultiSelecScreenForAmountUpdate() async {
+    final updatedValue = await Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const MultiSelectScreenAddEntry()),
+    );
+
+    // Check if the value was updated on the second screen
+    if (updatedValue == 'done') {
+      print('if (updatedValue) : passed');
+      setState(() {
+        amountModifierAddEntryPageLocal = amountModifierAddEntryPageLocal;
+      });
+    }
   }
 
   @override
@@ -51,6 +78,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
           ),
           leading: IconButton(
             onPressed: () {
+              stateClearAddEnrtyScreen();
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -125,50 +153,77 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     return ElevatedButton.icon(
         onPressed: () async {
           commentsAddData = commentsTextControllerAddDataScreen.text;
-          if (gSelectedMember.isNotEmpty) {
-            // If no loan months is selected updateLoanField wont run
-            if (extractedIndexValueFromSelectedLoanMonths.isNotEmpty) {
-              await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
-                  "monthly_installments",
-                  gSelectedMember,
-                  "ispaid",
-                  numericValuesListMonthlyInstString,
-                  commentsAddData);
 
-              await updateFSFieldsForLoanSelectedMonths(
-                  'loan_installments',
-                  gSelectedMember,
-                  'emi_months_status',
-                  extractedIndexValueFromSelectedLoanMonths,
-                  commentsAddData);
+          // Check for drowndown value selected or not
+          if (chosenMemberAddEntryDropdown.isNotEmpty) {
+            print('if (gSelectedMember.isNotEmpty) passed');
+
+            // Check for any fields selected or not
+            if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isNotEmpty ||
+                gSelectedMonthsLoanInstallmentsMultiSelect.isNotEmpty) {
+              print(
+                  'if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isEmpty): passed');
+
+              // If no loan months is selected updateLoanField wont run
+              if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isNotEmpty &&
+                  gSelectedMonthsLoanInstallmentsMultiSelect.isNotEmpty) {
+                print('both monthly and loan fields are selected');
+                await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
+                    "monthly_installments",
+                    gSelectedMember,
+                    "ispaid",
+                    numericValuesListMonthlyInstString,
+                    commentsAddData);
+
+                await updateFSFieldsForLoanSelectedMonths(
+                    'loan_installments',
+                    gSelectedMember,
+                    'emi_months_status',
+                    extractedIndexValueFromSelectedLoanMonths,
+                    commentsAddData);
+              } else {
+                if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isNotEmpty) {
+                  print('only selected monthly fields');
+                  await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
+                      "monthly_installments",
+                      gSelectedMember,
+                      "ispaid",
+                      numericValuesListMonthlyInstString,
+                      commentsAddData);
+                } else {
+                  print('only selected loan fields');
+                  await updateFSFieldsForLoanSelectedMonths(
+                      'loan_installments',
+                      gSelectedMember,
+                      'emi_months_status',
+                      extractedIndexValueFromSelectedLoanMonths,
+                      commentsAddData);
+                }
+              }
+
+              print('gSelectedMember : $gSelectedMember');
+
+              setState(() {
+                stateClearAddEnrtyScreen();
+              });
+
+              // ignore: use_build_context_synchronously
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenSplash(),
+                  ),
+                  (route) => false);
             } else {
-              await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
-                  "monthly_installments",
-                  gSelectedMember,
-                  "ispaid",
-                  numericValuesListMonthlyInstString,
-                  commentsAddData);
+              print('executing selectAnyFieldAddEntryScreenPopup');
+              // no fields selected for the user, popup alert executed
+              selectAnyFieldAddEntryScreenPopup(context, gSelectedMember);
             }
+          } else {
+            print('executing noMemberSelectedAddEntryScreenPopup');
+            // No Member selected in dropdown, popup alert executed
+            noMemberSelectedAddEntryScreenPopup(context);
           }
-
-          // print('Firestore fields updated successfully!');
-
-          // print('commentsMonthlyInstAddData : $commentsAddData');
-
-          setState(() {
-            selectedDropdownValue = null;
-            amountModifier = 0;
-            gSelectedMonthsMonthlyInstallmentsMultiSelect.clear();
-            gSelectedMonthsLoanInstallmentsMultiSelect.clear();
-            chosenMemberAddEntryDropdown = '';
-          });
-
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ScreenSplash(),
-              ),
-              (route) => false);
         },
         icon: const Icon(Icons.add_sharp),
         label: const Text('Add Entry'));
@@ -190,11 +245,13 @@ class _ScreenAddDataState extends State<ScreenAddData> {
 
                 gSelectedMember = chosenMemberAddEntryDropdown;
 
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            const MultiSelectScreenAddEntry()));
+                goToMultiSelecScreenForAmountUpdate();
+
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) =>
+                //             const MultiSelectScreenAddEntry()));
               },
               icon: const Icon(Icons.arrow_right),
               label: const Text('Select Entry Fields')),
@@ -260,7 +317,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
         keyboardType: TextInputType.number,
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
-          hintText: "₹ $amountModifier",
+          hintText: "₹ $amountModifierAddEntryPageLocal",
           hintStyle: const TextStyle(
               color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
           border: InputBorder.none,
@@ -344,7 +401,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 fontWeight: FontWeight.normal,
               ),
             ),
-            value: selectedDropdownValue,
+            value: selectedDropdownValueAddEntry,
             items: dropDownListAdmin
                 .map<DropdownMenuItem<String>>(
                   (String value) => DropdownMenuItem<String>(
@@ -372,9 +429,11 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     print("chosenMember: $chosenMemberAddEntryDropdown");
 
     setState(() {
-      selectedDropdownValue = selectedValue;
-      amountModifier = 0;
-      gSelectedMonthsMonthlyInstallmentsMultiSelect = [];
+      selectedDropdownValueAddEntry = selectedValue;
+      amountModifierAddEntryPageLocal = 0;
+      gSelectedMonthsMonthlyInstallmentsMultiSelect.clear();
+      gSelectedMonthsLoanInstallmentsMultiSelect.clear();
+      commentsTextControllerAddDataScreen.clear();
     });
   }
 

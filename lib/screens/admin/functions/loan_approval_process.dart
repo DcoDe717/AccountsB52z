@@ -10,6 +10,8 @@ import 'package:accountsb52z/screens/admin/functions/popup_alerts/loan_active_po
 import 'package:accountsb52z/screens/admin/functions/popup_alerts/loan_amount_higher_than_balance_fund_popup_alert.dart';
 import 'package:accountsb52z/screens/admin/functions/popup_alerts/show_loan_approved_alert_and_navigate.dart';
 import 'package:accountsb52z/screens/admin/functions/update_db_loan_approve_fields.dart';
+import 'package:accountsb52z/screens/admin/loan_approve/popup_alerts/invalid_loan_amount_format_popup.dart';
+import 'package:accountsb52z/screens/admin/loan_approve/popup_alerts/loan_amount_empty_popup.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,7 +37,7 @@ Future<void> loanApprovalProcess(
       print(
           'Loan is active, cannot approve anymore loan, finish the active loan first');
       // Calling state clearing function after loan is approved
-      stateClear();
+      stateClearLoanApprovalScreen();
     }
     // level 0 (else)
     else {
@@ -47,7 +49,7 @@ Future<void> loanApprovalProcess(
       // level 1 (if)
       if (loanAmountTextFromTextController.isNotEmpty) {
         // Attempt to parse the input as an integer
-        loanAmountParsed = int.tryParse(loanAmountTextFromTextController);
+        loanAmountParsed = double.tryParse(loanAmountTextFromTextController);
 
         // level 2 (if)
         if (loanAmountParsed != null) {
@@ -84,26 +86,25 @@ Future<void> loanApprovalProcess(
             // Calling Confirmation popup for 2 seconds and navigate to Homescreen
             showLoanApprovedAlertAndNavigate(
                 ctxCheckLoanActive, loanAmountParsed, memberCheckLoanActive);
-
-            // Calling state clearing function after loan is approved
-            stateClear();
           }
           // level 3 (else)
           else {
             showLoanAmountIsHigherThanBalancePopup(ctxCheckLoanActive);
             // Calling state clearing function after loan is approved
-            stateClear();
+            // stateClearLoanApprovalScreen();
 
             print('loan cannot be provided since balance fund is not enough');
           }
         }
         // level 2 (else)
         else {
+          invalidLoanAmountFormatPopup(ctxCheckLoanActive);
           print('Invalid loan amount format');
         }
       }
       // level 1 (else)
       else {
+        loanAmountIsEmptyPopup(ctxCheckLoanActive);
         print('Loan amount is empty');
       }
 

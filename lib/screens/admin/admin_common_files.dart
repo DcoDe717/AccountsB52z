@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 String? selectedDropdownValueAdmin;
-var chosenMemberAddEntryDropdown = '';
+String chosenMemberAddEntryDropdown = '';
 String commentsAddData = '';
 
 // Variables to check the Loan approval process is success or not, for updating remaining fields
@@ -11,7 +11,7 @@ bool loanApprovalProcessTrueCheck = false;
 
 String loanAmountTextFromTextController = '';
 String commentsTextFromTextControllerLoanApproveScreen = '';
-int? loanAmountParsed;
+double? loanAmountParsed;
 
 final loanAmountTextControllerLoanApproveScreen = TextEditingController();
 final commentsTextControllerLoanApproveScreen = TextEditingController();

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-var gSelectedMember = '';
-double amountModifier = 0;
+String gSelectedMember = '';
+double amountModifierAddEntryPageLocal = 0;
 
 // Globally Create a single instance of FirebaseFirestore
 final FirebaseFirestore firestoreInstanceCall = FirebaseFirestore.instance;
@@ -14,4 +14,4 @@ List<String> numericValuesListMonthlyInstString = [];
 List<String> extractedIndexValueFromSelectedLoanMonths = [];
 
 // Variable for drop down value displayed in Add New Entry Screen
-String? selectedDropdownValue;
+String? selectedDropdownValueAddEntry;

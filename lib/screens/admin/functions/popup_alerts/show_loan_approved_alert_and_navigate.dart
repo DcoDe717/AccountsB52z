@@ -1,11 +1,12 @@
 // Function to show confirmation alert to the screen and navigate to Home screen after 2 seconds
 
+import 'package:accountsb52z/screens/admin/functions/clear_state_loan_approval_screen.dart';
 import 'package:accountsb52z/screens/login/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 void showLoanApprovedAlertAndNavigate(
-    BuildContext context, int? approvedAmount, String? approvedToMember) {
+    BuildContext context, double? approvedAmount, String? approvedToMember) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -30,6 +31,7 @@ void showLoanApprovedAlertAndNavigate(
       );
     },
   );
+  stateClearLoanApprovalScreen();
 
   // Delay for 2 seconds using a Timer
   Timer(const Duration(seconds: 2), () {

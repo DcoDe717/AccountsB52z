@@ -4,10 +4,12 @@ import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> retrieveEmiMonthNames(List<String> keysToAccess) async {
+Future<void> retrieveEmiMonthNamesLoan(List<String> keysToAccess) async {
   // Collection reference
   CollectionReference loanStatusCollection =
       firestoreInstanceCall.collection('loan_installments');
+
+  falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect.clear();
 
   try {
     // Document reference
@@ -30,7 +32,7 @@ Future<void> retrieveEmiMonthNames(List<String> keysToAccess) async {
             as Map<String, dynamic>?;
 
     // List to store the retrieved values
-    trueMonthsListRetrievedFromTrueIndexList = [];
+    falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect = [];
 
     // Access values based on keys in the list
     for (var key in keysToAccess) {
@@ -38,14 +40,15 @@ Future<void> retrieveEmiMonthNames(List<String> keysToAccess) async {
       if (monthsNameListRetrievedFromDB != null &&
           monthsNameListRetrievedFromDB['emi_months'] != null &&
           monthsNameListRetrievedFromDB['emi_months'][key.toString()] != null) {
-        trueMonthsListRetrievedFromTrueIndexList.add(
-  '${monthsNameListRetrievedFromDB['emi_months'][key.toString()]} | $key');
+        falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect.add(
+            '${monthsNameListRetrievedFromDB['emi_months'][key.toString()]} | $key');
 
-        print(trueMonthsListRetrievedFromTrueIndexList);
+        print(falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect);
       } else {
         // If key not found, add a default value and print debugging information
         print("Key not found: $key");
-        trueMonthsListRetrievedFromTrueIndexList.add("Default Value for $key");
+        falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect
+            .add("Default Value for $key");
       }
     }
   } catch (e) {
