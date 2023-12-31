@@ -32,9 +32,9 @@ class _ScreenHomePieChartViewState extends State<ScreenHomePieChartView> {
               Row(
                 children: [totalFundReceivedBox(), totalFundExpectedBox()],
               ),
-              Row(
-                children: [testPressMeButtonBox()],
-              ),
+              // Row(
+              //   children: [testPressMeButtonBox()],
+              // ),
             ],
           ),
         ),
