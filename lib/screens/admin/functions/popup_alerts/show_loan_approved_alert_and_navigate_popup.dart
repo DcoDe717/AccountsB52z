@@ -5,10 +5,11 @@ import 'package:accountsb52z/screens/login/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-void showLoanApprovedAlertAndNavigate(
+void showLoanApprovedAlertAndNavigatePopup(
     BuildContext context, double? approvedAmount, String? approvedToMember) {
   showDialog(
     context: context,
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(

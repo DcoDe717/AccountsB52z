@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 void showUsernameNotExistAlert(BuildContext context, String? userName) {
   showDialog(
     context: context,
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(

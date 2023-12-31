@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 void selectAnyFieldAddEntryScreenPopup(BuildContext context, String? userName) {
   showDialog(
     context: context,
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(

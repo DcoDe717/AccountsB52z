@@ -4,6 +4,7 @@ void loanAmountIsEmptyPopup(BuildContext context) {
   
   showDialog(
     context: context,
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(

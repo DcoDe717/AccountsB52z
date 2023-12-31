@@ -9,6 +9,7 @@ import 'package:accountsb52z/screens/admin/add_data/popup_alerts/select_any_user
 import 'package:accountsb52z/screens/admin/admin_common_files.dart';
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/home/home_screen.dart';
+import 'package:accountsb52z/screens/login/functions/popup_alerts/loading_popup.dart';
 import 'package:accountsb52z/screens/login/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
@@ -167,7 +168,10 @@ class _ScreenAddDataState extends State<ScreenAddData> {
               // If no loan months is selected updateLoanField wont run
               if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isNotEmpty &&
                   gSelectedMonthsLoanInstallmentsMultiSelect.isNotEmpty) {
+                showLoadingPopup(context);
+
                 print('both monthly and loan fields are selected');
+
                 await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
                     "monthly_installments",
                     gSelectedMember,
@@ -183,7 +187,10 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                     commentsAddData);
               } else {
                 if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isNotEmpty) {
+                  showLoadingPopup(context);
+
                   print('only selected monthly fields');
+
                   await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
                       "monthly_installments",
                       gSelectedMember,
@@ -191,7 +198,10 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                       numericValuesListMonthlyInstString,
                       commentsAddData);
                 } else {
+                  showLoadingPopup(context);
+
                   print('only selected loan fields');
+
                   await updateFSFieldsForLoanSelectedMonths(
                       'loan_installments',
                       gSelectedMember,
@@ -206,6 +216,9 @@ class _ScreenAddDataState extends State<ScreenAddData> {
               setState(() {
                 stateClearAddEnrtyScreen();
               });
+
+              // Close loading popup before navigating
+              hideLoadingPopup(context);
 
               // ignore: use_build_context_synchronously
               Navigator.pushAndRemoveUntil(

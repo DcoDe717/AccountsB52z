@@ -6,6 +6,7 @@ void showLoanActiveCheckTruePopup(
     BuildContext context, String? memberName) {
   showDialog(
     context: context,
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(
