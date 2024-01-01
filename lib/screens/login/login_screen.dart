@@ -2,7 +2,6 @@ import 'package:accountsb52z/screens/admin/admin_common_files.dart';
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/login/functions/authentication_function.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ScreenLogin extends StatelessWidget {
@@ -34,7 +33,7 @@ class ScreenLogin extends StatelessWidget {
               SizedBox(
                 height: 200,
                 width: 300,
-                child: LottieBuilder.asset("assets/lottie/login2.json"),
+                child: Image.asset('assets/img/login_art.png'),
               ),
               const SizedBox(height: 10),
               Container(
