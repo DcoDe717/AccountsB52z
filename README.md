@@ -1,6 +1,6 @@
-# accountsb52z
+# AccountsB52z
 
-A new Flutter project.
+A new Flutter project for my team for accounts management. 
 
 ## Getting Started
 
