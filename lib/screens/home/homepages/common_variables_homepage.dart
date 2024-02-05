@@ -4,8 +4,10 @@ double totalFundExpectedCalculatedLocal = 0;
 
 double switchCaseRetrievedValueMonthly = 0;
 double switchCaseRetrievedValueLoan = 0;
+double totalSwitchCaseMonthlyPlusLoan = 0;
 
-double totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise = 0;
+double totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise =
+    0;
 
 List<int> pendingCountListMemberWiseMonthly = [];
 List<double> pendingLoanAmountAllMembersPulledDB = [];

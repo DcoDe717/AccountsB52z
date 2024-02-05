@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 
-import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
+import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
 
 class ScreenHomePieChartView extends StatefulWidget {

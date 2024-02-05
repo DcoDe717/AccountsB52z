@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:accountsb52z/screens/global/global_variables.dart';
-import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
+import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<int> totPendingCountMemberWiseListMonthly(List<String> members) async {

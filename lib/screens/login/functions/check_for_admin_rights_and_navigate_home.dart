@@ -2,6 +2,8 @@
 
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
+import 'package:accountsb52z/screens/home/home_init_functions.dart';
+import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:accountsb52z/screens/login/functions/popup_alerts/loading_popup.dart';
 
 import 'package:accountsb52z/screens/login/splash_screen/splash_screen.dart';
@@ -21,6 +23,9 @@ Future<void> checkForAdminRightsAndNavigateSplashScreen(
     print('$userNameLocalInside is admin');
   }
 
+  // Home Init funtions called
+  await homeScreenInitFunctionsOrdered();
+
   // Close loading popup before navigating to splash screen
   hideLoadingPopup(contextInside);
 
@@ -29,7 +34,7 @@ Future<void> checkForAdminRightsAndNavigateSplashScreen(
   Navigator.pushAndRemoveUntil(
       contextInside,
       MaterialPageRoute(
-        builder: (context) => const ScreenSplash(),
+        builder: (context) => const ScreenHome(),
       ),
       (route) => false);
 }

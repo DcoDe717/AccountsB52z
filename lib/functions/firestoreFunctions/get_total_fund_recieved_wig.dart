@@ -1,5 +1,7 @@
+import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
-import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
+import 'package:accountsb52z/screens/home/homepages/02_total_pending_view/utils/switchcase_value_retrievel.dart';
+import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> getTotalFundRecievedFromDb() async {
@@ -17,4 +19,6 @@ Future<void> getTotalFundRecievedFromDb() async {
   // total expected fund calculated here since this function is executing last in initialization
   totalFundExpectedCalculatedLocal = balanceFundTotalPulledFromDB +
       totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
+
+      switchcaseNameToValueRetrievelFuction(userNameGlobal);
 }

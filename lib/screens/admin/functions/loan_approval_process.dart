@@ -13,7 +13,7 @@ import 'package:accountsb52z/screens/admin/functions/update_db_loan_approve_fiel
 import 'package:accountsb52z/screens/admin/loan_approve/popup_alerts/invalid_loan_amount_format_popup.dart';
 import 'package:accountsb52z/screens/admin/loan_approve/popup_alerts/loan_amount_empty_popup.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
-import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
+import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
 import 'package:accountsb52z/screens/login/functions/popup_alerts/loading_popup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

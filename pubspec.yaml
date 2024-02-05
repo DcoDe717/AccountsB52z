@@ -41,6 +41,8 @@ dependencies:
   firebase_app_check: ^0.2.1+5
   intl: ^0.18.1
   loading_animation_widget: ^1.2.0+4
+  google_fonts: ^6.1.0
+  line_icons: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -68,8 +70,11 @@ flutter:
   assets:
     # - assets/lottie/login2.json
     # - assets/img/logo1.png
-    # - assets/img/choose.png
-    - assets\img\login_art.png
+    - assets/img/choose.png
+    - assets/img/twitter01.png
+    - assets/img/b52z_logo_01.jpg
+    - assets/img/login_art.png
+    - assets/img/dp_01.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

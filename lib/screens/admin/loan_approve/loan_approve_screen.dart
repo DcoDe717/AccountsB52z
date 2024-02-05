@@ -4,7 +4,7 @@ import 'package:accountsb52z/screens/admin/admin_common_files.dart';
 import 'package:accountsb52z/screens/admin/functions/clear_state_loan_approval_screen.dart';
 import 'package:accountsb52z/screens/admin/functions/loan_approval_process.dart';
 import 'package:accountsb52z/screens/admin/loan_approve/popup_alerts/choose_member_for_loan_approval_popup.dart';
-import 'package:accountsb52z/screens/home/common_variables_homepage.dart';
+import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
 import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -39,15 +39,13 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
         appBar: AppBar(
           elevation: 1,
           flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(colors: [
-              Color.fromARGB(202, 237, 123, 132),
-              Color.fromARGB(195, 144, 85, 255)
-            ])),
+            decoration:
+                const BoxDecoration(color: Color.fromRGBO(0, 87, 184, 1.0)),
           ),
           leading: IconButton(
             onPressed: () {
               stateClearLoanApprovalScreen();
+              ();
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -58,27 +56,21 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
             icon: const Icon(
               Icons.arrow_circle_left_outlined,
               color: Colors.white,
-              size: 35,
+              size: 30,
             ),
           ),
           title: const Text(
-            "Add New Entry",
+            "Create New Loan",
             style: TextStyle(
                 fontSize: 30,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 2),
           ),
-          // backgroundColor: Colors.transparent,
         ),
-        body: Container(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Color.fromARGB(202, 237, 123, 132),
-            Color.fromARGB(195, 144, 85, 255)
-          ])),
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -124,62 +116,47 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
       width: MediaQuery.of(context).size.width,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(167, 237, 123, 132),
-          // gradient: const LinearGradient(colors: [
-          //   Colors.redAccent,
-          //   Colors.blueAccent,
-          //   Colors.purpleAccent
-          //   //add more colors
-          // ]),
+          color: const Color.fromRGBO(0, 87, 184, 0.7),
           borderRadius: BorderRadius.circular(5),
-          // boxShadow: const <BoxShadow>[
-          //   BoxShadow(
-          //       color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
-          //       blurRadius: 5) //blur radius of shadow
-          // ],
+          boxShadow: const <BoxShadow>[],
         ),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButtonFormField(
-            style: const TextStyle(color: Colors.white),
-            dropdownColor: const Color(0xff252041),
-            icon: const Icon(
-              Icons.arrow_drop_down_circle_outlined,
-              color: Colors.white,
-            ),
-            isExpanded: true,
-            decoration: const InputDecoration(
-              fillColor: Color(0xff2a2e3d),
-              // borderRadius: BorderRadius.circular(15),
-              labelText: '',
-              border: OutlineInputBorder(borderSide: BorderSide.none),
-              //  OutlineInputBorder()
-
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-            ),
-            hint: const Text(
-              'Select Member',
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-            value: selectedDropdownValueAdmin,
-            items:
-                dropDownListAdmin.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(
-                  value,
-                  style: const TextStyle(fontSize: 20),
-                ),
-              );
-            }).toList(),
-            onChanged: (selectedvalue) {
-              selectedDropdownValueAdmin = selectedvalue;
-            },
+        child: DropdownButtonFormField(
+          dropdownColor: const Color.fromRGBO(0, 87, 184, 1.0),
+          icon: const Icon(
+            Icons.arrow_drop_down_circle_outlined,
+            color: Colors.white,
           ),
+          isExpanded: true,
+          decoration: const InputDecoration(
+            fillColor: Color.fromARGB(255, 108, 224, 13),
+            labelText: '',
+            border: OutlineInputBorder(borderSide: BorderSide.none),
+            contentPadding:
+                EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+          ),
+          hint: const Text(
+            'Select Member',
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          value: selectedDropdownValueAdmin,
+          items: dropDownListAdmin
+              .map<DropdownMenuItem<String>>(
+                (String value) => DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              )
+              .toList(),
+          onChanged: (selectedvalue) {
+            selectedDropdownValueAdmin = selectedvalue;
+          },
         ),
       ),
     );
@@ -233,7 +210,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
     return Text(
       label,
       style: const TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 16.5,
         letterSpacing: 0.2,

@@ -10,44 +10,47 @@ import 'package:flutter/material.dart';
 
 Future<void> loginAuthentication(
     BuildContext passedCTX, String usernameLocal, String passwordLocal) async {
-  // Show loading popup when starting the long process
-  showLoadingPopup(passedCTX);
+  if (usernameLocal.isEmpty || passwordLocal.isEmpty) {
+  } else {
+    // Show loading popup when starting the long process
+    showLoadingPopup(passedCTX);
+    
+    // Call firebase instance
+    DocumentReference documentRef =
+        firestoreInstanceCall.collection('authy_simple').doc(usernameLocal);
 
-  // Call firebase instance
-  DocumentReference documentRef =
-      firestoreInstanceCall.collection('authy_simple').doc(usernameLocal);
+    try {
+      DocumentSnapshot documentSnapshot = await documentRef.get();
 
-  try {
-    DocumentSnapshot documentSnapshot = await documentRef.get();
+      if (documentSnapshot.exists) {
+        print('Document with username $usernameLocal exists.');
 
-    if (documentSnapshot.exists) {
-      print('Document with username $usernameLocal exists.');
-
-      if (documentSnapshot['cred_key'] == passwordLocal) {
-        print('password is matching');
+        if (documentSnapshot['cred_key'] == passwordLocal) {
+          print('password is matching');
 
         checkForAdminRightsAndNavigateSplashScreen(passedCTX, usernameLocal);
       } else {
         // Close loading popup before showing the wrong password alert
         hideLoadingPopup(passedCTX);
 
-        print('password is wrong');
+          print('password is wrong');
 
-        wrongPassWordAlert(passedCTX, usernameLocal);
+          wrongPassWordAlert(passedCTX, usernameLocal);
+        }
+      } else {
+        // Close loading popup before showing the username not exist alert
+        hideLoadingPopup(passedCTX);
+
+        showUsernameNotExistAlert(passedCTX, usernameLocal);
+
+        print('Document with username $usernameLocal does not exist.');
       }
-    } else {
-      // Close loading popup before showing the username not exist alert
+    } catch (e) {
+      print('Error checking document existence: $e');
+      // Handle the error, e.g., show a message to the user or log it.
+
+      // Close loading popup in case of an error
       hideLoadingPopup(passedCTX);
-
-      showUsernameNotExistAlert(passedCTX, usernameLocal);
-
-      print('Document with username $usernameLocal does not exist.');
-    }
-  } catch (e) {
-    print('Error checking document existence: $e');
-    // Handle the error, e.g., show a message to the user or log it.
-
-    // Close loading popup in case of an error
-    hideLoadingPopup(passedCTX);
+          }
   }
 }

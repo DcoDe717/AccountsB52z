@@ -68,14 +68,12 @@ class _ScreenAddDataState extends State<ScreenAddData> {
         return;
       },
       child: Scaffold(
+        backgroundColor: Colors.grey[100],
         appBar: AppBar(
           elevation: 1,
           flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(colors: [
-              Color.fromARGB(202, 237, 123, 132),
-              Color.fromARGB(195, 144, 85, 255)
-            ])),
+            decoration:
+                const BoxDecoration(color: Color.fromRGBO(0, 87, 184, 1.0)),
           ),
           leading: IconButton(
             onPressed: () {
@@ -90,7 +88,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
             icon: const Icon(
               Icons.arrow_circle_left_outlined,
               color: Colors.white,
-              size: 35,
+              size: 30,
             ),
           ),
           title: const Text(
@@ -102,15 +100,10 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 letterSpacing: 2),
           ),
         ),
-        body: Container(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Color.fromARGB(202, 237, 123, 132),
-            Color.fromARGB(195, 144, 85, 255)
-          ])),
-          child: SingleChildScrollView(
+                    child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -247,7 +240,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
       padding: const EdgeInsets.all(15),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          color: const Color.fromARGB(106, 59, 66, 94),
+          color: const Color.fromRGBO(0, 87, 184, 0.7),
           borderRadius: BorderRadius.circular(15)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,7 +315,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
       height: 55,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: const Color(0xff2a2e3d),
+        color: const Color.fromRGBO(0, 87, 184, 0.7),
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextFormField(
@@ -387,47 +380,45 @@ class _ScreenAddDataState extends State<ScreenAddData> {
       width: MediaQuery.of(context).size.width,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(167, 237, 123, 132),
+          color: const Color.fromRGBO(0, 87, 184, 0.7),
           borderRadius: BorderRadius.circular(5),
           boxShadow: const <BoxShadow>[],
         ),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButtonFormField(
-            dropdownColor: Colors.deepPurple.shade50,
-            icon: const Icon(
-              Icons.arrow_drop_down_circle_outlined,
-              color: Colors.white,
-            ),
-            isExpanded: true,
-            decoration: const InputDecoration(
-              fillColor: Color(0xff2a2e3d),
-              labelText: '',
-              border: OutlineInputBorder(borderSide: BorderSide.none),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-            ),
-            hint: const Text(
-              'Select Member',
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-            value: selectedDropdownValueAddEntry,
-            items: dropDownListAdmin
-                .map<DropdownMenuItem<String>>(
-                  (String value) => DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(fontSize: 23),
-                    ),
-                  ),
-                )
-                .toList(),
-            onChanged: handleDropdownChange,
+        child: DropdownButtonFormField(
+          dropdownColor: const Color.fromRGBO(0, 87, 184, 1.0),
+          icon: const Icon(
+            Icons.arrow_drop_down_circle_outlined,
+            color: Colors.white,
           ),
+          isExpanded: true,
+          decoration: const InputDecoration(
+            fillColor: Color.fromARGB(255, 108, 224, 13),
+            labelText: '',
+            border: OutlineInputBorder(borderSide: BorderSide.none),
+            contentPadding:
+                EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+          ),
+          hint: const Text(
+            'Select Member',
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          value: selectedDropdownValueAddEntry,
+          items: dropDownListAdmin
+              .map<DropdownMenuItem<String>>(
+                (String value) => DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              )
+              .toList(),
+          onChanged: handleDropdownChange,
         ),
       ),
     );
@@ -454,7 +445,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     return Text(
       label,
       style: const TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 16.5,
         letterSpacing: 0.2,

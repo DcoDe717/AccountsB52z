@@ -1,5 +1,12 @@
+import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
+import 'package:accountsb52z/screens/login/login_screen_new.dart';
+import 'package:accountsb52z/screens/admin/add_data/add_data_screen.dart';
 import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:accountsb52z/screens/login/login_screen.dart';
+import 'package:accountsb52z/test/non_final/homepage01_bard_ex01.dart';
+import 'package:accountsb52z/screens/home/homepages/01_piechart_total/dashboardview_screen.dart';
+import 'package:accountsb52z/test/non_final/homepage01_bard_mod_01.dart';
+import 'package:accountsb52z/test/homescreentest01.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,13 +46,15 @@ await FirebaseAppCheck.instance.activate(
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
-      home:  const ScreenLogin(),
+      theme: ThemeData.light(useMaterial3:true ),
+      home:  const ScreenLoginNew(),
       routes: {'/home': (context) => const ScreenHome()},
     );
   }
