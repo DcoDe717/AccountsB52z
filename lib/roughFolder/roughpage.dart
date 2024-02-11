@@ -64,7 +64,7 @@
 //   Future<DocumentSnapshot> getMonthlyInstallments() async {
 //     try {
 //       return await firestoreInstanceCall
-//           .collection('monthly_installments')
+//           .collection('monthly_installment')
 //           .doc(gSelectedMember)
 //           .get();
 //     } catch (e) {
@@ -78,7 +78,7 @@
 //    Future<DocumentSnapshot> getLoanInstallments() async {
 //     try {
 //       return await firestoreInstanceCall
-//           .collection('loan_installments')
+//           .collection('loan_installment')
 //           .doc(gSelectedMember)
 //           .get();
 //     } catch (e) {
@@ -100,8 +100,8 @@
 //           return const Center(child: Text('Document does not exist'));
 //         } else {
 //           // Retrieve the data from the snapshot
-//           pendingMonthlyMonthsFromDbRaw = snapshot.data!['pending_months'];
-//           pendingMonthlyMonthsCountFromDb = snapshot.data!['pending_months_count'];
+//           pendingMonthlyMonthsFromDbRaw = snapshot.data!['pending_months_monthly'];
+//           pendingMonthlyMonthsCountFromDb = snapshot.data!['pending_months_count_monthly'];
 
 //           print("Pending months from db Raw : $pendingMonthlyMonthsFromDbRaw");
 //           print("Pending months counts from db Raw: $pendingMonthlyMonthsCountFromDb");

@@ -1,11 +1,11 @@
 // Function for index to monthnames convertion ------
 String getMonthName(int monthValue) {
+
+  // Added 3 since starting month is April 2020
+    int monthValueExtra = monthValue + 3;
   // List of month names
   List<String> monthNamesConverted = [
-    'Jan',
-    'Feb',
-    'March',
-    'April',
+    'Apr',
     'May',
     'June',
     'July',
@@ -13,10 +13,13 @@ String getMonthName(int monthValue) {
     'Sept',
     'Oct',
     'Nov',
-    'Dec'
+    'Dec',
+    'Jan',
+    'Feb',
+    'Mar'
   ];
 
-  int year = 2022 + (monthValue - 1) ~/ 12;
+  int year = 2020 + (monthValueExtra - 1) ~/ 12;
   int monthIndex = (monthValue - 1) % 12;
 
   return '${monthNamesConverted[monthIndex]} $year';

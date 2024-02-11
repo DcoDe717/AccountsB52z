@@ -27,7 +27,7 @@ Future<void> loanApprovalProcess(
   // Get the document reference
   final DocumentReference documentReferenceInsideCheckLoanActiveFunction =
       firestoreInstanceCall
-          .collection('loan_installments')
+          .collection('loan_installment')
           .doc(memberCheckLoanActive);
   try {
     // Get the document snapshot

@@ -19,14 +19,17 @@ class ScreenMembersPendingListView extends StatelessWidget {
     return ListView.separated(
       itemBuilder: (ctx, index) {
         // final category = newList[index];
+
+        String listTileLoopUserName = indexToUserName(index);
         return Card(
           child: ListTile(
             contentPadding: const EdgeInsets.all(10),
-            leading: const CircleAvatar(
-                // backgroundImage: AssetImage("assets/img/pic1.jpg"),
+            leading:  CircleAvatar(
+                backgroundImage: AssetImage("assets/img/dp/$listTileLoopUserName.PNG"),
                 ),
             title: Text(listviewMembersList[index]),
-            subtitle:  Text('Total Unsettled : ₹ ${((pendingCountListMemberWiseMonthly[index]) * 500)+(pendingLoanAmountAllMembersPulledDB[index])} '),
+            subtitle: Text(
+                'Total Unsettled : ₹ ${((pendingCountListMemberWiseMonthly[index]) * 500) + (pendingLoanAmountAllMembersPulledDB[index])} '),
             trailing: Text(
                 'MI Unsettled : ₹ ${(pendingCountListMemberWiseMonthly[index]) * 500} \nLoan Unsettled : ₹ ${pendingLoanAmountAllMembersPulledDB[index]}'),
 
@@ -44,7 +47,38 @@ class ScreenMembersPendingListView extends StatelessWidget {
           height: 10,
         );
       },
-      itemCount: 10,
+      itemCount: 12,
     );
+  }
+
+  String indexToUserName(int a) {
+    switch (a) {
+      case 0:
+        return 'adil';
+      case 1:
+        return 'akku';
+      case 2:
+        return 'cheppu';
+      case 3:
+        return 'dillu';
+      case 4:
+        return 'ismail';
+      case 5:
+        return 'jasim';
+      case 6:
+        return 'rishin';
+      case 7:
+        return 'sabith';
+      case 8:
+        return 'shammas';
+      case 9:
+        return 'sherbi';
+      case 10:
+        return 'sulfi';
+      case 11:
+        return 'vahab';
+      default:
+        return 'shammas';
+    }
   }
 }

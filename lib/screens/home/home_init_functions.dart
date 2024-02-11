@@ -8,10 +8,14 @@ import 'package:accountsb52z/functions/pendingCalculationsDb/monthly_pending_all
 import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
 
 Future<void> homeScreenInitFunctionsOrdered() async {
-  // Call your initialization functions here
-  await totPendingCountMemberWiseListMonthly(membersListLocal);
-  await calculateTotalBalanceFundWhole();
-  await totPendingCountMemberWiseListLoan(membersListLocal);
-  await getTotalBalanceFundDb();
-  await getTotalFundRecievedFromDb();
+  try {
+    // Call your initialization functions here
+    await totPendingCountMemberWiseListMonthly();
+    await calculateTotalBalanceFundWhole();
+    await totPendingCountMemberWiseListLoan(membersListLocal);
+    await getTotalBalanceFundDb();
+    await getTotalFundRecievedFromDb();
+  } catch (e) {
+    print("Error Catched (homeScreenInitFunctionsOrdered): $e");
+  }
 }

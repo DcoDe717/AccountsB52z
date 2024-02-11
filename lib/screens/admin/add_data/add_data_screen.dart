@@ -166,16 +166,16 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 print('both monthly and loan fields are selected');
 
                 await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
-                    "monthly_installments",
+                    "monthly_installment",
                     gSelectedMember,
-                    "ispaid",
+                    "ispaid_monthly",
                     numericValuesListMonthlyInstString,
                     commentsAddData);
 
                 await updateFSFieldsForLoanSelectedMonths(
-                    'loan_installments',
+                    'loan_installment',
                     gSelectedMember,
-                    'emi_months_status',
+                    'months_status_emi',
                     extractedIndexValueFromSelectedLoanMonths,
                     commentsAddData);
               } else {
@@ -185,9 +185,9 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                   print('only selected monthly fields');
 
                   await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
-                      "monthly_installments",
+                      "monthly_installment",
                       gSelectedMember,
-                      "ispaid",
+                      "ispaid_monthly",
                       numericValuesListMonthlyInstString,
                       commentsAddData);
                 } else {
@@ -196,9 +196,9 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                   print('only selected loan fields');
 
                   await updateFSFieldsForLoanSelectedMonths(
-                      'loan_installments',
+                      'loan_installment',
                       gSelectedMember,
-                      'emi_months_status',
+                      'months_status_emi',
                       extractedIndexValueFromSelectedLoanMonths,
                       commentsAddData);
                 }

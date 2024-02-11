@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "970197042536",
-    "project_id": "demothreewon",
-    "storage_bucket": "demothreewon.appspot.com"
+    "project_number": "433897922150",
+    "project_id": "accountsb52z",
+    "storage_bucket": "accountsb52z.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:970197042536:android:7802af9e7966e2874ac2dd",
+        "mobilesdk_app_id": "1:433897922150:android:63f8cc9dffabee595357a7",
         "android_client_info": {
           "package_name": "com.dcode717.accountsb52z"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDQo2BnQ3MGAerSEp5-eGqCQ8uaqANTxxw"
+          "current_key": "AIzaSyAviXBK1Kt0AXFuuJjBwqic9CTzaw3csXg"
         }
       ],
       "services": {

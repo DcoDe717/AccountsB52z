@@ -17,12 +17,29 @@ class _ScreenSplashState extends State<ScreenSplash> {
       future: homeScreenInitFunctionsOrdered(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return AlertDialog(
-            content: Row(
+          return Center(
+            child: Stack(
               children: [
-                LoadingAnimationWidget.dotsTriangle(color: Colors.black, size: 80),
-                const SizedBox(width: 16),
-                const Text("Loading...",style: TextStyle(fontSize: 25),),
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Colors.black), // Add border for visualization
+                  ),
+                  child: Image.asset(
+                    'assets/img/splash.png', // Replace 'assets/your_image.jpg' with your image path
+                    fit: BoxFit.cover, // Adjust the fit property as needed
+                  ),
+                ),
+                Positioned(
+                  bottom: MediaQuery.of(context).size.height / 3.5, // Adjust this value to position the indicator as per your requirement
+                  left: 0,
+                  right: 0,
+                  child: const Center(
+                    child: CircularProgressIndicator(), // Loading animation
+                  ),
+                ),
               ],
             ),
           );

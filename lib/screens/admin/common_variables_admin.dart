@@ -74,7 +74,7 @@ double loanAmountPulledFromDb = 0;
 // FutureBuilder<DocumentSnapshot> dbBuilderPendingMonths() {
 //   return FutureBuilder<DocumentSnapshot>(
 //     future: firestoreInstanceCall
-//         .collection('monthly_installments')
+//         .collection('monthly_installment')
 //         .doc(gSelectedMember)
 //         .get(),
 //     builder: (context, snapshot) {
@@ -85,9 +85,9 @@ double loanAmountPulledFromDb = 0;
 //       } else if (!snapshot.hasData || !snapshot.data!.exists) {
 //         return const Text('Document does not exist');
 //       } else {
-//         // Retrieve the "pending_months" field as a string
-//         pendindMonthsFromDbRaw = snapshot.data!['pending_months'];
-//         pendingMonthsCountFromDb = snapshot.data!['pending_months_count'];
+//         // Retrieve the "pending_months_monthly" field as a string
+//         pendindMonthsFromDbRaw = snapshot.data!['pending_months_monthly'];
+//         pendingMonthsCountFromDb = snapshot.data!['pending_months_count_monthly'];
 
 //         print("Pending months from db Raw : $pendindMonthsFromDbRaw");
 //         print("Pending months counts from db Raw: $pendingMonthsCountFromDb");

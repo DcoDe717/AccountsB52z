@@ -50,20 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC5B87oi7YsRKaVtwISQyZSWVvLzHbtWjY',
-    appId: '1:970197042536:web:2bbe232f769c19534ac2dd',
-    messagingSenderId: '970197042536',
-    projectId: 'demothreewon',
-    authDomain: 'demothreewon.firebaseapp.com',
-    storageBucket: 'demothreewon.appspot.com',
-    measurementId: 'G-YF7MBL2DW3',
+    apiKey: 'AIzaSyDkieWgLi-y6EZQX1zwFJCSIsASU747S14',
+    appId: '1:433897922150:web:4a5e2cdeb116cd465357a7',
+    messagingSenderId: '433897922150',
+    projectId: 'accountsb52z',
+    authDomain: 'accountsb52z.firebaseapp.com',
+    storageBucket: 'accountsb52z.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDQo2BnQ3MGAerSEp5-eGqCQ8uaqANTxxw',
-    appId: '1:970197042536:android:7802af9e7966e2874ac2dd',
-    messagingSenderId: '970197042536',
-    projectId: 'demothreewon',
-    storageBucket: 'demothreewon.appspot.com',
+    apiKey: 'AIzaSyAviXBK1Kt0AXFuuJjBwqic9CTzaw3csXg',
+    appId: '1:433897922150:android:63f8cc9dffabee595357a7',
+    messagingSenderId: '433897922150',
+    projectId: 'accountsb52z',
+    storageBucket: 'accountsb52z.appspot.com',
   );
 }

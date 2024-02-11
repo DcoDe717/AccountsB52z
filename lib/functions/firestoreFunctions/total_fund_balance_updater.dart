@@ -11,12 +11,12 @@ Future<void> calculateTotalBalanceFundWhole() async {
     
 
     final docSnapMonthly = await firestoreInstanceCall
-        .collection('monthly_installments')
-        .doc('total_doc_values')
+        .collection('monthly_installment')
+        .doc('total_doc_values_monthly')
         .get();
 
     final docSnapLoan = await firestoreInstanceCall
-        .collection('loan_installments')
+        .collection('loan_installment')
         .doc('total_doc_values_loan')
         .get();
 
@@ -31,7 +31,7 @@ Future<void> calculateTotalBalanceFundWhole() async {
     totalBalanceFund = monthlyTotalFund - loanTotalPendingFundPulledDB;
 
     final docRefLoan = firestoreInstanceCall
-        .collection('loan_installments')
+        .collection('loan_installment')
         .doc('total_doc_values_loan');
 
     await docRefLoan.set({

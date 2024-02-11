@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import '../admin_common_files.dart';
@@ -8,14 +7,18 @@ import '../admin_common_files.dart';
 void approvedMonthAndEMIMonthsListCreator() {
   // Timestamp times = Timestamp.now();
 
- // Create a list to store month strings
-List<String> monthsList = [];
+  // Create a list to store month strings
+  List<String> monthsList = [];
 
   // Replace this with your actual timestamp
   Timestamp timestampForLoanApproveScreen = Timestamp.now();
 
+  print('timestampForLoanApproveScreen : $timestampForLoanApproveScreen');
+
   // Convert Timestamp to DateTime
   DateTime dateTimeCoverted = timestampForLoanApproveScreen.toDate();
+
+  print('dateTimeCoverted : $dateTimeCoverted');
 
   // // Get the current month name and year from the DateTime object
   // String formattedDate = DateFormat('MMM y').format(dateTimeCoverted);
@@ -44,12 +47,11 @@ List<String> monthsList = [];
     monthsList.add(formattedMonth);
     // print(monthsList);
   }
+  print('monthsList : $monthsList');
 
   for (int i = 0; i < 10; i++) {
     emiMonthsListIndexValued[(i + 1).toString()] = monthsList[i];
   }
 
+  print('emiMonthsListIndexValued : $emiMonthsListIndexValued');
 }
-
-
-

@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../screens/global/global_variables.dart';
 
-// Update true of the ispaid list in DB with the index value selected, and comments / Timestamp
+// Update true for the ispaid_monthly list in DB with the index value selected, and comments / Timestamp
 Future<void> updateFSFieldsForLoanSelectedMonths(
     String collection,
     String document,

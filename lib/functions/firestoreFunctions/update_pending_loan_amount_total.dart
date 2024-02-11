@@ -7,10 +7,10 @@ Future<void> calculateTotalPendingLoanAmount() async {
   double totalEMIPending = 0;
 
   QuerySnapshot<Map<String, dynamic>> querySnapshot =
-      await firestoreInstanceCall.collection('loan_installments').get();
+      await firestoreInstanceCall.collection('loan_installment').get();
 
   final docRefe = firestoreInstanceCall
-      .collection('loan_installments')
+      .collection('loan_installment')
       .doc('total_doc_values_loan');
 
   List<QueryDocumentSnapshot<Map<String, dynamic>>> documents =

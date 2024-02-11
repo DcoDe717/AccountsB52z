@@ -7,7 +7,7 @@ Future<void> updatePendingMonthsAndCountMemberWiseMonthly(String documentId) asy
  
    // Get a reference to the specific document
   final DocumentReference monthlyInstallmentsDocument =
-      firestoreInstanceCall.collection('monthly_installments').doc(documentId);
+      firestoreInstanceCall.collection('monthly_installment').doc(documentId);
 
   try {
     // Fetch the specific document
@@ -19,11 +19,11 @@ Future<void> updatePendingMonthsAndCountMemberWiseMonthly(String documentId) asy
       final dataMap =
           monthlyInstallmentsSnapshot.data() as Map<String, dynamic>;
 
-      // Check if 'ispaid' field exists and is a map
-      if (dataMap.containsKey('ispaid') &&
-          dataMap['ispaid'] is Map<dynamic, dynamic>) {
-        // If 'ispaid' is a map, cast it to Map<dynamic, dynamic>
-        final ispaidMap = dataMap['ispaid'] as Map<dynamic, dynamic>;
+      // Check if 'ispaid_monthly' field exists and is a map
+      if (dataMap.containsKey('ispaid_monthly') &&
+          dataMap['ispaid_monthly'] is Map<dynamic, dynamic>) {
+        // If 'ispaid_monthly' is a map, cast it to Map<dynamic, dynamic>
+        final ispaidMap = dataMap['ispaid_monthly'] as Map<dynamic, dynamic>;
 
         // Iterate through the map and check the boolean values
         List<String> pendingMonths = [];
@@ -36,15 +36,15 @@ Future<void> updatePendingMonthsAndCountMemberWiseMonthly(String documentId) asy
         // Convert the list of index numbers to a comma-separated string
         String pendingMonthsString = pendingMonths.join(',');
 
-        // Create or update the 'pending_months' field in the document
+        // Create or update the 'pending_months_monthly' field in the document
         await monthlyInstallmentsDocument.set(
-          {'pending_months': pendingMonthsString},
+          {'pending_months_monthly': pendingMonthsString},
           SetOptions(merge: true),
         );
 
-        // Create or update the 'pending_months_count' field with the count of pending months
+        // Create or update the 'pending_months_count_monthly' field with the count of pending months
         await monthlyInstallmentsDocument.set(
-          {'pending_months_count': pendingMonths.length},
+          {'pending_months_count_monthly': pendingMonths.length},
           SetOptions(merge: true),
         );
       }

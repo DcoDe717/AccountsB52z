@@ -7,7 +7,7 @@ Future<void> updatePendingMonthsAndAmountMemberWiseLoan(
     String documentId) async {
   // Get a reference to the specific document
   final DocumentReference loanInstallmentsDocument =
-      firestoreInstanceCall.collection('loan_installments').doc(documentId);
+      firestoreInstanceCall.collection('loan_installment').doc(documentId);
 
   double singleEmiAmount = 0;
 
@@ -21,12 +21,12 @@ Future<void> updatePendingMonthsAndAmountMemberWiseLoan(
       // Explicitly cast snapshot.data() to Map<String, dynamic>
       final dataMap = loanDocSnapshot.data() as Map<String, dynamic>;
 
-      // Check if 'emi_months_status' field exists and is a map
-      if (dataMap.containsKey('emi_months_status') &&
-          dataMap['emi_months_status'] is Map<dynamic, dynamic>) {
-        // If 'emi_months_status' is a map, cast it to Map<dynamic, dynamic>
+      // Check if 'months_status_emi' field exists and is a map
+      if (dataMap.containsKey('months_status_emi') &&
+          dataMap['months_status_emi'] is Map<dynamic, dynamic>) {
+        // If 'months_status_emi' is a map, cast it to Map<dynamic, dynamic>
         final emiMonthsMap =
-            dataMap['emi_months_status'] as Map<dynamic, dynamic>;
+            dataMap['months_status_emi'] as Map<dynamic, dynamic>;
 
         // Iterate through the map and check the boolean values
         int pendingMonthsCount = 0;
@@ -36,7 +36,7 @@ Future<void> updatePendingMonthsAndAmountMemberWiseLoan(
           }
         });
 
-        // Create or update the 'pending_months' field in the document
+        // Create or update the 'pending_months_monthly' field in the document
         await loanInstallmentsDocument.set(
           {'loan_amount_pending_to_pay': singleEmiAmount*pendingMonthsCount},
           SetOptions(merge: true),

@@ -43,6 +43,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   google_fonts: ^6.1.0
   line_icons: ^2.0.3
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,8 @@ flutter:
     - assets/img/b52z_logo_01.jpg
     - assets/img/login_art.png
     - assets/img/dp_01.jpg
+    - assets/img/splash.png
+    - assets/img/dp/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

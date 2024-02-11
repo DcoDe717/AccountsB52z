@@ -7,9 +7,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> countPendingLoanAmountMemberWise(String? memberName) async {
   // Reference to the Firestore collection and document
-  // CollectionReference loanStatusCollection = FirebaseFirestore.instance.collection('loan_installments');
+  // CollectionReference loanStatusCollection = FirebaseFirestore.instance.collection('loan_installment');
   DocumentReference documentRef =
-      firestoreInstanceCall.collection('loan_installments').doc(memberName);
+      firestoreInstanceCall.collection('loan_installment').doc(memberName);
 
   // variable to store loan amount to calculate pending loan amount payment
   double loanAmountRetrieved = 0;
@@ -32,7 +32,7 @@ Future<void> countPendingLoanAmountMemberWise(String? memberName) async {
 
       if (dataFromDocument != null) {
         Map<String, dynamic> emiStatusMap =
-            dataFromDocument['emi_months_status'] as Map<String, dynamic>? ??
+            dataFromDocument['months_status_emi'] as Map<String, dynamic>? ??
                 {};
         // Now you can work with emiStatusMap
 

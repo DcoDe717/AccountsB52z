@@ -6,7 +6,7 @@ Future<void> getTotalBalanceFundDb() async {
   // int totaltruecountholder = 0;
 
   final DocumentReference docTotal = firestoreInstanceCall
-      .collection('loan_installments')
+      .collection('loan_installment')
       .doc('total_doc_values_loan');
 
   DocumentSnapshot docTotalSnapshot = await docTotal.get();

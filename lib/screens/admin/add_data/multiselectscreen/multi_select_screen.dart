@@ -23,7 +23,7 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
   Future<DocumentSnapshot> getMonthlyInstallments() async {
     try {
       return await firestoreInstanceCall
-          .collection('monthly_installments')
+          .collection('monthly_installment')
           .doc(gSelectedMember)
           .get();
     } catch (e) {
@@ -36,7 +36,7 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
   Future<DocumentSnapshot> getLoanInstallments() async {
     try {
       return await firestoreInstanceCall
-          .collection('loan_installments')
+          .collection('loan_installment')
           .doc(gSelectedMember)
           .get();
     } catch (e) {
@@ -120,7 +120,7 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
           } else {
             // Retrieve the data from the snapshot
             pendingMonthlyMonthsFromDbRaw =
-                monthlyInstallmentsDocSnapshot['pending_months'];
+                monthlyInstallmentsDocSnapshot['pending_months_monthly'];
 
             print(
                 "Pending months from db Raw : $pendingMonthlyMonthsFromDbRaw");
@@ -158,7 +158,7 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
             else {
               print('isloanactive value: $isLoanActive');
               Map<String, dynamic> loanPendingMonthsFalseListIndex =
-                  loanInstallmentsDocSnapshot['emi_months_status'];
+                  loanInstallmentsDocSnapshot['months_status_emi'];
 
               // Clearing the old values stored before the list updation process.
               loanPendingFalseList = [];

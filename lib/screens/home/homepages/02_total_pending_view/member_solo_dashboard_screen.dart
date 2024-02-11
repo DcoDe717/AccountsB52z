@@ -13,7 +13,7 @@ class _ScreenUserPendingViewState extends State<ScreenUserPendingView> {
   // Replace with your actual user data
   String userName = userNameGlobal.toUpperCase();
   String userDpPath =
-      "assets/img/dp_01.jpg"; // Placeholder, replace with your image
+      "assets/img/dp/$userNameGlobal.PNG"; // Placeholder, replace with your image
   // double monthlyEmidue = switchCaseRetrievedValueMonthly;
   // double loanEmidue = switchCaseRetrievedValueLoan;
 
@@ -58,7 +58,7 @@ class _ScreenUserPendingViewState extends State<ScreenUserPendingView> {
                 ),
               ],
             ),
-            _buildCard02(totalSwitchCaseMonthlyPlusLoan)
+            _buildCardDueAmount(totalSwitchCaseMonthlyPlusLoan)
           ],
         ),
       ),
@@ -98,9 +98,9 @@ class _ScreenUserPendingViewState extends State<ScreenUserPendingView> {
     );
   }
 
-  Widget _buildCard02(double amount) {
+Widget _buildCardDueAmount(double amount) {
     return Card(
-      color: Colors.redAccent, // Customizable background color
+      color: amount == 0 ? Colors.green : Colors.redAccent, // Customizable background color
       elevation: 4.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       margin: const EdgeInsets.all(10.0),

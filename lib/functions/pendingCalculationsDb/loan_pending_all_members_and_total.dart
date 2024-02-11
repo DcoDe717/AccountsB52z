@@ -9,7 +9,7 @@ Future<double> totPendingCountMemberWiseListLoan(List<String> members) async {
 
   for (String nameMember in members) {
     final DocumentReference docTotal =
-        firestoreInstanceCall.collection('loan_installments').doc(nameMember);
+        firestoreInstanceCall.collection('loan_installment').doc(nameMember);
 
     DocumentSnapshot docTotalSnapshot = await docTotal.get();
 

@@ -7,7 +7,7 @@ Future<void> isLoanActiveUpdater(String documentId) async {
   int falseCounter = 0;
   // Get a reference to the specific document
   final DocumentReference loanDocRef =
-      firestoreInstanceCall.collection('loan_installments').doc(documentId);
+      firestoreInstanceCall.collection('loan_installment').doc(documentId);
 
   try {
     // Fetch the specific document
@@ -18,10 +18,10 @@ Future<void> isLoanActiveUpdater(String documentId) async {
       final dataMap = loanDocSnapshot.data() as Map<String, dynamic>;
 
       // Check if 'ispaid' field exists and is a map
-      if (dataMap.containsKey('emi_months_status') &&
-          dataMap['emi_months_status'] is Map<dynamic, dynamic>) {
+      if (dataMap.containsKey('months_status_emi') &&
+          dataMap['months_status_emi'] is Map<dynamic, dynamic>) {
         // If 'ispaid' is a map, cast it to Map<dynamic, dynamic>
-        final ispaidMap = dataMap['emi_months_status'] as Map<dynamic, dynamic>;
+        final ispaidMap = dataMap['months_status_emi'] as Map<dynamic, dynamic>;
 
         // Iterate through the map and check the any false count values
 
@@ -44,6 +44,6 @@ Future<void> isLoanActiveUpdater(String documentId) async {
     }
   } catch (error) {
     // Handle errors
-    print('Error getting document $documentId: $error');
+    print('Error getting document (function: isLoanActiveUpdater) $documentId: $error');
   }
 }

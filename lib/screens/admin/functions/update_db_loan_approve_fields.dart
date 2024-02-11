@@ -18,14 +18,14 @@ Future<void> updateApprovedMonthDateAndEmiList() async {
   final DocumentReference
       documentReferenceInsideupdateApprovedMonthDateAndEmiList =
       firestoreInstanceCall
-          .collection('loan_installments')
+          .collection('loan_installment')
           .doc(selectedDropdownValueAdmin);
 
   await documentReferenceInsideupdateApprovedMonthDateAndEmiList.set(
     {
-      'emi_months_status': emiStatusInitializer,
+      'months_status_emi': emiStatusInitializer,
       'approved_month_timestamp': Timestamp.now(),
-      'emi_months': emiMonthsListIndexValued
+      'months_emi': emiMonthsListIndexValued
     },
     SetOptions(merge: true),
   );

@@ -24,7 +24,7 @@ Future<void> checkForAdminRightsAndNavigateSplashScreen(
   }
 
   // Home Init funtions called
-  await homeScreenInitFunctionsOrdered();
+  // await homeScreenInitFunctionsOrdered();
 
   // Close loading popup before navigating to splash screen
   hideLoadingPopup(contextInside);
@@ -34,7 +34,7 @@ Future<void> checkForAdminRightsAndNavigateSplashScreen(
   Navigator.pushAndRemoveUntil(
       contextInside,
       MaterialPageRoute(
-        builder: (context) => const ScreenHome(),
+        builder: (context) => const ScreenSplash(),
       ),
       (route) => false);
 }

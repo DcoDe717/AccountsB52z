@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 Future<void> retrieveEmiMonthNamesLoan(List<String> keysToAccess) async {
   // Collection reference
   CollectionReference loanStatusCollection =
-      firestoreInstanceCall.collection('loan_installments');
+      firestoreInstanceCall.collection('loan_installment');
 
   falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect.clear();
 
@@ -38,10 +38,10 @@ Future<void> retrieveEmiMonthNamesLoan(List<String> keysToAccess) async {
     for (var key in keysToAccess) {
       // Check if the key exists in the map
       if (monthsNameListRetrievedFromDB != null &&
-          monthsNameListRetrievedFromDB['emi_months'] != null &&
-          monthsNameListRetrievedFromDB['emi_months'][key.toString()] != null) {
+          monthsNameListRetrievedFromDB['months_emi'] != null &&
+          monthsNameListRetrievedFromDB['months_emi'][key.toString()] != null) {
         falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect.add(
-            '${monthsNameListRetrievedFromDB['emi_months'][key.toString()]} | $key');
+            '${monthsNameListRetrievedFromDB['months_emi'][key.toString()]} | $key');
 
         print(falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect);
       } else {

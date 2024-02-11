@@ -8,8 +8,8 @@ Future<void> getTotalFundRecievedFromDb() async {
   // int totaltruecountholder = 0;
 
   final DocumentReference docTotal = firestoreInstanceCall
-      .collection('monthly_installments')
-      .doc('total_doc_values');
+      .collection('monthly_installment')
+      .doc('total_doc_values_monthly');
 
   DocumentSnapshot docTotalSnapshot = await docTotal.get();
 
