@@ -7,7 +7,6 @@ String commentsAddData = '';
 // Variables to check the Loan approval process is success or not, for updating remaining fields
 bool loanApprovalProcessTrueCheck = false;
 
-
 String loanAmountTextFromTextController = '';
 String commentsTextFromTextControllerLoanApproveScreen = '';
 double? loanAmountParsed;

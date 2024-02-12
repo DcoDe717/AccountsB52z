@@ -69,7 +69,6 @@ Future<void> dataLoopAddDbEntryMemberWiseOrFull() async {
   //   // Format the month and year as 'Jan 2022', 'Feb 2022', etc.
   //   return '${getMonthAbbreviation(month)} $year';
   // }
- 
 
   for (var i = 1; i < 12; i++) {
     for (idx = 1; idx < 48; idx++) {

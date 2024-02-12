@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,6 @@ class _ScreenUserPendingViewState extends State<ScreenUserPendingView> {
   String userName = userNameGlobal.toUpperCase();
   String userDpPath =
       "assets/img/dp/$userNameGlobal.PNG"; // Placeholder, replace with your image
-
 
   @override
   Widget build(BuildContext context) {
@@ -95,9 +96,11 @@ class _ScreenUserPendingViewState extends State<ScreenUserPendingView> {
     );
   }
 
-Widget _buildCardDueAmount(double amount) {
+  Widget _buildCardDueAmount(double amount) {
     return Card(
-      color: amount == 0 ? Colors.green : Colors.redAccent, // Customizable background color
+      color: amount == 0
+          ? Colors.green
+          : Colors.redAccent, // Customizable background color
       elevation: 4.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       margin: const EdgeInsets.all(10.0),
@@ -160,6 +163,4 @@ Widget _buildCardDueAmount(double amount) {
       ),
     );
   }
-
-
 }

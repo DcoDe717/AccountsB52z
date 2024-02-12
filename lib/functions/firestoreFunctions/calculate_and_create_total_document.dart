@@ -7,7 +7,8 @@ Future<void> calculateAndCreateTotalDocument() async {
       firestoreInstanceCall.collection('monthly_installment');
 
   // Fetch all documents from the "monthly_installment" collection
-  QuerySnapshot monthlyInstallmentsAllDocs = await dbCallCollectionDocuments.get();
+  QuerySnapshot monthlyInstallmentsAllDocs =
+      await dbCallCollectionDocuments.get();
 
   // Calculate the total number of ispaid_monthly fields with value true
   int totalTrueCount = 0;

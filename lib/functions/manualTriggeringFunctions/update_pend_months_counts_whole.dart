@@ -34,7 +34,8 @@ Future<void> updatePendingMonthsAndCountWhole() async {
 
       // Create or update the 'pending_months_monthly' field in the document
       await monthlyInstallmentsCollection.doc(doc.id).set(
-          {'pending_months_monthly': pendingMonthsString}, SetOptions(merge: true));
+          {'pending_months_monthly': pendingMonthsString},
+          SetOptions(merge: true));
 
       // Create or update the 'pending_months_count_monthly' field with the count of pending months
       await monthlyInstallmentsCollection.doc(doc.id).set(

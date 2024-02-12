@@ -8,22 +8,21 @@ class ScreenMembersPendingListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            decoration: const BoxDecoration(
-                ),
+            decoration: const BoxDecoration(),
             child: listviewMembersUnsettled()));
   }
 
   Widget listviewMembersUnsettled() {
     return ListView.separated(
       itemBuilder: (ctx, index) {
-
         String listTileLoopUserName = indexToUserName(index);
         return Card(
           child: ListTile(
             contentPadding: const EdgeInsets.all(10),
-            leading:  CircleAvatar(
-                backgroundImage: AssetImage("assets/img/dp/$listTileLoopUserName.PNG"),
-                ),
+            leading: CircleAvatar(
+              backgroundImage:
+                  AssetImage("assets/img/dp/$listTileLoopUserName.PNG"),
+            ),
             title: Text(listviewMembersList[index]),
             subtitle: Text(
                 'Total Unsettled : ₹ ${((pendingCountListMemberWiseMonthly[index]) * 500) + (pendingLoanAmountAllMembersPulledDB[index])} '),

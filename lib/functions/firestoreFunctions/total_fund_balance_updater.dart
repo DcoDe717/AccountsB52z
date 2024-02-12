@@ -4,11 +4,10 @@ import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> calculateTotalBalanceFundWhole() async {   
+Future<void> calculateTotalBalanceFundWhole() async {
   try {
     double totalBalanceFund = 0;
     double monthlyTotalFund = 0;
-    
 
     final docSnapMonthly = await firestoreInstanceCall
         .collection('monthly_installment')
@@ -21,11 +20,14 @@ Future<void> calculateTotalBalanceFundWhole() async {
         .get();
 
     if (docSnapMonthly.exists) {
-      monthlyTotalFund = (docSnapMonthly['balance_fund_from_true_count_monthly'] ?? 0).toDouble();
+      monthlyTotalFund =
+          (docSnapMonthly['balance_fund_from_true_count_monthly'] ?? 0)
+              .toDouble();
     }
 
     if (docSnapLoan.exists) {
-      loanTotalPendingFundPulledDB = (docSnapLoan['total_loan_pending_all_members'] ?? 0).toDouble();
+      loanTotalPendingFundPulledDB =
+          (docSnapLoan['total_loan_pending_all_members'] ?? 0).toDouble();
     }
 
     totalBalanceFund = monthlyTotalFund - loanTotalPendingFundPulledDB;
@@ -36,7 +38,7 @@ Future<void> calculateTotalBalanceFundWhole() async {
 
     await docRefLoan.set({
       'total_balance_fund_whole': totalBalanceFund,
-    },SetOptions(merge: true));
+    }, SetOptions(merge: true));
 
     print('total_balance_fund_whole : $totalBalanceFund');
   } catch (e, stackTrace) {

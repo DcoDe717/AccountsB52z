@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 void loanAmountIsEmptyPopup(BuildContext context) {
-  
   showDialog(
     context: context,
     barrierDismissible: false,

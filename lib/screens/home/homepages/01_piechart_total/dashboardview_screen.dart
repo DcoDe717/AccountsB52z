@@ -23,9 +23,7 @@ class _ScreenHomeDashboardState extends State<ScreenHomeDashboard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 Image.asset('assets/img/b52z_logo_01.jpg', width: 140.0),
-
               ],
             ),
             const SizedBox(height: 20.0), // Adjust spacing as needed
@@ -37,13 +35,11 @@ class _ScreenHomeDashboardState extends State<ScreenHomeDashboard> {
                   title: 'Balance Fund', // Consider this alternative
                   amount: balanceFundTotalPulledFromDB,
                 ),
-
                 _buildCard(
                   color: const Color(0xFFf2f2f2), // Customizable accent color
                   title: 'Tot. Fund Recieved', // Alternative
                   amount: totalFundRecievedPulledFromDB,
                 ),
-
                 _buildCard(
                   color: const Color(0xFFf2f2f2), // Customizable accent color
                   title: 'Tot. Fund Expected', // Alternative
@@ -96,7 +92,9 @@ class _ScreenHomeDashboardState extends State<ScreenHomeDashboard> {
 
   Widget _buildCardDueAmount(double amount) {
     return Card(
-      color: amount == 0 ? Colors.green : Colors.redAccent,// Customizable background color
+      color: amount == 0
+          ? Colors.green
+          : Colors.redAccent, // Customizable background color
       elevation: 4.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       margin: const EdgeInsets.all(10.0),

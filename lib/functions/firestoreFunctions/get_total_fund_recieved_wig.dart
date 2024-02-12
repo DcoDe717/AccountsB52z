@@ -20,5 +20,5 @@ Future<void> getTotalFundRecievedFromDb() async {
   totalFundExpectedCalculatedLocal = balanceFundTotalPulledFromDB +
       totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
 
-      switchcaseNameToValueRetrievelFuction(userNameGlobal);
+  switchcaseNameToValueRetrievelFuction(userNameGlobal);
 }

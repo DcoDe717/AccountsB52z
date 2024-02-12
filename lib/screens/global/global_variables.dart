@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 String gSelectedMember = '';
 double amountModifierAddEntryPageLocal = 0;
@@ -15,3 +16,6 @@ List<String> extractedIndexValueFromSelectedLoanMonths = [];
 
 // Variable for drop down value displayed in Add New Entry Screen
 String? selectedDropdownValueAddEntry;
+
+// Create a navigator key
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

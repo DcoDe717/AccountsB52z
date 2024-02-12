@@ -16,15 +16,10 @@ class ScreenLoanApprove extends StatefulWidget {
 }
 
 class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
-
-
   @override
   void initState() {
     super.initState();
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {

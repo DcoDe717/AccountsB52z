@@ -13,11 +13,12 @@ Future<double> totPendingCountMemberWiseListLoan(List<String> members) async {
 
     DocumentSnapshot docTotalSnapshot = await docTotal.get();
 
-      // Check if the field 'loan_amount_pending_to_pay' exists in the document
-  Map<String, dynamic>? docCollectionMapped = docTotalSnapshot.data() as Map<String, dynamic>?;
+    // Check if the field 'loan_amount_pending_to_pay' exists in the document
+    Map<String, dynamic>? docCollectionMapped =
+        docTotalSnapshot.data() as Map<String, dynamic>?;
 
-
-    if (docCollectionMapped != null && docCollectionMapped.containsKey('loan_amount_pending_to_pay')) {
+    if (docCollectionMapped != null &&
+        docCollectionMapped.containsKey('loan_amount_pending_to_pay')) {
       double storePendingLoanAmountMemberWise =
           (docTotalSnapshot['loan_amount_pending_to_pay']).toDouble();
       print(

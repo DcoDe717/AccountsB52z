@@ -44,6 +44,7 @@ Future<void> isLoanActiveUpdater(String documentId) async {
     }
   } catch (error) {
     // Handle errors
-    print('Error getting document (function: isLoanActiveUpdater) $documentId: $error');
+    print(
+        'Error getting document (function: isLoanActiveUpdater) $documentId: $error');
   }
 }

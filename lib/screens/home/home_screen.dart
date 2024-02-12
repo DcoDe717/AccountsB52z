@@ -32,10 +32,7 @@ class _ScreenHomeState extends State<ScreenHome> {
   @override
   void initState() {
     super.initState();
-
   }
-
-
 
   void _onItemTapped(int index) {
     setState(() {
@@ -71,10 +68,8 @@ class _ScreenHomeState extends State<ScreenHome> {
         if (value == 0 || value == 1 || value == 2) {
           _onItemTapped(value);
         }
-
       },
       currentIndex: _selectedNavIndex,
-
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed,

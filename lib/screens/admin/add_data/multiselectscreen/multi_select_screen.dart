@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
-
 import 'package:accountsb52z/screens/admin/add_data/functions/onpressed_functions_collection_entry_field_submit.dart';
 import 'package:accountsb52z/screens/admin/add_data/functions/retrieve_emi_month_names.dart';
 import 'package:accountsb52z/screens/admin/add_data/functions/state_clear_add_entry.dart';
@@ -15,22 +14,17 @@ import 'package:flutter/material.dart';
 import 'package:multiselect_dropdown_flutter/multiselect_dropdown_flutter.dart';
 
 class MultiSelectScreenAddEntry extends StatefulWidget {
-
-
   const MultiSelectScreenAddEntry({Key? key}) : super(key: key);
 
   @override
-  State<MultiSelectScreenAddEntry> createState() => _MultiSelectScreenAddEntryState();
+  State<MultiSelectScreenAddEntry> createState() =>
+      _MultiSelectScreenAddEntryState();
 }
 
 class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
-
-
-
-   @override
+  @override
   void initState() {
     super.initState();
- 
   }
 
   Future<DocumentSnapshot> getMonthlyInstallments() async {
@@ -71,7 +65,6 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
         if (snapshots.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshots.hasError) {
-
           return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             const Text('Error fetching data.',
                 style:
@@ -223,7 +216,7 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                                   newList;
                               print(
                                   "Multi select items : $gSelectedMonthsMonthlyInstallmentsMultiSelect");
-                      
+
                               // your logic
                             },
                             includeSearch: true,
@@ -232,8 +225,8 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                             width: 150,
                             boxDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: Colors
-                                  .deepPurple.shade100, // Change color as needed
+                              color: Colors.deepPurple
+                                  .shade100, // Change color as needed
                               border: Border.all(
                                 color: Colors.deepPurpleAccent,
                                 width: 2.0,
@@ -262,7 +255,7 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                                   newList;
                               print(
                                   "gSelectedMonthsLoanInstallmentsMultiSelect : $gSelectedMonthsLoanInstallmentsMultiSelect");
-                      
+
                               // your logic
                             },
                             includeSearch: true,
@@ -271,8 +264,8 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                             width: 150,
                             boxDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: Colors
-                                  .deepPurple.shade100, // Change color as needed
+                              color: Colors.deepPurple
+                                  .shade100, // Change color as needed
                               border: Border.all(
                                 color: Colors.deepPurpleAccent,
                                 width: 2.0,
@@ -293,7 +286,7 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                           FilledButton.icon(
                               onPressed: () {
                                 onpressedSelectEntryFieldSubmitFunctionsCollection();
-                      
+
                                 // Navigate using push to get the refreshed screen of Screen Add Data
                                 Navigator.of(context).pop('done');
                               },

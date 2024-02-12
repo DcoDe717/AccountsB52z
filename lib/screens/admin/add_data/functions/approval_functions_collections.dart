@@ -6,8 +6,6 @@ import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:accountsb52z/screens/global/utils/common_converters.dart';
 
 Future<void> onPressedFunctionsCallForMonthly() async {
-
-
   // Calling funtion to create index number list from selected months list
   numericValuesListMonthlyInst =
       reverseMonthNameList(gSelectedMonthsMonthlyInstallmentsMultiSelect);

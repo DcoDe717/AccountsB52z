@@ -32,7 +32,8 @@ class _ScreenSplashState extends State<ScreenSplash> {
                   ),
                 ),
                 Positioned(
-                  bottom: MediaQuery.of(context).size.height / 3.5, // Adjust this value to position the indicator as per your requirement
+                  bottom: MediaQuery.of(context).size.height /
+                      3.5, // Adjust this value to position the indicator as per your requirement
                   left: 0,
                   right: 0,
                   child: const Center(

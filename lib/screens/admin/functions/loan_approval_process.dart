@@ -73,8 +73,6 @@ Future<void> loanApprovalProcess(
             print(
                 'commentsTextControllerLoanApproveScreen.text.trim() :  $commentsTextFromTextControllerLoanApproveScreen');
 
-            
-
             // Create or update the required fields in the document for loan approval
             await documentReferenceInsideCheckLoanActiveFunction.set(
               {

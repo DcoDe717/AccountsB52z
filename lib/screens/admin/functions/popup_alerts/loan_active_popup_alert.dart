@@ -2,8 +2,7 @@ import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-void showLoanActiveCheckTruePopup(
-    BuildContext context, String? memberName) {
+void showLoanActiveCheckTruePopup(BuildContext context, String? memberName) {
   showDialog(
     context: context,
     barrierDismissible: false,

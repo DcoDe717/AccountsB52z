@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
-
 import 'package:accountsb52z/functions/firestoreFunctions/update_fs_fields_for_loan_selected_months.dart';
 import 'package:accountsb52z/functions/firestoreFunctions/update_fs_fields_from_selected_months_monthly.dart';
 import 'package:accountsb52z/screens/admin/add_data/functions/state_clear_add_entry.dart';
@@ -36,7 +35,6 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     gSelectedMonthsMonthlyInstallmentsMultiSelect.clear();
     gSelectedMonthsLoanInstallmentsMultiSelect.clear();
   }
-
 
   @override
   void dispose() {
@@ -255,12 +253,9 @@ class _ScreenAddDataState extends State<ScreenAddData> {
         children: [
           ElevatedButton.icon(
               onPressed: () {
-
-
                 gSelectedMember = chosenMemberAddEntryDropdown;
 
                 goToMultiSelecScreenForAmountUpdate();
-
               },
               icon: const Icon(Icons.arrow_right),
               label: const Text('Select Entry Fields')),

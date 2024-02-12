@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:developer';
-
 import 'package:accountsb52z/screens/admin/admin_common_files.dart';
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/login/functions/authentication_function.dart';

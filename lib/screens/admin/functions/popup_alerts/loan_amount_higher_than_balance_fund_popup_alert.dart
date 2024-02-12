@@ -1,9 +1,7 @@
 import 'package:accountsb52z/screens/admin/admin_common_files.dart';
 import 'package:flutter/material.dart';
 
-
-void showLoanAmountIsHigherThanBalancePopup(
-    BuildContext context) {
+void showLoanAmountIsHigherThanBalancePopup(BuildContext context) {
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -39,5 +37,4 @@ void showLoanAmountIsHigherThanBalancePopup(
       );
     },
   );
-
 }

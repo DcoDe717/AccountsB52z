@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
+import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:accountsb52z/screens/login/login_screen_new.dart';
 import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -42,9 +45,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // Create a navigator key for the root class
-  static final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
   late Timer _idleTimer;
   @override
   void initState() {

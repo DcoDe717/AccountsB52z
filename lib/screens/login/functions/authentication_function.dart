@@ -14,7 +14,7 @@ Future<void> loginAuthentication(
   } else {
     // Show loading popup when starting the long process
     showLoadingPopup(passedCTX);
-    
+
     // Call firebase instance
     DocumentReference documentRef =
         firestoreInstanceCall.collection('authy_simple').doc(usernameLocal);
@@ -28,10 +28,10 @@ Future<void> loginAuthentication(
         if (documentSnapshot['cred_key'] == passwordLocal) {
           print('password is matching');
 
-        checkForAdminRightsAndNavigateSplashScreen(passedCTX, usernameLocal);
-      } else {
-        // Close loading popup before showing the wrong password alert
-        hideLoadingPopup(passedCTX);
+          checkForAdminRightsAndNavigateSplashScreen(passedCTX, usernameLocal);
+        } else {
+          // Close loading popup before showing the wrong password alert
+          hideLoadingPopup(passedCTX);
 
           print('password is wrong');
 
@@ -51,6 +51,6 @@ Future<void> loginAuthentication(
 
       // Close loading popup in case of an error
       hideLoadingPopup(passedCTX);
-          }
+    }
   }
 }

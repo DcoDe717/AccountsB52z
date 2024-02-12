@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 void selectAnyMemberPopupForLoanApproval(BuildContext context) {
-  
   showDialog(
     context: context,
     barrierDismissible: false,

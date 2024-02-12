@@ -4,8 +4,6 @@ import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../screens/global/global_variables.dart';
 
-
-
 Future<void> updateFSFieldsFromSelectedMonthsMonthlyInstTest(
     String collection,
     String document,
@@ -25,7 +23,8 @@ Future<void> updateFSFieldsFromSelectedMonthsMonthlyInstTest(
       // Use update method to update specific field and store the future in the list
       Future<void> updateOperation = documentReference.update({
         '$field.$parsedIndex': true,
-        'commentsMonthly.$parsedIndex': 'Added by $userNameGlobal | $commentsDown',
+        'commentsMonthly.$parsedIndex':
+            'Added by $userNameGlobal | $commentsDown',
         'dateTimeMonthly.$parsedIndex': Timestamp.now(),
       });
       updateOperations.add(updateOperation);
@@ -41,4 +40,3 @@ Future<void> updateFSFieldsFromSelectedMonthsMonthlyInstTest(
   // Now, you can execute the additional function
   await calculateAndCreateTotalDocument();
 }
-

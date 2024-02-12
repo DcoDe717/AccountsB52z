@@ -31,14 +31,14 @@ Future<void> updatePendingMonthsAndAmountMemberWiseLoan(
         // Iterate through the map and check the boolean values
         int pendingMonthsCount = 0;
         emiMonthsMap.forEach((key, value) {
-          if (value is bool && value== false) {
+          if (value is bool && value == false) {
             pendingMonthsCount++;
           }
         });
 
         // Create or update the 'pending_months_monthly' field in the document
         await loanInstallmentsDocument.set(
-          {'loan_amount_pending_to_pay': singleEmiAmount*pendingMonthsCount},
+          {'loan_amount_pending_to_pay': singleEmiAmount * pendingMonthsCount},
           SetOptions(merge: true),
         );
       }
