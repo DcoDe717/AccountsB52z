@@ -15,6 +15,9 @@ Future<void> checkForAdminRightsAndNavigateSplashScreen(
 
   DocumentSnapshot documentSnapshot = await documentRef.get();
 
+  // Calling mounted check for BuildContext async warning after the await function.
+  if (!contextInside.mounted) return;
+
   if (documentSnapshot['is_admin'] == true) {
     loggedUserAdminCheck = true;
     print('$userNameLocalInside is admin');

@@ -34,6 +34,9 @@ Future<void> loanApprovalProcess(
     final DocumentSnapshot snapshot =
         await documentReferenceInsideCheckLoanActiveFunction.get();
 
+    // Calling mounted check for BuildContext async warning after the await function.
+    if (!ctxCheckLoanActive.mounted) return;
+
     // Check if the document exists and 'isActive' is true / level 0 (if)
     if (snapshot.exists &&
         (snapshot.data() as Map<String, dynamic>)['is_loan_active'] == true) {
@@ -89,6 +92,9 @@ Future<void> loanApprovalProcess(
             await updateApprovedMonthDateAndEmiList();
             await calculateTotalPendingLoanAmount();
             await calculateTotalBalanceFundWhole();
+
+            // Calling mounted check for BuildContext async warning after the await function.
+            if (!ctxCheckLoanActive.mounted) return;
 
             // Close loading popup before another alert box
             hideLoadingPopup(ctxCheckLoanActive);

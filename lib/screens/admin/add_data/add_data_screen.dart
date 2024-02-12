@@ -216,6 +216,9 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 stateClearAddEnrtyScreen();
               });
 
+              // Calling mounted check for BuildContext async warning after the await function.
+              if (!context.mounted) return;
+
               // Close loading popup before navigating
               hideLoadingPopup(context);
 

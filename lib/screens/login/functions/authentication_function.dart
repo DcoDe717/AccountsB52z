@@ -22,6 +22,9 @@ Future<void> loginAuthentication(
     try {
       DocumentSnapshot documentSnapshot = await documentRef.get();
 
+      // Calling mounted check for BuildContext async warning after the await function.
+      if (!passedCTX.mounted) return;
+
       if (documentSnapshot.exists) {
         print('Document with username $usernameLocal exists.');
 
