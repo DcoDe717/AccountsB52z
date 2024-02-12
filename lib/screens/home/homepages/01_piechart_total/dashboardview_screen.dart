@@ -23,12 +23,9 @@ class _ScreenHomeDashboardState extends State<ScreenHomeDashboard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Customize logo
+
                 Image.asset('assets/img/b52z_logo_01.jpg', width: 140.0),
-                // IconButton(
-                //   onPressed: () {}, // Handle settings tap
-                //   icon: const Icon(Icons.settings),
-                // ),
+
               ],
             ),
             const SizedBox(height: 20.0), // Adjust spacing as needed
@@ -40,14 +37,13 @@ class _ScreenHomeDashboardState extends State<ScreenHomeDashboard> {
                   title: 'Balance Fund', // Consider this alternative
                   amount: balanceFundTotalPulledFromDB,
                 ),
-                // const SizedBox(width: 20.0),
+
                 _buildCard(
                   color: const Color(0xFFf2f2f2), // Customizable accent color
                   title: 'Tot. Fund Recieved', // Alternative
                   amount: totalFundRecievedPulledFromDB,
                 ),
-                // Adjust spacing as needed
-                // const SizedBox(height: 20.0),
+
                 _buildCard(
                   color: const Color(0xFFf2f2f2), // Customizable accent color
                   title: 'Tot. Fund Expected', // Alternative

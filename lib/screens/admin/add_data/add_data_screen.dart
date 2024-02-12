@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:async';
+
 import 'package:accountsb52z/functions/firestoreFunctions/update_fs_fields_for_loan_selected_months.dart';
 import 'package:accountsb52z/functions/firestoreFunctions/update_fs_fields_from_selected_months_monthly.dart';
 import 'package:accountsb52z/screens/admin/add_data/functions/state_clear_add_entry.dart';
@@ -22,16 +24,19 @@ class ScreenAddData extends StatefulWidget {
 }
 
 class _ScreenAddDataState extends State<ScreenAddData> {
+  // late Timer _idleTimer;
   final commentsTextControllerAddDataScreen = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    // _startIdleTimer();
     // Initialize variables here
     chosenMemberAddEntryDropdown = '';
     gSelectedMonthsMonthlyInstallmentsMultiSelect.clear();
     gSelectedMonthsLoanInstallmentsMultiSelect.clear();
   }
+
 
   @override
   void dispose() {
@@ -100,42 +105,45 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 letterSpacing: 2),
           ),
         ),
-        body: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-                    child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 25,
-                    vertical: 25,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      labelTitle("Member"),
-                      const SizedBox(height: 15),
-                      memberDropDown(),
-                      const SizedBox(height: 30),
-                      labelTitle("Credit Amount"),
-                      const SizedBox(height: 15),
-                      amountEntry(),
-                      const SizedBox(height: 30),
-                      labelTitle("Credit Fields"),
-                      const SizedBox(height: 15),
-                      selectEntryFieldsWid(),
-                      const SizedBox(height: 30),
-                      labelTitle("Enter Comments"),
-                      const SizedBox(height: 15),
-                      commentsEntry(),
-                      const SizedBox(height: 30),
-                      addEntry()
-                    ],
-                  ),
-                )
-              ],
+        body: GestureDetector(
+          // onTap: _resetIdleTimer,
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 25,
+                      vertical: 25,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        labelTitle("Member"),
+                        const SizedBox(height: 15),
+                        memberDropDown(),
+                        const SizedBox(height: 30),
+                        labelTitle("Credit Amount"),
+                        const SizedBox(height: 15),
+                        amountEntry(),
+                        const SizedBox(height: 30),
+                        labelTitle("Credit Fields"),
+                        const SizedBox(height: 15),
+                        selectEntryFieldsWid(),
+                        const SizedBox(height: 30),
+                        labelTitle("Enter Comments"),
+                        const SizedBox(height: 15),
+                        commentsEntry(),
+                        const SizedBox(height: 30),
+                        addEntry()
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -247,17 +255,12 @@ class _ScreenAddDataState extends State<ScreenAddData> {
         children: [
           ElevatedButton.icon(
               onPressed: () {
-                // Test functions Deploy
+
 
                 gSelectedMember = chosenMemberAddEntryDropdown;
 
                 goToMultiSelecScreenForAmountUpdate();
 
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) =>
-                //             const MultiSelectScreenAddEntry()));
               },
               icon: const Icon(Icons.arrow_right),
               label: const Text('Select Entry Fields')),

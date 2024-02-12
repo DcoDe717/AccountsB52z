@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> dataLoopAddDbEntryMemberWiseOrFull() async {
   int idx = 1;
-  var memberName = 'cheppu';
+  // var memberName = 'cheppu';
   List<String> membersList = [
     'adil',
     'akku',

@@ -16,16 +16,15 @@ class ScreenLoanApprove extends StatefulWidget {
 }
 
 class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
-  // final heightdevice = MediaQuery.of().size.height;
-  // final widthdevice = MediaQuery.of(context).size.width;
 
-  // @override
-  // void dispose() {
-  //   // Clean up the controller when the widget is disposed.
-  //   loanAmountTextControllerLoanApproveScreen.dispose();
-  //   commentsTextControllerLoanApproveScreen.dispose();
-  //   super.dispose();
-  // }
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -68,40 +67,43 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
                 letterSpacing: 2),
           ),
         ),
-        body: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 25,
-                vertical: 25,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 30),
-                  labelTitle('Member'),
-                  const SizedBox(height: 15),
-                  memberDropDown(),
-                  const SizedBox(height: 30),
-                  Row(
-                    children: [
-                      labelTitle("Loan Amount"),
-                      SizedBox(width: MediaQuery.of(context).size.width / 10),
-                      labelTitle(
-                          "Current Balance  ₹ $balanceFundTotalPulledFromDB")
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  amountEntry(),
-                  const SizedBox(height: 30),
-                  labelTitle('Enter Comments'),
-                  const SizedBox(height: 15),
-                  commentsEntry(),
-                  const SizedBox(height: 30),
-                  approveEntry()
-                ],
+        body: GestureDetector(
+          // onTap: _resetIdleTimer,
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                  vertical: 25,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 30),
+                    labelTitle('Member'),
+                    const SizedBox(height: 15),
+                    memberDropDown(),
+                    const SizedBox(height: 30),
+                    Row(
+                      children: [
+                        labelTitle("Loan Amount"),
+                        SizedBox(width: MediaQuery.of(context).size.width / 10),
+                        labelTitle(
+                            "Current Balance  ₹ $balanceFundTotalPulledFromDB")
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    amountEntry(),
+                    const SizedBox(height: 30),
+                    labelTitle('Enter Comments'),
+                    const SizedBox(height: 15),
+                    commentsEntry(),
+                    const SizedBox(height: 30),
+                    approveEntry()
+                  ],
+                ),
               ),
             ),
           ),

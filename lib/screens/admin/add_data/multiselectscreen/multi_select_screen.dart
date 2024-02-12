@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:async';
+
 import 'package:accountsb52z/screens/admin/add_data/functions/onpressed_functions_collection_entry_field_submit.dart';
 import 'package:accountsb52z/screens/admin/add_data/functions/retrieve_emi_month_names.dart';
 import 'package:accountsb52z/screens/admin/add_data/functions/state_clear_add_entry.dart';
@@ -7,18 +9,29 @@ import 'package:accountsb52z/screens/admin/add_data/multiselectscreen/common_var
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/admin/functions/get_month_name.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
-
 import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:multiselect_dropdown_flutter/multiselect_dropdown_flutter.dart';
 
-class MultiSelectScreenAddEntry extends StatelessWidget {
-  // final bool amountUpdateCheckMultiSelectScreen;
+class MultiSelectScreenAddEntry extends StatefulWidget {
+
 
   const MultiSelectScreenAddEntry({Key? key}) : super(key: key);
 
-  // Your other widget code...
+  @override
+  State<MultiSelectScreenAddEntry> createState() => _MultiSelectScreenAddEntryState();
+}
+
+class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
+
+
+
+   @override
+  void initState() {
+    super.initState();
+ 
+  }
 
   Future<DocumentSnapshot> getMonthlyInstallments() async {
     try {
@@ -58,10 +71,7 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
         if (snapshots.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshots.hasError) {
-          // selectAnyMemberPopup(context);
-          // return Container();
-          // selectAnyMemberPopup(context);
-          // return const Center(child:  );
+
           return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             const Text('Error fetching data.',
                 style:
@@ -196,98 +206,101 @@ class MultiSelectScreenAddEntry extends StatelessWidget {
 
                   // If the future has completed successfully, build your widgets
                   return Scaffold(
-                    body: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        MultiSelectDropdown.simpleList(
-                          list:
-                              pendingMonthlyMonthsNamesListConvertedForMultiSelect,
-                          whenEmpty: 'Select Monthly Installments',
-                          numberOfItemsLabelToShow: 3,
-                          initiallySelected: List.empty(growable: true),
-                          onChange: (newList) {
-                            gSelectedMonthsMonthlyInstallmentsMultiSelect =
-                                newList;
-                            print(
-                                "Multi select items : $gSelectedMonthsMonthlyInstallmentsMultiSelect");
-
-                            // your logic
-                          },
-                          includeSearch: true,
-                          includeSelectAll: true,
-                          isLarge: true,
-                          width: 150,
-                          boxDecoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors
-                                .deepPurple.shade100, // Change color as needed
-                            border: Border.all(
-                              color: Colors.deepPurpleAccent,
-                              width: 2.0,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                            // Add additional styling if needed
-                            // For example, padding, margin, etc.
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        MultiSelectDropdown.simpleList(
-                          list:
-                              falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect,
-                          whenEmpty: 'Select Loan Installments',
-                          numberOfItemsLabelToShow: 3,
-                          initiallySelected: List.empty(growable: true),
-                          onChange: (newList) {
-                            gSelectedMonthsLoanInstallmentsMultiSelect =
-                                newList;
-                            print(
-                                "gSelectedMonthsLoanInstallmentsMultiSelect : $gSelectedMonthsLoanInstallmentsMultiSelect");
-
-                            // your logic
-                          },
-                          includeSearch: true,
-                          includeSelectAll: true,
-                          isLarge: true,
-                          width: 150,
-                          boxDecoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors
-                                .deepPurple.shade100, // Change color as needed
-                            border: Border.all(
-                              color: Colors.deepPurpleAccent,
-                              width: 2.0,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                            // Add additional styling if needed
-                            // For example, padding, margin, etc.
-                          ),
-                        ),
-                        const SizedBox(height: 40),
-                        FilledButton.icon(
-                            onPressed: () {
-                              onpressedSelectEntryFieldSubmitFunctionsCollection();
-
-                              // Navigate using push to get the refreshed screen of Screen Add Data
-                              Navigator.of(context).pop('done');
+                    body: GestureDetector(
+                      // onTap: _resetIdleTimer,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          MultiSelectDropdown.simpleList(
+                            list:
+                                pendingMonthlyMonthsNamesListConvertedForMultiSelect,
+                            whenEmpty: 'Select Monthly Installments',
+                            numberOfItemsLabelToShow: 3,
+                            initiallySelected: List.empty(growable: true),
+                            onChange: (newList) {
+                              gSelectedMonthsMonthlyInstallmentsMultiSelect =
+                                  newList;
+                              print(
+                                  "Multi select items : $gSelectedMonthsMonthlyInstallmentsMultiSelect");
+                      
+                              // your logic
                             },
-                            icon: const Icon(Icons.done),
-                            label: const Text('Submit'))
-                      ],
+                            includeSearch: true,
+                            includeSelectAll: true,
+                            isLarge: true,
+                            width: 150,
+                            boxDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors
+                                  .deepPurple.shade100, // Change color as needed
+                              border: Border.all(
+                                color: Colors.deepPurpleAccent,
+                                width: 2.0,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                              // Add additional styling if needed
+                              // For example, padding, margin, etc.
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          MultiSelectDropdown.simpleList(
+                            list:
+                                falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect,
+                            whenEmpty: 'Select Loan Installments',
+                            numberOfItemsLabelToShow: 3,
+                            initiallySelected: List.empty(growable: true),
+                            onChange: (newList) {
+                              gSelectedMonthsLoanInstallmentsMultiSelect =
+                                  newList;
+                              print(
+                                  "gSelectedMonthsLoanInstallmentsMultiSelect : $gSelectedMonthsLoanInstallmentsMultiSelect");
+                      
+                              // your logic
+                            },
+                            includeSearch: true,
+                            includeSelectAll: true,
+                            isLarge: true,
+                            width: 150,
+                            boxDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors
+                                  .deepPurple.shade100, // Change color as needed
+                              border: Border.all(
+                                color: Colors.deepPurpleAccent,
+                                width: 2.0,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                              // Add additional styling if needed
+                              // For example, padding, margin, etc.
+                            ),
+                          ),
+                          const SizedBox(height: 40),
+                          FilledButton.icon(
+                              onPressed: () {
+                                onpressedSelectEntryFieldSubmitFunctionsCollection();
+                      
+                                // Navigate using push to get the refreshed screen of Screen Add Data
+                                Navigator.of(context).pop('done');
+                              },
+                              icon: const Icon(Icons.done),
+                              label: const Text('Submit'))
+                        ],
+                      ),
                     ),
                   );
                 }

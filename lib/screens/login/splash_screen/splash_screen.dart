@@ -1,7 +1,6 @@
 import 'package:accountsb52z/screens/home/home_init_functions.dart';
 import 'package:accountsb52z/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ScreenSplash extends StatefulWidget {
   const ScreenSplash({super.key});

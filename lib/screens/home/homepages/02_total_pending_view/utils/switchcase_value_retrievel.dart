@@ -114,9 +114,9 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
       break;
   }
 
-  print('userName inside retrievel function : $userName');
-  print(
-      'switchCaseRetrievedValueMonthly inside retrievel function : $switchCaseRetrievedValueMonthly');
-  print(
-      'switchCaseRetrievedValueLoan inside retrievel function : $switchCaseRetrievedValueLoan');
+  // print('userName inside retrievel function : $userName');
+  // print(
+  //     'switchCaseRetrievedValueMonthly inside retrievel function : $switchCaseRetrievedValueMonthly');
+  // print(
+  //     'switchCaseRetrievedValueLoan inside retrievel function : $switchCaseRetrievedValueLoan');
 }

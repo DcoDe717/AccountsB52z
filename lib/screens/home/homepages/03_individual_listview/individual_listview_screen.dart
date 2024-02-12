@@ -9,8 +9,6 @@ class ScreenMembersPendingListView extends StatelessWidget {
     return Scaffold(
         body: Container(
             decoration: const BoxDecoration(
-                // gradient: LinearGradient(
-                //           colors: [Color.fromARGB(202, 237, 123, 132), Color.fromARGB(195, 144, 85, 255)])
                 ),
             child: listviewMembersUnsettled()));
   }
@@ -18,7 +16,6 @@ class ScreenMembersPendingListView extends StatelessWidget {
   Widget listviewMembersUnsettled() {
     return ListView.separated(
       itemBuilder: (ctx, index) {
-        // final category = newList[index];
 
         String listTileLoopUserName = indexToUserName(index);
         return Card(
@@ -32,13 +29,6 @@ class ScreenMembersPendingListView extends StatelessWidget {
                 'Total Unsettled : ₹ ${((pendingCountListMemberWiseMonthly[index]) * 500) + (pendingLoanAmountAllMembersPulledDB[index])} '),
             trailing: Text(
                 'MI Unsettled : ₹ ${(pendingCountListMemberWiseMonthly[index]) * 500} \nLoan Unsettled : ₹ ${pendingLoanAmountAllMembersPulledDB[index]}'),
-
-            //  IconButton(
-            //   onPressed: () {
-            //     // CategoryDB.instance.deleteCategory(category.id);
-            //   },
-            //   icon: const Icon(Icons.delete),
-            // ),
           ),
         );
       },

@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
+
 import 'package:accountsb52z/screens/admin/admin_common_files.dart';
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/login/functions/authentication_function.dart';
@@ -16,6 +18,7 @@ class ScreenLoginNew extends StatefulWidget {
 class _ScreenLoginNewState extends State<ScreenLoginNew> {
   @override
   Widget build(BuildContext context) {
+    log(ModalRoute.of(context)!.settings.name.toString());
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -83,10 +86,8 @@ class _ScreenLoginNewState extends State<ScreenLoginNew> {
               GestureDetector(
                 onTap: () {
                   userNameGlobal = loginUsernameTextController.text;
-                  
 
                   String passWord = loginPasswordTextController.text;
-                  
 
                   loginPasswordTextController.clear();
 

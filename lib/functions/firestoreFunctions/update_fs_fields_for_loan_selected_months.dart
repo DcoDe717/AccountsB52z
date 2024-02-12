@@ -4,7 +4,6 @@ import 'package:accountsb52z/functions/firestoreFunctions/total_fund_balance_upd
 import 'package:accountsb52z/functions/firestoreFunctions/update_pending_loan_amount_total.dart';
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../screens/global/global_variables.dart';
 
 // Update true for the ispaid_monthly list in DB with the index value selected, and comments / Timestamp

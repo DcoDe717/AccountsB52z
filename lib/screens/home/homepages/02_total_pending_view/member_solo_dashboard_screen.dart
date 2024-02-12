@@ -10,12 +10,9 @@ class ScreenUserPendingView extends StatefulWidget {
 }
 
 class _ScreenUserPendingViewState extends State<ScreenUserPendingView> {
-  // Replace with your actual user data
   String userName = userNameGlobal.toUpperCase();
   String userDpPath =
       "assets/img/dp/$userNameGlobal.PNG"; // Placeholder, replace with your image
-  // double monthlyEmidue = switchCaseRetrievedValueMonthly;
-  // double loanEmidue = switchCaseRetrievedValueLoan;
 
 
   @override

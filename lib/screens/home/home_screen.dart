@@ -4,18 +4,12 @@ import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/admin/loan_approve/loan_approve_screen.dart';
 import 'package:accountsb52z/screens/home/homepages/01_piechart_total/dashboardview_screen.dart';
 import 'package:accountsb52z/screens/home/homepages/02_total_pending_view/member_solo_dashboard_screen.dart';
-import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
-import 'package:accountsb52z/screens/login/login_screen.dart';
 import 'package:accountsb52z/screens/login/login_screen_new.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icon.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:accountsb52z/screens/home/homepages/01_piechart_total/total_piechart_screen.dart';
-import 'package:accountsb52z/screens/home/homepages/02_total_pending_view/total_pendingview_screen.dart';
 import 'package:flutter/material.dart';
 import '../admin/add_data/add_data_screen.dart';
 import 'homepages/03_individual_listview/individual_listview_screen.dart';
-import 'dart:async';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -26,7 +20,7 @@ class ScreenHome extends StatefulWidget {
 
 class _ScreenHomeState extends State<ScreenHome> {
   int _selectedNavIndex = 0;
-  late Timer _idleTimer;
+  // late Timer _idleTimer;
 
   static const List _pageList = [
     ScreenHomeDashboard(),
@@ -38,50 +32,12 @@ class _ScreenHomeState extends State<ScreenHome> {
   @override
   void initState() {
     super.initState();
-    _startIdleTimer();
 
-    // homeScreenInitFunctionsOrdered();
   }
 
-  void _startIdleTimer() {
-    const Duration idleDuration =
-        Duration(minutes: 5); // Adjust the idle duration as needed
 
-    _idleTimer = Timer(idleDuration, () {
-      // Perform actions when the user is idle
-
-      print('User is idle.');
-
-      // Navigate to the login screen
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const ScreenLoginNew(),
-          ),
-          (route) => false);
-    });
-  }
-
-  void _resetIdleTimer() {
-    _idleTimer.cancel(); // Cancel the existing timer
-    _startIdleTimer(); // Restart the timer
-  }
-
-  // _ScreenHomeState() {
-  //   // Call your initialization function here
-
-  //   totPendingCountMemberWiseList(membersListLocal);
-  //   calculateTotalBalanceFundWhole();
-  //   getTotalBalanceFundDb();
-  // }
 
   void _onItemTapped(int index) {
-    // if (index == 1) {
-    //   switchCaseRetrievedValueMonthly =
-    //       totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
-    //   switchCaseRetrievedValueLoan = loanTotalPendingFundPulledDB;
-    // }
-
     setState(() {
       _selectedNavIndex = index;
     });
@@ -93,10 +49,7 @@ class _ScreenHomeState extends State<ScreenHome> {
         appBar: AppBar(title: const Text('AccountsB52z')),
         body:
             // Reset the timer on any user interaction (e.g., tap)
-            GestureDetector(
-          onTap: _resetIdleTimer,
-          child: _pageList[_selectedNavIndex],
-        ),
+            _pageList[_selectedNavIndex],
         bottomNavigationBar: bottomNavHome(
             loggedUserAdminCheck ? botNavItemAdmin : botNavItemNonAdmin),
         drawer: drawerUser());
@@ -104,7 +57,6 @@ class _ScreenHomeState extends State<ScreenHome> {
 
   @override
   void dispose() {
-    _idleTimer.cancel(); // Cancel the timer when the widget is disposed
     super.dispose();
   }
 
@@ -119,10 +71,9 @@ class _ScreenHomeState extends State<ScreenHome> {
         if (value == 0 || value == 1 || value == 2) {
           _onItemTapped(value);
         }
-        // _onItemTapped(value);
+
       },
       currentIndex: _selectedNavIndex,
-      // backgroundColor:Color(0xffE6EFFF),
 
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
@@ -232,24 +183,6 @@ class _ScreenHomeState extends State<ScreenHome> {
                 ),
               ],
             ),
-
-            // TextButton(
-            //   onPressed: () {
-            //     // Handle "Add Entry" button press
-            //     Navigator.pop(context); // Close dialog
-            //     // Add your specific action here
-            //   },
-            //   child: const Text("Add Entry"),
-            // ),
-            // const SizedBox(height: 10.0), // Spacing between buttons
-            // TextButton(
-            //   onPressed: () {
-            //     // Handle "Approve Loan" button press
-            //     Navigator.pop(context); // Close dialog
-            //     // Add your specific action here
-            //   },
-            //   child: const Text("Approve Loan"),
-            // ),
           ],
         );
       },
@@ -273,8 +206,6 @@ class _ScreenHomeState extends State<ScreenHome> {
                         fontSize: 45, color: Colors.white, letterSpacing: 8),
                   )),
 
-              // SizedBox(height: 20),
-
               // Home
 
               const Padding(
@@ -290,6 +221,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                   ),
                 ),
               ),
+
               // Admin
               Visibility(
                 visible: true,
@@ -329,7 +261,6 @@ class _ScreenHomeState extends State<ScreenHome> {
           ),
 
           // Logout
-
           GestureDetector(
             onTap: () {
               Navigator.pushAndRemoveUntil(

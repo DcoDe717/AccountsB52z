@@ -67,36 +67,3 @@ Future<int> totPendingCountMemberWiseListMonthly() async {
 
   return 0;
 }
-
-
-
-
-// Future<int> totPendingCountMemberWise(String nameMember) async {
-//   int nameMemberPendingStore = 0;
-
-//   final dbcall = firestoreInstanceCall;
-
-//   final DocumentReference docTotal =
-//       dbcall.collection('monthly_installment').doc('nameMember');
-
-//   DocumentSnapshot docTotalSnapshot = await docTotal.get();
-//   nameMemberPendingStore = docTotalSnapshot['pending_months_count_monthly'];
-//   // nameMemberPendingStore = totaltruecountholder * 500;
-
-//   // print('totalTrueCount: $totaltruecountholder');
-//   // print('Balance Fund: ${totaltruecountholder * 500}');
-//   return 0;
-// }
-
-// Future<int> totPendingCountMemberWise(String nameMember) async {
-//   int nameMemberPendingStore = 0;
-
-//   final dbcall = firestoreInstanceCall;
-
-//   final DocumentReference docTotal =
-//       dbcall.collection('monthly_installment').doc('nameMember');
-
-//   DocumentSnapshot docTotalSnapshot = await docTotal.get();
-//   nameMemberPendingStore = docTotalSnapshot['pending_months_count_monthly'];
-//   return 0;
-// }
