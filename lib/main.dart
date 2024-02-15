@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
-
 import 'dart:async';
+import 'package:accountsb52z/functions/utils/reset_timer_function.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:accountsb52z/screens/login/login_screen_new.dart';
 import 'package:accountsb52z/screens/home/home_screen.dart';
@@ -45,45 +45,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late Timer _idleTimer;
   @override
   void initState() {
     super.initState();
-    _startIdleTimer();
-  }
-
-  void _startIdleTimer() {
-    // Check current route
-
-    print('reset timer started');
-    const Duration idleDuration =
-        Duration(minutes: 5); // Adjust the idle duration as needed
-
-    _idleTimer = Timer(idleDuration, () {
-      // Perform actions when the user is idle
-
-      print('User is idle.');
-
-      // Navigate to the login screen
-      Navigator.pushAndRemoveUntil(
-          navigatorKey.currentState!.context,
-          MaterialPageRoute(
-            builder: (context) => const ScreenLoginNew(),
-          ),
-          (route) => false);
-    });
-  }
-
-  void _resetIdleTimer() {
-    _idleTimer.cancel(); // Cancel the existing timer
-    _startIdleTimer(); // Restart the timer
+    startIdleTimer();
   }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: _resetIdleTimer,
+        onTap: resetIdleTimer,
+        onPanStart: (details) => resetIdleTimer(),
+        onPanUpdate: (details) {
+          if (details.delta.dx > 0) {
+            // Swipe to the right detected
+          } else if (details.delta.dx < 0) {
+            // Swipe to the left detected
+          }
+        },
         child: MaterialApp(
           navigatorKey: navigatorKey, // Set the navigator key
           debugShowCheckedModeBanner: false,

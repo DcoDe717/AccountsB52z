@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:accountsb52z/functions/utils/reset_timer_function.dart';
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/admin/loan_approve/loan_approve_screen.dart';
 import 'package:accountsb52z/screens/home/homepages/01_piechart_total/dashboardview_screen.dart';
@@ -20,7 +21,6 @@ class ScreenHome extends StatefulWidget {
 
 class _ScreenHomeState extends State<ScreenHome> {
   int _selectedNavIndex = 0;
-  // late Timer _idleTimer;
 
   static const List _pageList = [
     ScreenHomeDashboard(),
@@ -28,11 +28,6 @@ class _ScreenHomeState extends State<ScreenHome> {
     ScreenMembersPendingListView(),
     ScreenAddData()
   ];
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -52,15 +47,11 @@ class _ScreenHomeState extends State<ScreenHome> {
         drawer: drawerUser());
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   Widget bottomNavHome(List<BottomNavigationBarItem> botNavItemLocal) {
     return BottomNavigationBar(
       items: botNavItemLocal,
       onTap: (value) {
+        resetIdleTimer();
         if (value == 3) {
           showAdminActionPopup(context);
         }
@@ -113,6 +104,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                   color: Colors.grey[300],
                   child: InkWell(
                     onTap: () {
+                      resetIdleTimer();
                       // Handle Add Fees tap
                       Navigator.pushAndRemoveUntil(
                           context,
@@ -149,6 +141,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                   color: Colors.grey[300],
                   child: InkWell(
                     onTap: () {
+                      resetIdleTimer();
                       // Handle Add Fees tap
                       Navigator.pushAndRemoveUntil(
                           context,
@@ -222,6 +215,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                 visible: true,
                 child: GestureDetector(
                   onTap: () {
+                    resetIdleTimer();
                     showAdminActionPopup(context);
                   },
                   child: const Padding(
@@ -239,16 +233,21 @@ class _ScreenHomeState extends State<ScreenHome> {
               ),
 
               // Info
-              const Padding(
-                padding: EdgeInsets.only(left: 25.0),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.info,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    'About',
-                    style: TextStyle(color: Colors.white),
+              GestureDetector(
+                onTap: () {
+                  resetIdleTimer();
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 25.0),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.info,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      'About',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),

@@ -22,11 +22,6 @@ class MultiSelectScreenAddEntry extends StatefulWidget {
 }
 
 class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   Future<DocumentSnapshot> getMonthlyInstallments() async {
     try {
       return await firestoreInstanceCall
@@ -199,12 +194,41 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
 
                   // If the future has completed successfully, build your widgets
                   return Scaffold(
-                    body: GestureDetector(
-                      // onTap: _resetIdleTimer,
+                    backgroundColor: Colors.grey[100],
+                    appBar: AppBar(
+                      elevation: 1,
+                      flexibleSpace: Container(
+                        decoration: const BoxDecoration(
+                            color: Color.fromRGBO(0, 87, 184, 1.0)),
+                      ),
+                      leading: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(
+                          Icons.arrow_circle_left_outlined,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                      title: const Text(
+                        "Entry Fields",
+                        style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2),
+                      ),
+                    ),
+                    body: Padding(
+                      padding: const EdgeInsets.all(20.0),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          const SizedBox(height: 20.0),
+                          // Monthly Installment Dropdown
+
                           MultiSelectDropdown.simpleList(
                             list:
                                 pendingMonthlyMonthsNamesListConvertedForMultiSelect,
@@ -221,14 +245,14 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                             },
                             includeSearch: true,
                             includeSelectAll: true,
-                            isLarge: true,
-                            width: 150,
+                            isLarge: false,
+                            width: (MediaQuery.of(context).size.width) / 1.1,
                             boxDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: Colors.deepPurple
-                                  .shade100, // Change color as needed
+                              color: Colors
+                                  .grey.shade300, // Change color as needed
                               border: Border.all(
-                                color: Colors.deepPurpleAccent,
+                                color: const Color.fromRGBO(0, 87, 184, 1.0),
                                 width: 2.0,
                               ),
                               boxShadow: [
@@ -243,7 +267,7 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                               // For example, padding, margin, etc.
                             ),
                           ),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 30),
                           MultiSelectDropdown.simpleList(
                             list:
                                 falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect,
@@ -260,14 +284,14 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                             },
                             includeSearch: true,
                             includeSelectAll: true,
-                            isLarge: true,
-                            width: 150,
+                            isLarge: false,
+                            width: (MediaQuery.of(context).size.width) / 1.1,
                             boxDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: Colors.deepPurple
-                                  .shade100, // Change color as needed
+                              color: Colors
+                                  .grey.shade300, // Change color as needed
                               border: Border.all(
-                                color: Colors.deepPurpleAccent,
+                                color: const Color.fromRGBO(0, 87, 184, 1.0),
                                 width: 2.0,
                               ),
                               boxShadow: [
@@ -282,8 +306,22 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                               // For example, padding, margin, etc.
                             ),
                           ),
-                          const SizedBox(height: 40),
+                          const SizedBox(height: 20.0),
+                          // Submit Button
+                          const SizedBox(height: 20),
                           FilledButton.icon(
+                              style: ButtonStyle(backgroundColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                      (states) {
+                                if (states.contains(MaterialState.hovered) ||
+                                    states.contains(MaterialState.pressed)) {
+                                  // Use a slightly darker version for hover/pressed states (optional)
+                                  return const Color.fromARGB(255, 0, 80, 160);
+                                }
+                                // Use the primary color by default
+                                return Colors
+                                    .blueAccent; // Or your preferred primary color
+                              })),
                               onPressed: () {
                                 onpressedSelectEntryFieldSubmitFunctionsCollection();
 

@@ -8,8 +8,15 @@ Future<void> getTotalBalanceFundDb() async {
   final DocumentReference docTotal = firestoreInstanceCall
       .collection('loan_installment')
       .doc('total_doc_values_loan');
+     final DocumentReference docTotal02 = firestoreInstanceCall
+      .collection('monthly_installment')
+      .doc('total_doc_values_monthly');   
 
   DocumentSnapshot docTotalSnapshot = await docTotal.get();
+  DocumentSnapshot docTotal02Snapshot = await docTotal02.get();
+  
+
+  totalFundRecievedStoringFromDB=(docTotal02Snapshot['balance_fund_from_true_count_monthly']).toDouble();
 
   balanceFundTotalPulledFromDB =
       (docTotalSnapshot['total_balance_fund_whole']).toDouble();

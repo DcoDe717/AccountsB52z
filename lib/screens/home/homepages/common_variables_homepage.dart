@@ -1,4 +1,5 @@
 double balanceFundTotalPulledFromDB = 0;
+double totalFundRecievedStoringFromDB = 0;
 double totalFundRecievedPulledFromDB = 0;
 double totalFundExpectedCalculatedLocal = 0;
 

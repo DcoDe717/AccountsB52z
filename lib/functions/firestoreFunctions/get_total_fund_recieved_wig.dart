@@ -17,7 +17,7 @@ Future<void> getTotalFundRecievedFromDb() async {
       (docTotalSnapshot['balance_fund_from_true_count_monthly']).toDouble();
 
   // total expected fund calculated here since this function is executing last in initialization
-  totalFundExpectedCalculatedLocal = balanceFundTotalPulledFromDB +
+  totalFundExpectedCalculatedLocal = totalFundRecievedStoringFromDB +
       totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
 
   switchcaseNameToValueRetrievelFuction(userNameGlobal);

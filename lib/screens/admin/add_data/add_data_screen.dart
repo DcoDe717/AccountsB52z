@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:accountsb52z/functions/firestoreFunctions/update_fs_fields_for_loan_selected_months.dart';
 import 'package:accountsb52z/functions/firestoreFunctions/update_fs_fields_from_selected_months_monthly.dart';
+import 'package:accountsb52z/functions/utils/reset_timer_function.dart';
 import 'package:accountsb52z/screens/admin/add_data/functions/state_clear_add_entry.dart';
 import 'package:accountsb52z/screens/admin/add_data/multiselectscreen/multi_select_screen.dart';
 import 'package:accountsb52z/screens/admin/add_data/popup_alerts/select_any_fields_add_entry_popup.dart';
@@ -23,13 +24,11 @@ class ScreenAddData extends StatefulWidget {
 }
 
 class _ScreenAddDataState extends State<ScreenAddData> {
-  // late Timer _idleTimer;
   final commentsTextControllerAddDataScreen = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    // _startIdleTimer();
     // Initialize variables here
     chosenMemberAddEntryDropdown = '';
     gSelectedMonthsMonthlyInstallmentsMultiSelect.clear();
@@ -64,11 +63,18 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) {
-        //do your logic here
-        // setStatusBarColor(statusBarColorPrimary,statusBarIconBrightness: Brightness.light);
         print("back button is pressed");
-        // do your logic ends
-        return;
+
+        resetIdleTimer();
+
+        stateClearAddEnrtyScreen();
+
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ScreenHome(),
+            ),
+            (route) => false);
       },
       child: Scaffold(
         backgroundColor: Colors.grey[100],
@@ -80,7 +86,10 @@ class _ScreenAddDataState extends State<ScreenAddData> {
           ),
           leading: IconButton(
             onPressed: () {
+              resetIdleTimer();
+
               stateClearAddEnrtyScreen();
+
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -103,45 +112,42 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 letterSpacing: 2),
           ),
         ),
-        body: GestureDetector(
-          // onTap: _resetIdleTimer,
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 25,
-                      vertical: 25,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        labelTitle("Member"),
-                        const SizedBox(height: 15),
-                        memberDropDown(),
-                        const SizedBox(height: 30),
-                        labelTitle("Credit Amount"),
-                        const SizedBox(height: 15),
-                        amountEntry(),
-                        const SizedBox(height: 30),
-                        labelTitle("Credit Fields"),
-                        const SizedBox(height: 15),
-                        selectEntryFieldsWid(),
-                        const SizedBox(height: 30),
-                        labelTitle("Enter Comments"),
-                        const SizedBox(height: 15),
-                        commentsEntry(),
-                        const SizedBox(height: 30),
-                        addEntry()
-                      ],
-                    ),
-                  )
-                ],
-              ),
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 25,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      labelTitle("Member"),
+                      const SizedBox(height: 15),
+                      memberDropDown(),
+                      const SizedBox(height: 30),
+                      labelTitle("Credit Amount"),
+                      const SizedBox(height: 15),
+                      amountEntry(),
+                      const SizedBox(height: 30),
+                      labelTitle("Credit Fields"),
+                      const SizedBox(height: 15),
+                      selectEntryFieldsWid(),
+                      const SizedBox(height: 30),
+                      labelTitle("Enter Comments"),
+                      const SizedBox(height: 15),
+                      commentsEntry(),
+                      const SizedBox(height: 30),
+                      addEntry()
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ),
@@ -152,6 +158,8 @@ class _ScreenAddDataState extends State<ScreenAddData> {
   Widget addEntry() {
     return ElevatedButton.icon(
         onPressed: () async {
+          resetIdleTimer();
+
           commentsAddData = commentsTextControllerAddDataScreen.text;
 
           // Check for drowndown value selected or not
@@ -256,6 +264,8 @@ class _ScreenAddDataState extends State<ScreenAddData> {
         children: [
           ElevatedButton.icon(
               onPressed: () {
+                resetIdleTimer();
+
                 gSelectedMember = chosenMemberAddEntryDropdown;
 
                 goToMultiSelecScreenForAmountUpdate();
@@ -426,6 +436,8 @@ class _ScreenAddDataState extends State<ScreenAddData> {
   }
 
   void handleDropdownChange(String? selectedValue) {
+    resetIdleTimer();
+
     // Handle the selection here
     // amountModifier = 500;
     // Call your function here

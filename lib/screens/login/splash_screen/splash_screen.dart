@@ -37,7 +37,12 @@ class _ScreenSplashState extends State<ScreenSplash> {
                   left: 0,
                   right: 0,
                   child: const Center(
-                    child: CircularProgressIndicator(), // Loading animation
+                    child: CircularProgressIndicator(
+                      backgroundColor: Color(0xffBC2332),
+                      color: Color(0xff333333),
+                      strokeWidth: 5,
+                      strokeCap: StrokeCap.butt,
+                    ), // Loading animation
                   ),
                 ),
               ],

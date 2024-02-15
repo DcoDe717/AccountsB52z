@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:accountsb52z/functions/utils/reset_timer_function.dart';
 import 'package:accountsb52z/screens/admin/admin_common_files.dart';
 import 'package:accountsb52z/screens/admin/functions/clear_state_loan_approval_screen.dart';
 import 'package:accountsb52z/screens/admin/functions/loan_approval_process.dart';
@@ -25,9 +26,19 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) async {
+      onPopInvoked: (didPop) {
         print("back button is pressed");
-        return;
+
+        resetIdleTimer();
+
+        stateClearLoanApprovalScreen();
+
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ScreenHome(),
+            ),
+            (route) => false);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -38,8 +49,10 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
           ),
           leading: IconButton(
             onPressed: () {
+              resetIdleTimer();
+
               stateClearLoanApprovalScreen();
-              ();
+
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -62,43 +75,40 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
                 letterSpacing: 2),
           ),
         ),
-        body: GestureDetector(
-          // onTap: _resetIdleTimer,
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 25,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 30),
-                    labelTitle('Member'),
-                    const SizedBox(height: 15),
-                    memberDropDown(),
-                    const SizedBox(height: 30),
-                    Row(
-                      children: [
-                        labelTitle("Loan Amount"),
-                        SizedBox(width: MediaQuery.of(context).size.width / 10),
-                        labelTitle(
-                            "Current Balance  ₹ $balanceFundTotalPulledFromDB")
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    amountEntry(),
-                    const SizedBox(height: 30),
-                    labelTitle('Enter Comments'),
-                    const SizedBox(height: 15),
-                    commentsEntry(),
-                    const SizedBox(height: 30),
-                    approveEntry()
-                  ],
-                ),
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 25,
+                vertical: 25,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 30),
+                  labelTitle('Member'),
+                  const SizedBox(height: 15),
+                  memberDropDown(),
+                  const SizedBox(height: 30),
+                  Row(
+                    children: [
+                      labelTitle("Loan Amount"),
+                      SizedBox(width: MediaQuery.of(context).size.width / 10),
+                      labelTitle(
+                          "Current Balance  ₹ $balanceFundTotalPulledFromDB")
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  amountEntry(),
+                  const SizedBox(height: 30),
+                  labelTitle('Enter Comments'),
+                  const SizedBox(height: 15),
+                  commentsEntry(),
+                  const SizedBox(height: 30),
+                  approveEntry()
+                ],
               ),
             ),
           ),
@@ -152,6 +162,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
               )
               .toList(),
           onChanged: (selectedvalue) {
+            resetIdleTimer();
             selectedDropdownValueAdmin = selectedvalue;
           },
         ),
@@ -220,6 +231,8 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
 
     return ElevatedButton.icon(
         onPressed: () {
+          resetIdleTimer();
+
           if (selectedDropdownValueAdmin?.isEmpty ?? true) {
             selectAnyMemberPopupForLoanApproval(context);
             print('selecetedDropdownValue is $selectedDropdownValueAdmin');
