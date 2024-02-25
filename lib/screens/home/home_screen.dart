@@ -3,6 +3,7 @@
 import 'package:accountsb52z/functions/utils/reset_timer_function.dart';
 import 'package:accountsb52z/screens/admin/common_variables_admin.dart';
 import 'package:accountsb52z/screens/admin/loan_approve/loan_approve_screen.dart';
+import 'package:accountsb52z/screens/home/about/about_screen.dart';
 import 'package:accountsb52z/screens/home/homepages/01_piechart_total/dashboardview_screen.dart';
 import 'package:accountsb52z/screens/home/homepages/02_total_pending_view/member_solo_dashboard_screen.dart';
 import 'package:accountsb52z/screens/login/login_screen_new.dart';
@@ -212,7 +213,7 @@ class _ScreenHomeState extends State<ScreenHome> {
 
               // Admin
               Visibility(
-                visible: true,
+                visible: loggedUserAdminCheck,
                 child: GestureDetector(
                   onTap: () {
                     resetIdleTimer();
@@ -236,6 +237,11 @@ class _ScreenHomeState extends State<ScreenHome> {
               GestureDetector(
                 onTap: () {
                   resetIdleTimer();
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ScreenAbout()));
                 },
                 child: const Padding(
                   padding: EdgeInsets.only(left: 25.0),

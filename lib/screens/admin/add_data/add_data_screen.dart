@@ -192,6 +192,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                     'months_status_emi',
                     extractedIndexValueFromSelectedLoanMonths,
                     commentsAddData);
+                isAdminFunctionExecuted = true;
               } else {
                 if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isNotEmpty) {
                   showLoadingPopup(context);
@@ -204,6 +205,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                       "ispaid_monthly",
                       numericValuesListMonthlyInstString,
                       commentsAddData);
+                      isAdminFunctionExecuted = true;
                 } else {
                   showLoadingPopup(context);
 
@@ -215,6 +217,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                       'months_status_emi',
                       extractedIndexValueFromSelectedLoanMonths,
                       commentsAddData);
+                      isAdminFunctionExecuted = true;
                 }
               }
 

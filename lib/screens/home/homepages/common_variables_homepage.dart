@@ -7,10 +7,11 @@ double switchCaseRetrievedValueMonthly = 0;
 double switchCaseRetrievedValueLoan = 0;
 double totalSwitchCaseMonthlyPlusLoan = 0;
 
-double totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise =
+double totalMonthlyPendingAmountCalcFromMemberWiseCountList =
     0;
 
-List<int> pendingCountListMemberWiseMonthly = [];
+List<int> monthyPendingCountListMemberWise = [];
+
 List<double> pendingLoanAmountAllMembersPulledDB = [];
 
 String? selectedDropdownValueTotalPendingView = 'Total';

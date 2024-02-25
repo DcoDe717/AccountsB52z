@@ -10,13 +10,13 @@ Future<void> calculateTotalPendingLoanAmount() async {
       await firestoreInstanceCall.collection('loan_installment').get();
 
   final docRefe = firestoreInstanceCall
-      .collection('loan_installment')
+      .collection('dashboard')
       .doc('total_doc_values_loan');
 
-  List<QueryDocumentSnapshot<Map<String, dynamic>>> documents =
+  List<QueryDocumentSnapshot<Map<String, dynamic>>> documentsLoan =
       querySnapshot.docs;
 
-  for (QueryDocumentSnapshot<Map<String, dynamic>> document in documents) {
+  for (QueryDocumentSnapshot<Map<String, dynamic>> document in documentsLoan) {
     // Ensure that the 'emi_pending' field exists in all documents to prevent runtime errors.
     if (document.data().containsKey('loan_amount_pending_to_pay')) {
       double emiPending =

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 Future<void> checkForAdminRightsAndNavigateSplashScreen(
     BuildContext contextInside, String userNameLocalInside) async {
+  loggedUserAdminCheck = false;
   // Call firebase instance
   DocumentReference documentRef =
       firestoreInstanceCall.collection('authy_simple').doc(userNameLocalInside);

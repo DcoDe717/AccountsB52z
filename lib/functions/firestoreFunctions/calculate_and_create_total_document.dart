@@ -39,9 +39,9 @@ Future<void> calculateAndCreateTotalDocument() async {
   }
 
   // Create a new document with the calculated total and timestamp if required
-  await dbCallCollectionDocuments.doc('total_doc_values_monthly').set({
+  await firestoreInstanceCall.collection('dashboard').doc('total_doc_values_monthly').set({
     'total_true_count_monthly': totalTrueCount,
-    'balance_fund_from_true_count_monthly': (totalTrueCount * 500),
+    'total_fund_recieved_from_true_count_monthly': (totalTrueCount * 500),
     // 'timestamp': FieldValue.serverTimestamp(),
   });
 }

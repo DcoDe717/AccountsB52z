@@ -23,9 +23,9 @@ Future<void> updateFSFieldsFromSelectedMonthsMonthlyInstTest(
       // Use update method to update specific field and store the future in the list
       Future<void> updateOperation = documentReference.update({
         '$field.$parsedIndex': true,
-        'commentsMonthly.$parsedIndex':
+        'comment_monthly.$parsedIndex':
             'Added by $userNameGlobal | $commentsDown',
-        'dateTimeMonthly.$parsedIndex': Timestamp.now(),
+        'dateTime_monthly.$parsedIndex': Timestamp.now(),
       });
       updateOperations.add(updateOperation);
     }

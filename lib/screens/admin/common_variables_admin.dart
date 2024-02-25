@@ -6,7 +6,10 @@ String pendindMonthsFromDbRaw = '';
 List<String> pendingMonthsListSplittedArray = [];
 
 bool loggedUserAdminCheck = false;
+
 String userNameGlobal = '';
+
+bool isAdminFunctionExecuted = false;
 
 double loanTotalPendingFundPulledDB = 0;
 

@@ -88,6 +88,8 @@ Future<void> loanApprovalProcess(
               SetOptions(merge: true),
             );
 
+            isAdminFunctionExecuted = true;
+
             approvedMonthAndEMIMonthsListCreator();
             await updateApprovedMonthDateAndEmiList();
             await calculateTotalPendingLoanAmount();

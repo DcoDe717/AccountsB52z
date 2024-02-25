@@ -5,7 +5,7 @@ import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.da
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<double> totPendingCountMemberWiseListLoan(List<String> members) async {
-  pendingLoanAmountAllMembersPulledDB = [];
+  List<double> localPendingLoanAmountAllMembersPulledDB = [];
 
   for (String nameMember in members) {
     final DocumentReference docTotal =
@@ -23,18 +23,27 @@ Future<double> totPendingCountMemberWiseListLoan(List<String> members) async {
           (docTotalSnapshot['loan_amount_pending_to_pay']).toDouble();
       print(
           'loan amount pending to pay for $nameMember is ₹ $storePendingLoanAmountMemberWise');
-      pendingLoanAmountAllMembersPulledDB.add(storePendingLoanAmountMemberWise);
+      localPendingLoanAmountAllMembersPulledDB
+          .add(storePendingLoanAmountMemberWise);
 
       // print('pendingCounts.add(nameMemberPendingStore): $pendingCounts');
     } else {
       // Handle the case when the document doesn't exist for a member
-      pendingLoanAmountAllMembersPulledDB.add(0);
+      localPendingLoanAmountAllMembersPulledDB.add(0);
       print('user does not have loan_amount_pending_to_pay field');
       // You can use any default value
     }
   }
 
-  print('pendingCounts: $pendingLoanAmountAllMembersPulledDB');
+  final docRef =
+      firestoreInstanceCall.collection('dashboard').doc('gross_total_docs');
+
+  await docRef.set({
+    'loan_pending_amount_list_all_members':
+        localPendingLoanAmountAllMembersPulledDB
+  }, SetOptions(merge: true));
+
+  print('pendingCounts: $localPendingLoanAmountAllMembersPulledDB');
 
   return 0;
 }

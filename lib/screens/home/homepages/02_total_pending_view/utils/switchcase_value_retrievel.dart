@@ -8,7 +8,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
   switch (userName) {
     case 'Total':
       switchCaseRetrievedValueMonthly =
-          totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise;
+          totalMonthlyPendingAmountCalcFromMemberWiseCountList;
       switchCaseRetrievedValueLoan = loanTotalPendingFundPulledDB;
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -16,7 +16,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'adil':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[0] * 500;
+          monthyPendingCountListMemberWise[0] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[0];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -24,7 +24,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'akku':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[1] * 500;
+          monthyPendingCountListMemberWise[1] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[1];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -32,7 +32,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'cheppu':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[2] * 500;
+          monthyPendingCountListMemberWise[2] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[2];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -40,7 +40,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'dillu':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[3] * 500;
+          monthyPendingCountListMemberWise[3] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[3];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -48,7 +48,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'ismail':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[4] * 500;
+          monthyPendingCountListMemberWise[4] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[4];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -56,7 +56,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'jasim':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[5] * 500;
+          monthyPendingCountListMemberWise[5] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[5];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -64,7 +64,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'rishin':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[6] * 500;
+          monthyPendingCountListMemberWise[6] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[6];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -72,7 +72,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'sabith':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[7] * 500;
+          monthyPendingCountListMemberWise[7] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[7];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -80,7 +80,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'shammas':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[8] * 500;
+          monthyPendingCountListMemberWise[8] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[8];
 
       totalSwitchCaseMonthlyPlusLoan =
@@ -89,7 +89,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'sherbi':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[9] * 500;
+          monthyPendingCountListMemberWise[9] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[9];
 
       totalSwitchCaseMonthlyPlusLoan =
@@ -98,7 +98,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'sulfi':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[10] * 500;
+          monthyPendingCountListMemberWise[10] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[10];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;
@@ -106,7 +106,7 @@ void switchcaseNameToValueRetrievelFuction(String userName) {
 
     case 'vahab':
       switchCaseRetrievedValueMonthly =
-          pendingCountListMemberWiseMonthly[11] * 500;
+          monthyPendingCountListMemberWise[11] * 500;
       switchCaseRetrievedValueLoan = pendingLoanAmountAllMembersPulledDB[11];
       totalSwitchCaseMonthlyPlusLoan =
           switchCaseRetrievedValueMonthly + switchCaseRetrievedValueLoan;

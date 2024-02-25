@@ -25,9 +25,9 @@ class ScreenMembersPendingListView extends StatelessWidget {
             ),
             title: Text(listviewMembersList[index]),
             subtitle: Text(
-                'Total Unsettled : ₹ ${((pendingCountListMemberWiseMonthly[index]) * 500) + (pendingLoanAmountAllMembersPulledDB[index])} '),
+                'Total Unsettled : ₹ ${((monthyPendingCountListMemberWise[index]) * 500) + (pendingLoanAmountAllMembersPulledDB[index])} '),
             trailing: Text(
-                'MI Unsettled : ₹ ${(pendingCountListMemberWiseMonthly[index]) * 500} \nLoan Unsettled : ₹ ${pendingLoanAmountAllMembersPulledDB[index]}'),
+                'MI Unsettled : ₹ ${(monthyPendingCountListMemberWise[index]) * 500} \nLoan Unsettled : ₹ ${pendingLoanAmountAllMembersPulledDB[index]}'),
           ),
         );
       },

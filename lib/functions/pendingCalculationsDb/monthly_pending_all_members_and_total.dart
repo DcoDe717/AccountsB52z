@@ -4,25 +4,12 @@ import 'package:accountsb52z/screens/global/global_variables.dart';
 import 'package:accountsb52z/screens/home/homepages/common_variables_homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<int> totPendingCountMemberWiseListMonthly() async {
-  final List<String> membersListLocal = <String>[
-    'adil',
-    'akku',
-    'cheppu',
-    'dillu',
-    'ismail',
-    'jasim',
-    'rishin',
-    'sabith',
-    'shammas',
-    'sherbi',
-    'sulfi',
-    'vahab'
-  ];
-  pendingCountListMemberWiseMonthly = [];
+Future<int> totPendingCountMemberWiseListMonthlyUpdate(
+    List<String> members) async {
+  List<int> monthyPendingCountListMemberWiseDbUpdateVariable = [];
 
   try {
-    for (String nameMember in membersListLocal) {
+    for (String nameMember in members) {
       final DocumentReference docTotal = firestoreInstanceCall
           .collection('monthly_installment')
           .doc(nameMember);
@@ -32,7 +19,8 @@ Future<int> totPendingCountMemberWiseListMonthly() async {
         try {
           int nameMemberPendingStore =
               docTotalSnapshot['pending_months_count_monthly'];
-          pendingCountListMemberWiseMonthly.add(nameMemberPendingStore);
+          monthyPendingCountListMemberWiseDbUpdateVariable
+              .add(nameMemberPendingStore);
         } catch (e) {
           print(
               "Error accessing 'pending_months_count_monthly' field for member '$nameMember': $e");
@@ -41,26 +29,32 @@ Future<int> totPendingCountMemberWiseListMonthly() async {
         // print('pendingCounts.add(nameMemberPendingStore): $pendingCounts');
       } else {
         // Handle the case when the document doesn't exist for a member
-        pendingCountListMemberWiseMonthly.add(0);
-        print('pendingCounts.add(0); $pendingCountListMemberWiseMonthly');
+        monthyPendingCountListMemberWiseDbUpdateVariable.add(0);
+        print(
+            'pendingCounts.add(0); $monthyPendingCountListMemberWiseDbUpdateVariable');
         // You can use any default value
       }
     }
 
-    print('pendingCounts: $pendingCountListMemberWiseMonthly');
+    print('pendingCounts: $monthyPendingCountListMemberWiseDbUpdateVariable');
 
-    totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise = 0;
-
-    print(
-        'totalValueAllMembersPendingAmountCalcFromListMemberWise before : $totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise');
-
-    totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise =
-        (pendingCountListMemberWiseMonthly
-                .reduce((value, element) => value + element)) *
-            500;
+    totalMonthlyPendingAmountCalcFromMemberWiseCountList = 0;
 
     print(
-        "totalValueAllMembersPendingAmountCalcFromListMemberWise after: $totalMonthlyPendingValueAllMembersPendingAmountCalcFromListMemberWise");
+        'totalValueAllMembersPendingAmountCalcFromListMemberWise before : $totalMonthlyPendingAmountCalcFromMemberWiseCountList');
+
+    final docRef =
+        firestoreInstanceCall.collection('dashboard').doc('gross_total_docs');
+
+    await docRef.set({
+      'monthly_pending_count_list_all_members':
+          monthyPendingCountListMemberWiseDbUpdateVariable
+    }, SetOptions(merge: true));
+
+
+
+    print(
+        "totalValueAllMembersPendingAmountCalcFromListMemberWise after: $totalMonthlyPendingAmountCalcFromMemberWiseCountList");
   } catch (e) {
     print("Error Catched (totPendingCountMemberWiseListMonthly) : $e");
   }

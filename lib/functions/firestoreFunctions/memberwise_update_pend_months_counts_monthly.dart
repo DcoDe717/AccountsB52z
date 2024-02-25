@@ -34,11 +34,24 @@ Future<void> updatePendingMonthsAndCountMemberWiseMonthly(
         });
 
         // Convert the list of index numbers to a comma-separated string
-        String pendingMonthsString = pendingMonths.join(',');
+        String pendingMonthsStringUnsorted = pendingMonths.join(',');
+
+        // Step 1: Split the string into individual numbers
+        List<String> numbersAsString = pendingMonthsStringUnsorted.split(',');
+
+        // Step 2: Convert each number from string to integer
+        List<int> numbers =
+            numbersAsString.map((String numStr) => int.parse(numStr)).toList();
+
+        // Step 3: Sort the list of integers in ascending order
+        numbers.sort();
+
+        // Step 4: Join the sorted integers back into a comma-separated string
+        String pendingMonthsStringSorted = numbers.join(',');
 
         // Create or update the 'pending_months_monthly' field in the document
         await monthlyInstallmentsDocument.set(
-          {'pending_months_monthly': pendingMonthsString},
+          {'pending_months_monthly': pendingMonthsStringSorted},
           SetOptions(merge: true),
         );
 

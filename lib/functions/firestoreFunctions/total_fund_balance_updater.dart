@@ -10,18 +10,18 @@ Future<void> calculateTotalBalanceFundWhole() async {
     double monthlyTotalFund = 0;
 
     final docSnapMonthly = await firestoreInstanceCall
-        .collection('monthly_installment')
+        .collection('dashboard')
         .doc('total_doc_values_monthly')
         .get();
 
     final docSnapLoan = await firestoreInstanceCall
-        .collection('loan_installment')
+        .collection('dashboard')
         .doc('total_doc_values_loan')
         .get();
 
     if (docSnapMonthly.exists) {
       monthlyTotalFund =
-          (docSnapMonthly['balance_fund_from_true_count_monthly'] ?? 0)
+          (docSnapMonthly['total_fund_recieved_from_true_count_monthly'] ?? 0)
               .toDouble();
     }
 
@@ -33,8 +33,8 @@ Future<void> calculateTotalBalanceFundWhole() async {
     totalBalanceFund = monthlyTotalFund - loanTotalPendingFundPulledDB;
 
     final docRefLoan = firestoreInstanceCall
-        .collection('loan_installment')
-        .doc('total_doc_values_loan');
+        .collection('dashboard')
+        .doc('gross_total_docs');
 
     await docRefLoan.set({
       'total_balance_fund_whole': totalBalanceFund,
