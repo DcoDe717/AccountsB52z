@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> dataLoopAddDbEntryMemberWiseOrFull() async {
   int idx = 1;
-  var memberName = 'rishin';
+  // var memberName = 'rishin';
   List<String> membersList = [
     'adil',
     'akku',
@@ -70,7 +70,7 @@ Future<void> dataLoopAddDbEntryMemberWiseOrFull() async {
   //   return '${getMonthAbbreviation(month)} $year';
   // }
 
-  // for (var i = 1; i < 12; i++) {
+  for (var i = 1; i < 12; i++) {
     for (idx = 41; idx < 48; idx++) {
       document1 = <String, dynamic>{
         "comment_monthly": {'$idx': 'old book records'},
@@ -80,8 +80,8 @@ Future<void> dataLoopAddDbEntryMemberWiseOrFull() async {
       };
 
       // Now you can use document1 to update Firestore
-      await dbcall2.doc(memberName).set(document1, SetOptions(merge: true));
+      // await dbcall2.doc(memberName).set(document1, SetOptions(merge: true));
     }
-    // await dbcall2.doc(membersList[i]).set(document1, SetOptions(merge: true));
-  // }
+    await dbcall2.doc(membersList[i]).set(document1, SetOptions(merge: true));
+  }
 }

@@ -1,9 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:accountsb52z/functions/firestoreFunctions/calculate_and_create_total_document.dart';
 import 'package:accountsb52z/functions/firestoreFunctions/read_dashboard_data.dart';
 import 'package:accountsb52z/functions/firestoreFunctions/total_fund_balance_updater.dart';
-import 'package:accountsb52z/functions/firestoreFunctions/update_pending_loan_amount_total.dart';
 import 'package:accountsb52z/functions/firestoreFunctions/updating_new_months.dart';
 import 'package:accountsb52z/functions/pendingCalculationsDb/loan_pending_all_members_and_total.dart';
 import 'package:accountsb52z/functions/pendingCalculationsDb/monthly_pending_all_members_and_total.dart';

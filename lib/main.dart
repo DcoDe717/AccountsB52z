@@ -2,10 +2,8 @@
 import 'dart:async';
 import 'package:accountsb52z/functions/utils/reset_timer_function.dart';
 import 'package:accountsb52z/screens/global/global_variables.dart';
-import 'package:accountsb52z/screens/home/about/about_screen.dart';
 import 'package:accountsb52z/screens/login/login_screen_new.dart';
 import 'package:accountsb52z/screens/home/home_screen.dart';
-import 'package:accountsb52z/test/new_project_link_final/test_button.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
