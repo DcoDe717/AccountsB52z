@@ -11,21 +11,21 @@ Future<void> onPressedFunctionsCallForMonthly() async {
       reverseMonthNameList(gSelectedMonthsMonthlyInstallmentsMultiSelect);
 
   // printing demo
-  print(
-      "gSelectedMonthsMonthlyInstallmentsMultiSelect :  $gSelectedMonthsMonthlyInstallmentsMultiSelect");
+  // print(
+  //     "gSelectedMonthsMonthlyInstallmentsMultiSelect :  $gSelectedMonthsMonthlyInstallmentsMultiSelect");
 
-  print("numericValuesListMonthlyInst : $numericValuesListMonthlyInst");
+  // print("numericValuesListMonthlyInst : $numericValuesListMonthlyInst");
 
   // // Function to create list of string from list of int
   numericListStringConverter(numericValuesListMonthlyInst);
 
-  print("numericValuesListString : $numericValuesListMonthlyInstString");
+  // print("numericValuesListString : $numericValuesListMonthlyInstString");
 }
 
 Future<void> onPressedFunctionsCallForLoan() async {
   extractedIndexValueFromSelectedLoanMonths =
       extractNumbersAsString(gSelectedMonthsLoanInstallmentsMultiSelect);
 
-  print(
-      'extractedIndexValueFromSelectedLoanMonths  :  $extractedIndexValueFromSelectedLoanMonths');
+  // print(
+  //     'extractedIndexValueFromSelectedLoanMonths  :  $extractedIndexValueFromSelectedLoanMonths');
 }

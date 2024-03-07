@@ -40,7 +40,7 @@ Future<void> calculateTotalBalanceFundWhole() async {
       'total_balance_fund_whole': totalBalanceFund,
     }, SetOptions(merge: true));
 
-    print('total_balance_fund_whole : $totalBalanceFund');
+    // print('total_balance_fund_whole : $totalBalanceFund');
   } catch (e, stackTrace) {
     print('Error: $e\n$stackTrace');
     // Handle the error as needed

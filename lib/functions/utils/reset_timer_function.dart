@@ -12,14 +12,15 @@ late Timer _idleTimer;
 void startIdleTimer() {
   // Check current route
 
-  print('reset timer started');
+  // print('reset timer started');
   const Duration idleDuration =
       Duration(minutes: 5); // Adjust the idle duration as needed
 
   _idleTimer = Timer(idleDuration, () {
     // Perform actions when the user is idle
 
-    print('User is idle.');
+    // print('User is idle.');
+
     startIdleTimer();
 
     // State Clearing since moving to login screen

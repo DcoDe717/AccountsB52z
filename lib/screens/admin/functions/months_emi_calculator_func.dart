@@ -13,12 +13,12 @@ void approvedMonthAndEMIMonthsListCreator() {
   // Replace this with your actual timestamp
   Timestamp timestampForLoanApproveScreen = Timestamp.now();
 
-  print('timestampForLoanApproveScreen : $timestampForLoanApproveScreen');
+  // print('timestampForLoanApproveScreen : $timestampForLoanApproveScreen');
 
   // Convert Timestamp to DateTime
   DateTime dateTimeCoverted = timestampForLoanApproveScreen.toDate();
 
-  print('dateTimeCoverted : $dateTimeCoverted');
+  // print('dateTimeCoverted : $dateTimeCoverted');
 
   // // Get the current month name and year from the DateTime object
   // String formattedDate = DateFormat('MMM y').format(dateTimeCoverted);
@@ -47,11 +47,11 @@ void approvedMonthAndEMIMonthsListCreator() {
     monthsList.add(formattedMonth);
     // print(monthsList);
   }
-  print('monthsList : $monthsList');
+  // print('monthsList : $monthsList');
 
   for (int i = 0; i < 10; i++) {
     emiMonthsListIndexValued[(i + 1).toString()] = monthsList[i];
   }
 
-  print('emiMonthsListIndexValued : $emiMonthsListIndexValued');
+  // print('emiMonthsListIndexValued : $emiMonthsListIndexValued');
 }

@@ -40,7 +40,7 @@ Future<void> isLoanActiveUpdater(String documentId) async {
       }
     } else {
       // Document does not exist
-      print('Document $documentId does not exist');
+      // print('Document $documentId does not exist');
     }
   } catch (error) {
     // Handle errors

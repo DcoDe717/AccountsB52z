@@ -29,7 +29,7 @@ Future<void> calculateTotalPendingLoanAmount() async {
   await docRefe.set({'total_loan_pending_all_members': totalEMIPending},
       SetOptions(merge: true));
 
-  print('totalEMIPending : $totalEMIPending');
+  // print('totalEMIPending : $totalEMIPending');
 
   // return totalEMIPending;
 }

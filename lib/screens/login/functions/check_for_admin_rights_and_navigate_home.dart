@@ -20,8 +20,10 @@ Future<void> checkForAdminRightsAndNavigateSplashScreen(
   if (!contextInside.mounted) return;
 
   if (documentSnapshot['is_admin'] == true) {
+
     loggedUserAdminCheck = true;
-    print('$userNameLocalInside is admin');
+
+    // print('$userNameLocalInside is admin');
   }
 
   // Close loading popup before navigating to splash screen

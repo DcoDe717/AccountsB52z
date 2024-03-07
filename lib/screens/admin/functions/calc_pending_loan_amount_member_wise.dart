@@ -23,9 +23,12 @@ Future<void> countPendingLoanAmountMemberWise(String? memberName) async {
       // Get the emi_status map
 
       loanAmountRetrieved = documentSnapshot['loan_amount'];
-      print('loanAmountRetrieved : $loanAmountRetrieved');
+
+      // print('loanAmountRetrieved : $loanAmountRetrieved');
+
       loanAmountRetrieved = loanAmountRetrieved / 10;
-      print('loanAmountRetrieved after 10 division : $loanAmountRetrieved');
+
+      // print('loanAmountRetrieved after 10 division : $loanAmountRetrieved');
 
       Map<String, dynamic>? dataFromDocument =
           documentSnapshot.data() as Map<String, dynamic>?;
@@ -43,10 +46,10 @@ Future<void> countPendingLoanAmountMemberWise(String? memberName) async {
         double totalPendingCalulatedFromFalseCount =
             loanAmountRetrieved * falseCount;
 
-        print('Number of false values in emi_status: $falseCount');
+        // print('Number of false values in emi_status: $falseCount');
 
-        print(
-            'totalPendingCalulatedFromFalseCount : $totalPendingCalulatedFromFalseCount');
+        // print(
+        //     'totalPendingCalulatedFromFalseCount : $totalPendingCalulatedFromFalseCount');
 
         // update loan_amount_pending_to_pay
         await documentRef.set(
@@ -57,7 +60,7 @@ Future<void> countPendingLoanAmountMemberWise(String? memberName) async {
         // Handle the case where data is null or not of the expected type
       }
     } else {
-      print('Document does not exist');
+      // print('Document does not exist');
     }
   } catch (e) {
     print('Error retrieving document: $e');

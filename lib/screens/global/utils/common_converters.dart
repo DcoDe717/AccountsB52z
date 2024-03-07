@@ -27,8 +27,8 @@ Future<void> updateAmountModifier() async {
 
   amountModifierAddEntryPageLocal = monthlyTotalAmount + loanTotalAmount;
 
-  print(
-      ' amountModifier = monthlyTotalAmount + loanTotalAmoun : $amountModifierAddEntryPageLocal');
+  // print(
+  //     ' amountModifier = monthlyTotalAmount + loanTotalAmoun : $amountModifierAddEntryPageLocal');
 }
 
 // Funtion that takes array string and return the value count strings multiplied by 500

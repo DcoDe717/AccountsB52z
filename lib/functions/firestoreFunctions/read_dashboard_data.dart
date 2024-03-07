@@ -38,8 +38,8 @@ Future<int> readAllDbDashboardData() async {
                 .reduce((value, element) => value + element)) *
             500;
 
-    print(
-        "monthyPendingCountListMemberWise : $monthyPendingCountListMemberWise");
+    // print(
+    //     "monthyPendingCountListMemberWise : $monthyPendingCountListMemberWise");
 
     // Reading loan_pending_amount_list_all_members
     localListLoanPendingAmount =
@@ -49,18 +49,18 @@ Future<int> readAllDbDashboardData() async {
         .map((dynamic item) => item as double)
         .toList();
 
-    print(
-        "pendingLoanAmountAllMembersPulledDB : $pendingLoanAmountAllMembersPulledDB");
+    // print(
+    //     "pendingLoanAmountAllMembersPulledDB : $pendingLoanAmountAllMembersPulledDB");
 
     totalFundRecievedStoringFromDB =
         (monthlyTotDoc['total_fund_recieved_from_true_count_monthly'])
             .toDouble();
-    print("totalFundRecievedStoringFromDB : $totalFundRecievedStoringFromDB");
+    // print("totalFundRecievedStoringFromDB : $totalFundRecievedStoringFromDB");
 
     balanceFundTotalPulledFromDB =
         (grossTotal['total_balance_fund_whole']).toDouble();
 
-    print("balanceFundTotalPulledFromDB : $balanceFundTotalPulledFromDB");
+    // print("balanceFundTotalPulledFromDB : $balanceFundTotalPulledFromDB");
 
     // Calculate total fund expected
     totalFundRecievedPulledFromDB =
@@ -70,8 +70,8 @@ Future<int> readAllDbDashboardData() async {
     totalFundExpectedCalculatedLocal = totalFundRecievedStoringFromDB +
         totalMonthlyPendingAmountCalcFromMemberWiseCountList;
 
-    print(
-        "totalFundExpectedCalculatedLocal : $totalFundExpectedCalculatedLocal");
+    // print(
+    //     "totalFundExpectedCalculatedLocal : $totalFundExpectedCalculatedLocal");
 
     switchcaseNameToValueRetrievelFuction(userNameGlobal);
   } catch (e) {

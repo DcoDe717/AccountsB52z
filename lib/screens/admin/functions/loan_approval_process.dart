@@ -20,7 +20,7 @@ import 'package:flutter/material.dart';
 
 Future<void> loanApprovalProcess(
     String? memberCheckLoanActive, BuildContext ctxCheckLoanActive) async {
-  print('checkLoanActive passed value is $memberCheckLoanActive');
+  // print('checkLoanActive passed value is $memberCheckLoanActive');
 
   showLoadingPopup(ctxCheckLoanActive);
 
@@ -44,14 +44,14 @@ Future<void> loanApprovalProcess(
       hideLoadingPopup(ctxCheckLoanActive);
 
       showLoanActiveCheckTruePopup(ctxCheckLoanActive, memberCheckLoanActive);
-      print(
-          'Loan is active, cannot approve anymore loan, finish the active loan first');
+      // print(
+      //     'Loan is active, cannot approve anymore loan, finish the active loan first');
       // Calling state clearing function after loan is approved
       stateClearLoanApprovalScreen();
     }
     // level 0 (else)
     else {
-      print('Loan is not active, please avail new loan');
+      // print('Loan is not active, please avail new loan');
 
       loanAmountTextFromTextController =
           loanAmountTextControllerLoanApproveScreen.text.trim();
@@ -68,13 +68,13 @@ Future<void> loanApprovalProcess(
           // level 3 (if)
           if (loanAmountParsed! < balanceFundTotalPulledFromDB) {
             // Main Section: Your logic here
-            print('loan can be approved since amount is less than balance');
+            // print('loan can be approved since amount is less than balance');
 
             commentsTextFromTextControllerLoanApproveScreen =
                 commentsTextControllerLoanApproveScreen.text.trim();
 
-            print(
-                'commentsTextControllerLoanApproveScreen.text.trim() :  $commentsTextFromTextControllerLoanApproveScreen');
+            // print(
+            //     'commentsTextControllerLoanApproveScreen.text.trim() :  $commentsTextFromTextControllerLoanApproveScreen');
 
             // Create or update the required fields in the document for loan approval
             await documentReferenceInsideCheckLoanActiveFunction.set(
@@ -114,19 +114,22 @@ Future<void> loanApprovalProcess(
             // Calling state clearing function after loan is approved
             // stateClearLoanApprovalScreen();
 
-            print('loan cannot be provided since balance fund is not enough');
+            // print('loan cannot be provided since balance fund is not enough');
           }
         }
         // level 2 (else)
         else {
           invalidLoanAmountFormatPopup(ctxCheckLoanActive);
-          print('Invalid loan amount format');
+
+          // print('Invalid loan amount format');
         }
       }
       // level 1 (else)
       else {
         loanAmountIsEmptyPopup(ctxCheckLoanActive);
-        print('Loan amount is empty');
+
+        // print('Loan amount is empty');
+
       }
 
       // if (int.parse(loanAmountTextControllerLoanApproveScreen.text) <

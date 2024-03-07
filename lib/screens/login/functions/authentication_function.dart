@@ -26,17 +26,17 @@ Future<void> loginAuthentication(
       if (!passedCTX.mounted) return;
 
       if (documentSnapshot.exists) {
-        print('Document with username $usernameLocal exists.');
+        // print('Document with username $usernameLocal exists.');
 
         if (documentSnapshot['cred_key'] == passwordLocal) {
-          print('password is matching');
+          // print('password is matching');
 
           checkForAdminRightsAndNavigateSplashScreen(passedCTX, usernameLocal);
         } else {
           // Close loading popup before showing the wrong password alert
           hideLoadingPopup(passedCTX);
 
-          print('password is wrong');
+          // print('password is wrong');
 
           wrongPassWordAlert(passedCTX, usernameLocal);
         }

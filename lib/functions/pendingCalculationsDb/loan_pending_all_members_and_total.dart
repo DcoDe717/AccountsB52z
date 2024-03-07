@@ -21,8 +21,10 @@ Future<double> totPendingCountMemberWiseListLoan(List<String> members) async {
         docCollectionMapped.containsKey('loan_amount_pending_to_pay')) {
       double storePendingLoanAmountMemberWise =
           (docTotalSnapshot['loan_amount_pending_to_pay']).toDouble();
-      print(
-          'loan amount pending to pay for $nameMember is ₹ $storePendingLoanAmountMemberWise');
+
+      // print(
+      //     'loan amount pending to pay for $nameMember is ₹ $storePendingLoanAmountMemberWise');
+
       localPendingLoanAmountAllMembersPulledDB
           .add(storePendingLoanAmountMemberWise);
 
@@ -30,7 +32,8 @@ Future<double> totPendingCountMemberWiseListLoan(List<String> members) async {
     } else {
       // Handle the case when the document doesn't exist for a member
       localPendingLoanAmountAllMembersPulledDB.add(0);
-      print('user does not have loan_amount_pending_to_pay field');
+
+      // print('user does not have loan_amount_pending_to_pay field');
       // You can use any default value
     }
   }
@@ -43,7 +46,7 @@ Future<double> totPendingCountMemberWiseListLoan(List<String> members) async {
         localPendingLoanAmountAllMembersPulledDB
   }, SetOptions(merge: true));
 
-  print('pendingCounts: $localPendingLoanAmountAllMembersPulledDB');
+  // print('pendingCounts: $localPendingLoanAmountAllMembersPulledDB');
 
   return 0;
 }

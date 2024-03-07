@@ -44,10 +44,10 @@ Future<void> updatePendingMonthsAndAmountMemberWiseLoan(
       }
     } else {
       // Document does not exist
-      print('Document $documentId does not exist');
+      // print('Document $documentId does not exist');
     }
   } catch (error) {
     // Handle errors
-    print('Error getting document $documentId: $error');
+    // print('Error getting document $documentId: $error');
   }
 }

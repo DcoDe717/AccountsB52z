@@ -51,7 +51,9 @@ class _ScreenAddDataState extends State<ScreenAddData> {
 
     // Check if the value was updated on the second screen
     if (updatedValue == 'done') {
-      print('if (updatedValue) : passed');
+
+      // print('if (updatedValue) : passed');
+
       setState(() {
         amountModifierAddEntryPageLocal = amountModifierAddEntryPageLocal;
       });
@@ -63,7 +65,8 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) {
-        print("back button is pressed");
+
+        // print("back button is pressed");
 
         resetIdleTimer();
 
@@ -164,20 +167,22 @@ class _ScreenAddDataState extends State<ScreenAddData> {
 
           // Check for drowndown value selected or not
           if (chosenMemberAddEntryDropdown.isNotEmpty) {
-            print('if (gSelectedMember.isNotEmpty) passed');
+
+            // print('if (gSelectedMember.isNotEmpty) passed');
 
             // Check for any fields selected or not
             if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isNotEmpty ||
                 gSelectedMonthsLoanInstallmentsMultiSelect.isNotEmpty) {
-              print(
-                  'if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isEmpty): passed');
+
+              // print(
+              //     'if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isEmpty): passed');
 
               // If no loan months is selected updateLoanField wont run
               if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isNotEmpty &&
                   gSelectedMonthsLoanInstallmentsMultiSelect.isNotEmpty) {
                 showLoadingPopup(context);
 
-                print('both monthly and loan fields are selected');
+                // print('both monthly and loan fields are selected');
 
                 await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
                     "monthly_installment",
@@ -197,7 +202,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 if (gSelectedMonthsMonthlyInstallmentsMultiSelect.isNotEmpty) {
                   showLoadingPopup(context);
 
-                  print('only selected monthly fields');
+                  // print('only selected monthly fields');
 
                   await updateFSFieldsFromSelectedMonthsMonthlyInstTest(
                       "monthly_installment",
@@ -209,7 +214,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 } else {
                   showLoadingPopup(context);
 
-                  print('only selected loan fields');
+                  // print('only selected loan fields');
 
                   await updateFSFieldsForLoanSelectedMonths(
                       'loan_installment',
@@ -221,7 +226,7 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                 }
               }
 
-              print('gSelectedMember : $gSelectedMember');
+              // print('gSelectedMember : $gSelectedMember');
 
               setState(() {
                 stateClearAddEnrtyScreen();
@@ -241,12 +246,12 @@ class _ScreenAddDataState extends State<ScreenAddData> {
                   ),
                   (route) => false);
             } else {
-              print('executing selectAnyFieldAddEntryScreenPopup');
+              // print('executing selectAnyFieldAddEntryScreenPopup');
               // no fields selected for the user, popup alert executed
               selectAnyFieldAddEntryScreenPopup(context, gSelectedMember);
             }
           } else {
-            print('executing noMemberSelectedAddEntryScreenPopup');
+            // print('executing noMemberSelectedAddEntryScreenPopup');
             // No Member selected in dropdown, popup alert executed
             noMemberSelectedAddEntryScreenPopup(context);
           }
@@ -446,7 +451,8 @@ class _ScreenAddDataState extends State<ScreenAddData> {
     // Call your function here
     // e.g., _yourFunction(selectedvalue);
     chosenMemberAddEntryDropdown = selectedValue!;
-    print("chosenMember: $chosenMemberAddEntryDropdown");
+
+    // print("chosenMember: $chosenMemberAddEntryDropdown");
 
     setState(() {
       selectedDropdownValueAddEntry = selectedValue;

@@ -31,6 +31,7 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
     } catch (e) {
       // Handle errors appropriately (e.g., log, show error message)
       print('Error fetching monthly installments: $e');
+      
       rethrow;
     }
   }
@@ -42,6 +43,7 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
           .doc(gSelectedMember)
           .get();
     } catch (e) {
+
       print('Error fetching loan status: $e');
       rethrow;
     }
@@ -120,16 +122,16 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
             pendingMonthlyMonthsFromDbRaw =
                 monthlyInstallmentsDocSnapshot['pending_months_monthly'];
 
-            print(
-                "Pending months from db Raw : $pendingMonthlyMonthsFromDbRaw");
+            // print(
+            //     "Pending months from db Raw : $pendingMonthlyMonthsFromDbRaw");
 
             if (pendingMonthlyMonthsFromDbRaw.isNotEmpty) {
               // Use the string value in your local variable
               pendingMonthlyMonthsListSplittedArray =
                   pendingMonthlyMonthsFromDbRaw.split(',');
 
-              print(
-                  "Pending months from db Splitted: $pendingMonthlyMonthsListSplittedArray");
+              // print(
+              //     "Pending months from db Splitted: $pendingMonthlyMonthsListSplittedArray");
 
               // Create a new list with month names
               pendingMonthlyMonthsNamesListConvertedForMultiSelect =
@@ -137,8 +139,8 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                       .map((monthValue) => getMonthName(int.parse(monthValue)))
                       .toList();
 
-              print(
-                  "Pending months names list converted : $pendingMonthlyMonthsNamesListConvertedForMultiSelect");
+              // print(
+              //     "Pending months names list converted : $pendingMonthlyMonthsNamesListConvertedForMultiSelect");
             }
           }
 
@@ -154,7 +156,9 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
               // return const Center(child: Text('Loan is not active'));
             } // If Loan is active continue code for retrieving pending months
             else {
-              print('isloanactive value: $isLoanActive');
+
+              // print('isloanactive value: $isLoanActive');
+
               Map<String, dynamic> loanPendingMonthsFalseListIndex =
                   loanInstallmentsDocSnapshot['months_status_emi'];
 
@@ -169,7 +173,7 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                 }
               });
 
-              print('loanPendingFalseList : $loanPendingFalseList');
+              // print('loanPendingFalseList : $loanPendingFalseList');
               // retrieveEmiMonthNames(loanPendingFalseList);
             }
           }
@@ -238,8 +242,9 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                             onChange: (newList) {
                               gSelectedMonthsMonthlyInstallmentsMultiSelect =
                                   newList;
-                              print(
-                                  "Multi select items : $gSelectedMonthsMonthlyInstallmentsMultiSelect");
+
+                              // print(
+                              //     "Multi select items : $gSelectedMonthsMonthlyInstallmentsMultiSelect");
 
                               // your logic
                             },
@@ -277,8 +282,9 @@ class _MultiSelectScreenAddEntryState extends State<MultiSelectScreenAddEntry> {
                             onChange: (newList) {
                               gSelectedMonthsLoanInstallmentsMultiSelect =
                                   newList;
-                              print(
-                                  "gSelectedMonthsLoanInstallmentsMultiSelect : $gSelectedMonthsLoanInstallmentsMultiSelect");
+
+                              // print(
+                              //     "gSelectedMonthsLoanInstallmentsMultiSelect : $gSelectedMonthsLoanInstallmentsMultiSelect");
 
                               // your logic
                             },

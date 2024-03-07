@@ -46,12 +46,14 @@ Future<void> retrieveEmiMonthNamesLoan(List<String> keysToAccess) async {
         print(falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect);
       } else {
         // If key not found, add a default value and print debugging information
-        print("Key not found: $key");
+        // print("Key not found: $key");
+
         falseMonthsListRetrievedFromFalseIndexListLoanForMultiSelect
             .add("Default Value for $key");
       }
     }
   } catch (e) {
-    print("Error retrieving document: $e");
+
+    // print("Error retrieving document: $e");
   }
 }

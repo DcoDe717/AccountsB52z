@@ -27,7 +27,7 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) {
-        print("back button is pressed");
+        // print("back button is pressed");
 
         resetIdleTimer();
 
@@ -234,8 +234,11 @@ class _ScreenLoanApproveState extends State<ScreenLoanApprove> {
           resetIdleTimer();
 
           if (selectedDropdownValueAdmin?.isEmpty ?? true) {
+
             selectAnyMemberPopupForLoanApproval(context);
-            print('selecetedDropdownValue is $selectedDropdownValueAdmin');
+
+            // print('selecetedDropdownValue is $selectedDropdownValueAdmin');
+
           } else {
             loanApprovalProcess(selectedDropdownValueAdmin, context);
           }

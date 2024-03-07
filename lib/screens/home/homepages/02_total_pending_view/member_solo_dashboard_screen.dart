@@ -65,10 +65,13 @@ class _ScreenUserPendingViewState extends State<ScreenUserPendingView> {
 
   Widget _buildCard(
       {required Color color, required String title, required double amount}) {
-    print(
-        'switchCaseRetrievedValueMonthly inside page 02 : $switchCaseRetrievedValueMonthly');
-    print(
-        'switchCaseRetrievedValueLoan inside page 02 : $switchCaseRetrievedValueLoan');
+
+    // print(
+    //     'switchCaseRetrievedValueMonthly inside page 02 : $switchCaseRetrievedValueMonthly');
+
+    // print(
+    //     'switchCaseRetrievedValueLoan inside page 02 : $switchCaseRetrievedValueLoan');
+
     return Card(
       color: color,
       elevation: 4.0,
